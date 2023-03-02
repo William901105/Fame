@@ -29,6 +29,10 @@ class FilteredCollection():
 
 class User(MongoDict):
     collection_name = 'users'
+    
+    def is_guest(self, _id):
+        user_id=str(_id)
+        return ( user_id in '<guestID>')
 
     def __init__(self, values):
         self['permissions'] = []

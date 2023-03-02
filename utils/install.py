@@ -128,7 +128,6 @@ def create_admin_user(context):
 
         create_user("Admin", default_user_email, ['*', 'cert'], ["cert"], ['*'], default_user_password)
 
-
 def add_community_repository():
     from fame.core.repository import Repository
 

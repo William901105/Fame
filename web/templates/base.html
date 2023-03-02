@@ -147,6 +147,11 @@
                     </form>
 
                     <ul class="nav navbar-nav navbar-right">
+			<li>
+                       	   <a href="{{ url_for('PreprocessorsView:index') }}">
+                               Preprocessors
+                           </a>
+                        </li>
                         {% if current_user.has_permission('configs') %}
                         <li>
                            <a href="{{ url_for('ConfigsView:index') }}">
@@ -175,7 +180,9 @@
                             </a>
 
                             <ul class="dropdown-menu">
-                              <li><a href="{{url_for('UsersView:get', id=current_user._id)}}">Profile</a></li>
+			      {% if not current_user.is_guest(current_user._id) %}
+                		<li><a href="{{url_for('UsersView:get', id=current_user._id)}}">Profile</a></li>
+	    		      {% endif %}
                               {% if current_user.has_permission('manage_modules') %}
                                 <li><a href="{{ url_for('ModulesView:index') }}">Configuration</a></li>
                               {% endif %}

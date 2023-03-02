@@ -52,7 +52,13 @@ class ModuleInfo(MongoDict):
         return '/'.join(self['path'].split('.')[2:-1]) + '/details.html'
 
     def update_config(self, new_info):
-        if self['type'] == 'Processing':
+        if self['type'] == 'Preprocessing':
+            self['generates'] = new_info['generates']
+            self._update_diffed_value('queue', new_info['queue'])
+            self._update_diffed_value('acts_on', new_info['acts_on'])
+            self._update_diffed_value('triggered_by', new_info['triggered_by'])
+
+        elif self['type'] == 'Processing':
             self['generates'] = new_info['generates']
             self._update_diffed_value('queue', new_info['queue'])
             self._update_diffed_value('acts_on', new_info['acts_on'])
@@ -278,7 +284,120 @@ class Module(object):
         init_config_values(config)
 
         return config
+class PreprocessingModule(Module):
 
+    acts_on = []
+    generates = []
+    triggered_by = []
+    permissions = {}
+    queue = 'unix'
+
+    def __init__(self, with_config=True):
+        Module.__init__(self, with_config)
+        self.results = None
+        self.tags = []
+
+    def register_files(self, file_type, locations):
+
+        self._analysis.add_generated_files(file_type, locations)
+
+    def change_type(self, location, new_type):
+
+        self._analysis.change_type(location, new_type)
+
+    def add_extracted_file(self, location, automatic_analysis=True):
+
+        self._analysis.add_extracted_file(location, automatic_analysis)
+
+    def add_support_file(self, name, location):
+
+        self._analysis.add_support_file(self.name, name, location)
+
+    def add_extraction(self, label, extraction):
+
+        self._analysis.add_extraction(label, extraction)
+
+    def add_probable_name(self, probable_name):
+
+        self._analysis.add_probable_name(probable_name)
+
+    def add_ioc(self, value, tags=[]):
+
+        for ioc in iterify(value):
+            self._analysis.add_ioc(ioc, self.name, tags)
+
+    def add_tag(self, tag):
+
+        if tag not in self.tags:
+            self.tags.append(tag)
+
+    def init_options(self, options):
+        for option in options:
+            setattr(self, option, options[option])
+
+    def execute(self, analysis):
+        self._analysis = analysis
+        self.init_options(analysis['options'])
+        return self.run()
+
+    def each(self, target):
+
+        self.log("warning", "no 'each' method defined. Module should define 'each' or 'run'")
+        return False
+
+    def each_with_type(self, target, file_type):
+
+        return self.each(target)
+
+    def run(self):
+
+        result = False
+
+        # Process all the files available for this module,
+        # if 'acts_on' is defined
+        if self.info['acts_on']:
+            for source_type in iterify(self.info['acts_on']):
+                for target in self._analysis.get_files(source_type):
+                    if self._try_each(target, source_type):
+                        result = True
+        # Otherwise, only run on main target
+        else:
+            return self._try_each(self._analysis.get_main_file(), self._analysis._file['type'])
+
+        return result
+
+    def _try_each(self, target, file_type):
+        try:
+            if file_type == 'url':
+                with open(target, 'r') as fd:
+                    target = fd.read()
+
+            return self.each_with_type(target, file_type)
+        except ModuleExecutionError as e:
+            self.log("error", "Could not run on %s: %s" % (target, e))
+            return False
+        except Exception:
+            tb = traceback.format_exc()
+            self.log("error", "Could not run on %s.\n %s" % (target, tb))
+            return False
+
+    @classmethod
+    def static_info(cls):
+        info = {
+            "name": cls.name,
+            "description": cls.description,
+            "type": "Preprocessing",
+            "config": cls.config,
+            "diffs": {},
+            "acts_on": iterify(cls.acts_on),
+            "generates": iterify(cls.generates),
+            "triggered_by": iterify(cls.triggered_by),
+            "queue": cls.queue
+        }
+
+        init_config_values(info)
+
+        return ModuleInfo(info)
 
 class ProcessingModule(Module):
     """Base class for processing modules

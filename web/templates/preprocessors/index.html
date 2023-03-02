@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="header">
+                    <h4 class="title">Preprocessing Modules</h4>
+                    <p class="category"></p>
+                </div>
+                <div class="content module-list">
+                    {% for module in data.modules['Preprocessing'] %}
+                        <div class="module-info">
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <h5>{{module.name}}</h5>
+                                </div>
+                                <div class="col-sm-4 text-right module-actions">
+                                    {% if module.enabled %}
+                    <form method="post" action="{{ url_for('PreprocessorsView:downloadlinux', id=module._id) }}">
+                        <button type="submit"  class="btn btn-success btn-xs btn-fill"><i class="fa fa-download"></i> Linux </button>
+                                        </form>
+                    <form method="post" action="{{ url_for('PreprocessorsView:downloadwindows', id=module._id) }}">
+                        <button type="submit" class="btn btn-success btn-xs btn-fill"><i class="fa fa-download"></i> Windows </button>
+                                        </form>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            {% if module.description %}
+                                <div>{{module.description}}</div>
+                            {% endif %}
+
+                            {% if module.error %}
+                            <div class="panel panel-danger">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Error</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <pre>{{module.error}}</pre>
+                                </div>
+                            </div>
+                            {% endif %}
+
+                            <ul>
+                                {% if module.acts_on %}
+                                    <li><span class="label">Acts On</span> {{module.acts_on|smart_join}}</li>
+                                {% endif %}
+                                {% if module.generates %}
+                                    <li><span class="label">Generates</span> {{module.generates|smart_join}}</li>
+                                {% endif %}
+                                {% if module.triggered_by %}
+                                    <li><span class="label">Trigerred By</span> {{module.triggered_by|smart_join}}</li>
+                                {% endif %}
+                                <li><span class="label">Queue</span> {{module.queue}}</li>
+                            </ul>
+                        </div>
+                    {% else %}
+                        <div>No module to list. Consider <a href="{{url_for('ModulesView:repository_new')}}">adding a module repository</a>.</div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

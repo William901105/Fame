@@ -183,6 +183,7 @@ class ModulesView(FlaskView, UIView):
         types = {
             'Preloading': [],
             'Processing': [],
+            'Preprocessing': [],
             'Reporting': [],
             'Threat Intelligence': [],
             'Antivirus': [],
@@ -328,7 +329,26 @@ class ModulesView(FlaskView, UIView):
             if module['type'] == 'Filetype':
                 if 'acts_on' in request.form:
                     module.update_setting_value('acts_on', request.form.get('acts_on', ''))
+            elif module['type'] == 'Preprocessing':
+                if 'acts_on' in request.form:
+                    module.update_setting_value('acts_on', request.form.get('acts_on', ''))
+
+                if 'triggered_by' in request.form:
+                    module.update_setting_value('triggered_by', request.form.get('triggered_by', ''))
+
+                if 'queue' in request.form:
+                    update_queue(module, request.form.get('queue', ''))
             elif module['type'] == 'Processing':
+                if 'acts_on' in request.form:
+                    module.update_setting_value('acts_on', request.form.get('acts_on', ''))
+
+                if 'triggered_by' in request.form:
+                    module.update_setting_value('triggered_by', request.form.get('triggered_by', ''))
+
+                if 'queue' in request.form:
+                    update_queue(module, request.form.get('queue', ''))
+
+            elif module['type'] == 'Preprocessing':
                 if 'acts_on' in request.form:
                     module.update_setting_value('acts_on', request.form.get('acts_on', ''))
 
@@ -345,7 +365,7 @@ class ModulesView(FlaskView, UIView):
                 if 'priority' in request.form:
                     update_priority(module, request.form.get('priority', ''))
 
-            errors = update_config(module['config'], options=(module['type'] in ['Preloading', 'Processing']))
+            errors = update_config(module['config'], options=(module['type'] in ['Preloading', 'Processing', 'Preprocessing']))
             if errors is not None:
                 return errors
 
@@ -362,7 +382,7 @@ class ModulesView(FlaskView, UIView):
 
         :>json list modules: list of enabled modules.
         """
-        modules = ModuleInfo.get_collection().find({'enabled': True, 'type': {'$in': ['Processing', 'Preloading']}})
+        modules = ModuleInfo.get_collection().find({'enabled': True, 'type': {'$in': ['Processing', 'Preprocessing', 'Preloading']}})
 
         return render_json(clean_modules(list(modules)))
 

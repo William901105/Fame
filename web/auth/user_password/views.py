@@ -115,14 +115,17 @@ def login():
     if request.method == 'GET':
         return render_template('login.html')
     else:
-        if authenticate(request.form.get('email'), request.form.get('password')):
-            redir = request.args.get('next', '/')
-            return redirect(urljoin(fame_config.fame_url, redir))
-        else:
-            flash("Invalid credentials.", "danger")
-            return render_template('login.html')
-
-
+        if request.method == 'POST':
+            if request.form['login'] == 'account':
+                if authenticate(request.form.get('email'), request.form.get('password')):
+                    redir = request.args.get('next', '/')
+                    return redirect(urljoin(fame_config.fame_url, redir))
+                else:
+                    flash("Invalid credentials.", "danger")
+                    return render_template('login.html')
+            elif request.form['login'] == 'guest':
+                if authenticate('guestEmail','guestPassword'):
+                    return redirect(url_for("AnalysesView:new"))
 @auth.route('/logout')
 def logout():
     if current_user.is_authenticated:

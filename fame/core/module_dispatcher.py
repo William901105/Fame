@@ -19,6 +19,7 @@ class ModuleDispatcher(object):
     def reload(self):
         self._modules = {
             'Preloading': [],
+            'Preprocessing': {},
             'Processing': {},
             'Reporting': [],
             'Antivirus': [],
@@ -53,12 +54,19 @@ class ModuleDispatcher(object):
         return (
             self.get_preloading_module(module_name) or
             self.get_processing_module(module_name) or
+            self.get_preprocessing_module(module_name) or
             None
         )
 
     def get_processing_module(self, module_name):
         if module_name in self._modules['Processing']:
             return self._modules['Processing'][module_name]()
+
+        return None
+
+    def get_preprocessing_module(self, module_name):
+        if module_name in self._modules['Preprocessing']:
+            return self._modules['Preprocessing'][module_name]()
 
         return None
 
@@ -84,7 +92,7 @@ class ModuleDispatcher(object):
 
     # Get next module to execute to achieve some goal
     def next_module(self, types_available, module_name, excluded_modules):
-        module = self.get_processing_module(module_name)
+        module = dict(self.get_processing_module(module_name) | self.get_preprocessing_module(module_name))
 
         if module is None:
             raise DispatchingException("Could not find execution path")
@@ -210,6 +218,30 @@ class ModuleDispatcher(object):
                 if module['acts_on']:
                     for source_type in iterify(module['acts_on']):
                         self._add_trigger(self._triggers, "_generated_file(%s)" % source_type, module)
+    
+    def add_preprocessing_module(self, module):
+        m = get_class(module['path'], module['class'])
+        if m:
+            m.info = module
+            self._modules['Preprocessing'][module['name']] = m
+
+            self._add_module_options(module)
+            self._add_preprocessing_module_permissions(module)
+
+            # Add module to transform if 'generates' is defined
+            if module['generates']:
+                self._add_transforms(module)
+
+            # Add module to triggers if 'triggered_by' is defined
+            if module['triggered_by']:
+                self._add_module_triggers(module)
+            # Otherwise, add to general purpose modules
+            else:
+                self._general.append(module['name'])
+                # Also, if module acts on specific file type, add a specific trigger
+                if module['acts_on']:
+                    for source_type in iterify(module['acts_on']):
+                        self._add_trigger(self._triggers, "_generated_file(%s)" % source_type, module)
 
     def add_preloading_module(self, module):
         m = get_class(module['path'], module['class'])
@@ -220,6 +252,11 @@ class ModuleDispatcher(object):
 
     def _add_module_permissions(self, module):
         module = self._modules['Processing'][module['name']]
+        for permission in module.permissions:
+            self.permissions[permission] = module.permissions[permission]
+
+    def _add_preprocessing_module_permissions(self, module):
+        module = self._modules['Preprocessing'][module['name']]
         for permission in module.permissions:
             self.permissions[permission] = module.permissions[permission]
 
@@ -275,6 +312,8 @@ class ModuleDispatcher(object):
                 self.add_filetype_module(module)
             elif module['type'] == "Preloading":
                 self.add_preloading_module(module)
+            elif module['type'] == "Preprocessing":
+                self.add_preprocessing_module(module)
             else:
                 self.add_module(module)
 
