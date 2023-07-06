@@ -24,11 +24,11 @@ services:
     networks:
       - backend.fame
     ports:
-      - "127.0.0.1:4200:4200"
+      - "4200:4200"
     env_file:
       - fame.env
     environment:
-      FAME_URL: http://localhost:4200
+      FAME_URL: https://fame.bun-ball.live
     depends_on:
       - fame_db
     volumes:
@@ -93,7 +93,7 @@ services:
       - backend.fame
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
-      MONGO_INITDB_ROOT_PASSWORD: NeedToBeChanged
+      MONGO_INITDB_ROOT_PASSWORD: admin
     volumes:
       - mongodb:/data/db
       - ./mongo-init-user.sh:/docker-entrypoint-initdb.d/mongo-init-user.sh:ro
