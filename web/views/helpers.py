@@ -1,4 +1,5 @@
 import urllib.parse
+from urllib.parse import parse_qsl, urljoin, urlparse
 from bson import ObjectId
 from flask import make_response, abort, request
 from flask_login import current_user
@@ -160,14 +161,22 @@ def different_origin(referer, target):
 
     return origin1 != origin2
 
-
+'''
 def csrf_protect():
     if request.method not in ('GET', 'HEAD', 'OPTIONS', 'TRACE'):
         referer = request.headers.get('Referer')
 
         if referer is None or different_origin(referer, request.url_root):
             raise Forbidden(description="Referer check failed.")
-
+'''
+def csrf_protect():
+    if request.method not in ('GET', 'HEAD', 'OPTIONS', 'TRACE'):
+        referer = request.headers.get('Referer')
+        hostname=urlparse(referer).hostname
+        if hostname == "YOUR_DOMAIN_NAME":
+            pass
+        elif referer is None or different_origin(referer, request.url_root):
+            raise Forbidden(description="Referer check failed.")
 
 def prevent_csrf(func):
     @wraps(func)
