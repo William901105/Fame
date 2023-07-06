@@ -157,7 +157,7 @@ def add_community_repository():
 def perform_local_installation(context):
     templates = Templates()
 
-    context['fame_url'] = os.environ.get("FAME_URL", "http://localhost")
+    context['fame_url'] = os.environ.get("FAME_URL", "https://fame.bun-ball.live")
     if context['interactive']:
         context['fame_url'] = user_input("FAME's URL for worker", context['fame_url'])
     print("[+] Creating configuration file ...")
@@ -195,7 +195,7 @@ def create_user_for_worker(context):
 def get_fame_url(context):
     import requests
 
-    context['fame_url'] = os.environ.get("FAME_URL", 'http://localhost')
+    context['fame_url'] = os.environ.get("FAME_URL", 'https://fame.bun-ball.live')
 
     url = urljoin(context['fame_url'], '/modules/download')
     try:

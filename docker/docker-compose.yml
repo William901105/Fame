@@ -19,16 +19,17 @@ services:
       context: ../
       dockerfile: ./docker/Dockerfile
     image: fame:latest
-    hostname: fame_web
+    #hostname: fame_web
+    hostname: fame.bun-ball.live
     container_name: fame_web
     networks:
       - backend.fame
     ports:
-      - "127.0.0.1:4200:4200"
+      - "4200:4200"
     env_file:
       - fame.env
     environment:
-      FAME_URL: http://localhost:4200
+      FAME_URL: https://fame.bun-ball.live #http://128.199.137.111:4200
     depends_on:
       - fame_db
     volumes:
@@ -45,7 +46,8 @@ services:
       context: ../
       dockerfile: ./docker/Dockerfile
     image: fame:latest
-    hostname: fame_worker
+    hostname: fame.bun-ball.live
+    #hostname: fame_worker
     container_name: fame_worker
     volumes:
       - modules_worker:/opt/fame/fame/modules/
@@ -67,7 +69,8 @@ services:
       context: ../
       dockerfile: ./docker/Dockerfile
     image: fame:latest
-    hostname: fame_updater
+    hostname: fame.bun-ball.live
+    #hostname: fame_updater
     container_name: fame_updater
     entrypoint: /bin/sh
     command: -c "wait-for -t 0 fame_web:4200 && /opt/fame/docker/docker-entrypoint.sh updater"
@@ -85,7 +88,8 @@ services:
   fame_db:
     image: mongo:latest
     container_name: fame_db
-    hostname: fame_db
+    hostname: fame.bun-ball.live
+    #hostname: fame_db
     command: mongod --auth --quiet --logpath /dev/null
     env_file:
       - fame.env
