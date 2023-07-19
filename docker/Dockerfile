@@ -1,12 +1,14 @@
-FROM debian:latest
+FROM debian:11
 
 WORKDIR /opt
 
 ENV PYTHONUNBUFFERED=1
 
+RUN apt update && DEBIAN_FRONTEND=noninteractive apt-get install -y default-jre
+
 RUN apt update && \
   apt upgrade -y && \
-  DEBIAN_FRONTEND=noninteractive apt install -y \
+  DEBIAN_FRONTEND=noninteractive apt-get install -y \
   git \
   python3-dev \
   python3-pip \
@@ -16,13 +18,16 @@ RUN apt update && \
   zlib1g-dev \
   libmagic-dev \
   apt-transport-https \
-  netcat \
+  netcat-traditional \
+  default-jdk\
   ca-certificates \
   curl \
   gnupg2 \
   pkg-config \
   libvirt-dev \
   sudo \
+  default-jdk \
+  unzip \
   software-properties-common
 
 RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - && \
@@ -34,6 +39,12 @@ RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - && \
 RUN curl -o /bin/wait-for https://raw.githubusercontent.com/eficode/wait-for/master/wait-for && \
     chmod +x /bin/wait-for
 
+# some FAME module require protobuf-compiler >= 3.19.0
+RUN curl -fsSL -o /tmp/protoc.zip https://github.com/protocolbuffers/protobuf/releases/download/v21.6/protoc-21.6-linux-x86_64.zip && \
+    unzip /tmp/protoc.zip -d /tmp/protoc && \
+    mv /tmp/protoc/bin/* /usr/local/bin && mv /tmp/protoc/include/* /usr/local/include && \
+    rm -rf /tmp/protoc /tmp/protoc.zip
+
 RUN apt-get update && apt-get install -y \
     docker-ce \
     docker-ce-cli \
@@ -43,7 +54,8 @@ RUN apt-get update && apt-get install -y \
 RUN groupadd -r fame && \
     useradd -M -r -d /opt/fame -g fame -G docker fame && \
     install -d -m 0755 -o fame -g fame /opt/fame && \
-    echo "fame ALL=(root) NOPASSWD: ALL " > /etc/sudoers.d/fame
+    echo 'fame ALL=(root) NOPASSWD: /usr/bin/dockerd ""' > /etc/sudoers.d/fame && \
+    echo 'fame ALL=(root) NOPASSWD: /bin/rm -f /var/run/docker.sock /var/run/docker/containerd/containerd.sock /var/run/docker.pid /var/run/docker/containerd/containerd.pid' >> /etc/sudoers.d/fame
 
 COPY . /opt/fame
 
