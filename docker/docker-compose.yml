@@ -100,7 +100,7 @@ services:
       - backend.fame
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
-      MONGO_INITDB_ROOT_PASSWORD: NeedToBeChanged
+      MONGO_INITDB_ROOT_PASSWORD: admin
     volumes:
       - mongodb:/data/db
       - ./mongo-init-user.sh:/docker-entrypoint-initdb.d/mongo-init-user.sh:ro

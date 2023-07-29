@@ -20,6 +20,7 @@ from web.views.modules import ModulesView
 from web.views.search import SearchView
 from web.views.configs import ConfigsView
 from web.views.users import UsersView
+from web.views.preprocessors import PreprocessorsView
 from web.views.helpers import user_if_enabled, disconnect_if_inactive
 
 try:
@@ -163,6 +164,7 @@ ModulesView.register(app)
 SearchView.register(app)
 ConfigsView.register(app)
 UsersView.register(app)
+PreprocessorsView.register(app)
 
 if __name__ == '__main__':
     app.run(debug=True, port=4200, host="0.0.0.0")
