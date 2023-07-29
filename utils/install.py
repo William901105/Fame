@@ -1,7 +1,6 @@
 import os
 import sys
 import errno
-from urllib.parse import quote_plus
 from urllib.parse import urljoin
 from subprocess import run, PIPE
 
@@ -71,7 +70,13 @@ def define_mongo_connection(context):
 
     if not test_mongodb_connection(db):
         try:
-            db.authenticate(context['mongo_user'], quote_plus(context['mongo_password']))
+            mongo = MongoClient(host=context['mongo_host'],
+                port=context['mongo_port'],
+                serverSelectionTimeoutMS=10000,
+                username=context['mongo_user'],
+                password=context['mongo_password'],
+                authSource="fame")
+            db = mongo[context['mongo_db']]
         except:
             error("Could not connect to MongoDB (invalid credentials).")
 
@@ -128,6 +133,7 @@ def create_admin_user(context):
 
         create_user("Admin", default_user_email, ['*', 'cert'], ["cert"], ['*'], default_user_password)
 
+
 def add_community_repository():
     from fame.core.repository import Repository
 
@@ -141,7 +147,8 @@ def add_community_repository():
             'name': 'community',
             'address': 'https://github.com/certsocietegenerale/fame_modules.git',
             'private': False,
-            'status': 'cloning'
+            'status': 'cloning',
+            'branch': 'master'
         })
         repo.save()
         repo.do_clone()
@@ -150,7 +157,8 @@ def add_community_repository():
 def perform_local_installation(context):
     templates = Templates()
 
-    context['fame_url'] = os.environ.get("FAME_URL", "https://fame.bun-ball.live")
+    context['fame_url'] = os.environ.get("FAME_URL", "http://localhost")
+    # context['fame_url'] = os.environ.get("FAME_URL", "https://fame.bun-ball.live")
     if context['interactive']:
         context['fame_url'] = user_input("FAME's URL for worker", context['fame_url'])
     print("[+] Creating configuration file ...")
@@ -188,7 +196,8 @@ def create_user_for_worker(context):
 def get_fame_url(context):
     import requests
 
-    context['fame_url'] = os.environ.get("FAME_URL", 'https://fame.bun-ball.live')
+    context['fame_url'] = os.environ.get("FAME_URL", 'http://localhost')
+    # context['fame_url'] = os.environ.get("FAME_URL", 'https://fame.bun-ball.live')
 
     url = urljoin(context['fame_url'], '/modules/download')
     try:

@@ -4,11 +4,9 @@ WORKDIR /opt
 
 ENV PYTHONUNBUFFERED=1
 
-RUN apt update && DEBIAN_FRONTEND=noninteractive apt-get install -y default-jre
-
 RUN apt update && \
   apt upgrade -y && \
-  DEBIAN_FRONTEND=noninteractive apt-get install -y \
+  DEBIAN_FRONTEND=noninteractive apt install -y \
   git \
   python3-dev \
   python3-pip \
@@ -18,8 +16,7 @@ RUN apt update && \
   zlib1g-dev \
   libmagic-dev \
   apt-transport-https \
-  netcat-traditional \
-  default-jdk\
+  netcat \
   ca-certificates \
   curl \
   gnupg2 \

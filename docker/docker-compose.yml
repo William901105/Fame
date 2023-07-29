@@ -20,15 +20,19 @@ services:
       dockerfile: ./docker/Dockerfile
     image: fame:latest
     hostname: fame_web
+    # hostname: fame.bun-ball.live
     container_name: fame_web
     networks:
       - backend.fame
     ports:
+      # - "127.0.0.1:4200:4200"
       - "4200:4200"
     env_file:
       - fame.env
     environment:
-      FAME_URL: https://fame.bun-ball.live
+      FAME_URL: http://192.168.0.146:4200
+      # FAME_URL: http://localhost:4200
+      # FAME_URL: https://fame.bun-ball.live #http://128.199.137.111:4200
     depends_on:
       - fame_db
     volumes:
@@ -46,6 +50,7 @@ services:
       dockerfile: ./docker/Dockerfile
     image: fame:latest
     hostname: fame_worker
+    # hostname: fame.bun-ball.live
     container_name: fame_worker
     volumes:
       - modules_worker:/opt/fame/fame/modules/
@@ -68,6 +73,7 @@ services:
       dockerfile: ./docker/Dockerfile
     image: fame:latest
     hostname: fame_updater
+    # hostname: fame.bun-ball.live
     container_name: fame_updater
     entrypoint: /bin/sh
     command: -c "wait-for -t 0 fame_web:4200 && /opt/fame/docker/docker-entrypoint.sh updater"
@@ -83,9 +89,10 @@ services:
       - env:/opt/fame/env/
 
   fame_db:
-    image: mongo:latest
+    image: mongo:4.4.22
     container_name: fame_db
     hostname: fame_db
+    # hostname: fame.bun-ball.live
     command: mongod --auth --quiet --logpath /dev/null
     env_file:
       - fame.env
@@ -93,7 +100,7 @@ services:
       - backend.fame
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
-      MONGO_INITDB_ROOT_PASSWORD: admin
+      MONGO_INITDB_ROOT_PASSWORD: NeedToBeChanged
     volumes:
       - mongodb:/data/db
       - ./mongo-init-user.sh:/docker-entrypoint-initdb.d/mongo-init-user.sh:ro

@@ -1,8 +1,8 @@
 #!/bin/sh
-mongosh --eval "
-    disableTelemetry();
+echo "init mongo user..."
+mongo --eval "
     db.createUser({
-      user: process.env['MONGODB_USERNAME'],
-      pwd: process.env['MONGODB_PASSWORD'],
+      user: '$MONGODB_USERNAME',
+      pwd: '$MONGODB_PASSWORD',
       roles: ['readWrite'],
     });" -- "$MONGO_INITDB_DATABASE"
