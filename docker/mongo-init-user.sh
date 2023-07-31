@@ -1,5 +1,4 @@
 #!/bin/sh
-echo "init mongo user..."
 mongo --eval "
     db.createUser({
       user: '$MONGODB_USERNAME',

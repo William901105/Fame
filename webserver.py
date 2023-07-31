@@ -20,6 +20,7 @@ from web.views.modules import ModulesView
 from web.views.search import SearchView
 from web.views.configs import ConfigsView
 from web.views.users import UsersView
+from web.views.preprocessors import PreprocessorsView
 from web.views.helpers import user_if_enabled, disconnect_if_inactive
 
 try:
@@ -30,9 +31,8 @@ except:
 app = Flask(__name__, template_folder='web/templates', static_folder='web/static')
 app.secret_key = fame_config.secret_key
 app.config['TEMPLATES_AUTO_RELOAD'] = True
-if fame_config.fame_url is not None:
-    if 'https://' in fame_config.fame_url:
-        app.config['SESSION_COOKIE_SECURE'] = True
+if 'https://' in fame_config.fame_url:
+    app.config['SESSION_COOKIE_SECURE'] = True
 
 # Set two tempalte folders (one is for modules)
 template_loader = jinja2.ChoiceLoader([
@@ -163,6 +163,7 @@ ModulesView.register(app)
 SearchView.register(app)
 ConfigsView.register(app)
 UsersView.register(app)
+PreprocessorsView.register(app)
 
 if __name__ == '__main__':
     app.run(debug=True, port=4200, host="0.0.0.0")

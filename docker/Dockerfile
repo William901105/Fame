@@ -4,28 +4,30 @@ WORKDIR /opt
 
 ENV PYTHONUNBUFFERED=1
 
-RUN apt update && \
-  apt upgrade -y && \
-  DEBIAN_FRONTEND=noninteractive apt install -y \
-  git \
-  python3-dev \
-  python3-pip \
-  screen \
-  p7zip-full \
-  libjpeg-dev \
-  zlib1g-dev \
-  libmagic-dev \
-  apt-transport-https \
-  netcat \
-  ca-certificates \
-  curl \
-  gnupg2 \
-  pkg-config \
-  libvirt-dev \
-  sudo \
-  default-jdk \
-  unzip \
-  software-properties-common
+RUN apt update && DEBIAN_FRONTEND=noninteractive apt-get install -y default-jre
+
+RUN apt-get update && \
+    apt upgrade -y && \
+    DEBIAN_FRONTEND=noninteractive apt install -y \
+    git \
+    python3-dev \
+    python3-pip \
+    screen \
+    p7zip-full \
+    libjpeg-dev \
+    zlib1g-dev \
+    libmagic-dev \
+    apt-transport-https \
+    netcat \
+    ca-certificates \
+    curl \
+    gnupg2 \
+    pkg-config \
+    libvirt-dev \
+    sudo \
+    unzip \
+    software-properties-common \
+    wkhtmltopdf
 
 RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - && \
     add-apt-repository \
