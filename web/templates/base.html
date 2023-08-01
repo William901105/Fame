@@ -67,7 +67,7 @@
 <div class="wrapper">
     <div class="sidebar" data-color="azure" data-image="{{ url_for('static', filename='img/sidebar.jpg') }}">
 
-    	<div class="sidebar-wrapper">
+        <div class="sidebar-wrapper">
             <div class="logo">
                 <a href="/" class="simple-text">
                     FAME
@@ -123,7 +123,7 @@
                 {% endblock %}
             </ul>
         </div>
-    	</div>
+        </div>
     </div>
 
     <div class="main-panel">
@@ -147,17 +147,17 @@
                     </form>
 
                     <ul class="nav navbar-nav navbar-right">
-			<li>
-                       	   <a href="{{ url_for('PreprocessorsView:index') }}">
-                               Preprocessors
-                           </a>
-                        </li>
-                        {% if current_user.has_permission('configs') %}
                         <li>
-                           <a href="{{ url_for('ConfigsView:index') }}">
-                               Configs
+                            <a href="{{ url_for('PreprocessorsView:index') }}">
+                                Preprocessors
                             </a>
                         </li>
+                        {% if current_user.has_permission('configs') %}
+                            <li>
+                                <a href="{{ url_for('ConfigsView:index') }}">
+                                    Configs
+                                </a>
+                            </li>
                         {% endif %}
                         <li>
                             <a href="{{ url_for('FilesView:index') }}">
@@ -180,16 +180,16 @@
                             </a>
 
                             <ul class="dropdown-menu">
-			      {% if not current_user.is_guest(current_user._id) %}
-                		<li><a href="{{url_for('UsersView:get', id=current_user._id)}}">Profile</a></li>
-	    		      {% endif %}
-                              {% if current_user.has_permission('manage_modules') %}
-                                <li><a href="{{ url_for('ModulesView:index') }}">Configuration</a></li>
-                              {% endif %}
-                              {% if current_user.has_permission('manage_users') %}
-                                <li><a href="{{ url_for('UsersView:index') }}">Users</a></li>
-                              {% endif %}
-                              <li><a href="/logout">Logout</a></li>
+                                {% if not current_user.is_guest(current_user._id) %}
+                                    <li><a href="{{url_for('UsersView:get', id=current_user._id)}}">Profile</a></li>
+                                {% endif %}
+                                {% if current_user.has_permission('manage_modules') %}
+                                    <li><a href="{{ url_for('ModulesView:index') }}">Configuration</a></li>
+                                {% endif %}
+                                {% if current_user.has_permission('manage_users') %}
+                                    <li><a href="{{ url_for('UsersView:index') }}">Users</a></li>
+                                {% endif %}
+                                <li><a href="/logout">Logout</a></li>
                             </ul>
                         </li>
 
@@ -202,23 +202,23 @@
         <div class="content">
             <div class="container-fluid auto-update" id="main-content">
                 {% with messages = get_flashed_messages(category_filter=["persistent"]) %}
-                  {% if messages %}
-                      <div class="row">
-                          <div class="col-md-12">
-                              <div class="card messages">
-                                  <div class="header">
-                                      <h4 class="title">Messages</h4>
-                                      <p class="category"></p>
-                                  </div>
-                                  <div class="content">
-                                      {% for message in messages %}
-                                        <p>{{message|safe}}</p>
-                                      {% endfor %}
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  {% endif %}
+                    {% if messages %}
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card messages">
+                                    <div class="header">
+                                        <h4 class="title">Messages</h4>
+                                        <p class="category"></p>
+                                    </div>
+                                    <div class="content">
+                                        {% for message in messages %}
+                                            <p>{{message|safe}}</p>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
                 {% endwith %}
 
                 {% block body %} {% endblock %}
@@ -229,30 +229,30 @@
 </div>
 
 {% with messages = get_flashed_messages(with_categories=true) %}
-  {% if messages %}
-    <script>
-    {% for category, message in messages %}
+    {% if messages %}
+        <script>
+            {% for category, message in messages %}
 
-    {% if category != "persistent" %}
-      {% if category == "message" %}
-      var category = "info";
-      {% else %}
-      var category = "{{category}}";
-      {% endif %}
+                {% if category != "persistent" %}
+                    {% if category == "message" %}
+                        var category = "info";
+                    {% else %}
+                        var category = "{{category}}";
+                    {% endif %}
 
-      $.notify({
-          message: "{{message}}"
-      }, {
-          offset: {
-              y: 50,
-              x: 30
-          },
-          type: category
-      });
+                        $.notify({
+                            message: "{{message}}"
+                        }, {
+                            offset: {
+                                y: 50,
+                                x: 30
+                            },
+                            type: category
+                        });
+                {% endif %}
+            {% endfor %}
+        </script>
     {% endif %}
-    {% endfor %}
-    </script>
-  {% endif %}
 {% endwith %}
 
 </body>
