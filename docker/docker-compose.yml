@@ -1,108 +1,108 @@
 version: '3.4'
 
 networks:
-  fame_backend:
-    name: fame_backend
+    fame_backend:
+        name: fame_backend
 
 volumes:
-  mongodb:
-    name: fame_mongodb
-  modules:
-    name: fame_modules
-  modules_worker:
-    name: fame_modules_worker
-  storage:
-    name: fame_storage
-  avatars:
-    name: fame_avatars
-  temp:
-    name: fame_temp
-  env:
-    name: fame_env
-  docker:
-    name: fame_docker
+    mongodb:
+        name: fame_mongodb
+    modules:
+        name: fame_modules
+    modules_worker:
+        name: fame_modules_worker
+    storage:
+        name: fame_storage
+    avatars:
+        name: fame_avatars
+    temp:
+        name: fame_temp
+    env:
+        name: fame_env
+    docker:
+        name: fame_docker
 
 services:
-  fame_web:
-    build:
-      context: ../
-      dockerfile: ./docker/Dockerfile
-    image: fame:latest
-    hostname: fame_web
-    container_name: fame_web
-    networks:
-      - fame_backend
-    ports:
-      - "4200:4200"
-    env_file:
-      - fame.env
-    environment:
-      FAME_URL: 192.168.0.146
-    depends_on:
-      - fame_db
-    volumes:
-      - modules:/opt/fame/fame/modules/
-      - env:/opt/fame/env/
-      - storage:/opt/fame/storage/
-      - temp:/opt/fame/temp/
-      - avatars:/opt/fame/web/static/img/avatars/
-    entrypoint: /bin/sh
-    command: -c "wait-for -t 0 fame_db:27017 && /opt/fame/docker/docker-entrypoint.sh web"
+    fame_web:
+        depends_on:
+            - fame_db
+        image: fame:latest
+        build:
+            context: ../
+            dockerfile: ./docker/Dockerfile
+        container_name: fame_web
+        volumes:
+            - modules:/opt/fame/fame/modules/
+            - env:/opt/fame/env/
+            - storage:/opt/fame/storage/
+            - temp:/opt/fame/temp/
+            - avatars:/opt/fame/web/static/img/avatars/
+        networks:
+            - fame_backend
+        hostname: fame_web
+        ports:
+            - "4200:4200"
+        env_file:
+            - fame.env
+        environment:
+            FAME_URL: 192.168.0.146 # or http://192.168.0.146:4200
+        entrypoint: /bin/sh
+        command: -c "wait-for -t 0 fame_db:27017 && /opt/fame/docker/docker-entrypoint.sh web"
 
-  fame_worker:
-    build:
-      context: ../
-      dockerfile: ./docker/Dockerfile
-    image: fame:latest
-    hostname: fame_worker
-    container_name: fame_worker
-    volumes:
-      - modules_worker:/opt/fame/fame/modules/
-      - env:/opt/fame/env/
-      - docker:/var/lib/docker
-    entrypoint: /bin/sh
-    command: -c "wait-for -t 0 fame_web:4200 && /opt/fame/docker/docker-entrypoint.sh worker"
-    networks:
-      - fame_backend
-    env_file:
-      - fame.env
-    privileged: true # this is required to use docker-in-docker functionnalities. Without privilegied mode, FAME modules which are using docker will not work
-    depends_on:
-      - fame_db
-      - fame_web
+    fame_worker:
+        privileged: true # this is required to use docker-in-docker functionnalities. Without privilegied mode, FAME modules which are using docker will not work
+        depends_on:
+            - fame_db
+            - fame_web
+        image: fame:latest
+        build:
+            context: ../
+            dockerfile: ./docker/Dockerfile
+        container_name: fame_worker
+        volumes:
+            - modules_worker:/opt/fame/fame/modules/
+            - env:/opt/fame/env/
+            - docker:/var/lib/docker
+        hostname: fame_worker
+        networks:
+            - fame_backend
+        env_file:
+            - fame.env
+        entrypoint: /bin/sh
+        command: -c "wait-for -t 0 fame_web:4200 && /opt/fame/docker/docker-entrypoint.sh worker"
 
-  fame_updater:
-    build:
-      context: ../
-      dockerfile: ./docker/Dockerfile
-    image: fame:latest
-    hostname: fame_updater
-    container_name: fame_updater
-    entrypoint: /bin/sh
-    command: -c "wait-for -t 0 fame_web:4200 && /opt/fame/docker/docker-entrypoint.sh updater"
-    networks:
-      - fame_backend
-    env_file:
-      - fame.env
-    depends_on:
-      - fame_db
-      - fame_web
-    volumes:
-      - modules:/opt/fame/fame/modules/
-      - env:/opt/fame/env/
+    fame_updater:
+        depends_on:
+            - fame_db
+            - fame_web
+        image: fame:latest
+        build:
+            context: ../
+            dockerfile: ./docker/Dockerfile
+        container_name: fame_updater
+        volumes:
+            - modules:/opt/fame/fame/modules/
+            - env:/opt/fame/env/
+        networks:
+            - fame_backend
+        hostname: fame_updater
+        env_file:
+            - fame.env
+        entrypoint: /bin/sh
+        command: -c "wait-for -t 0 fame_web:4200 && /opt/fame/docker/docker-entrypoint.sh updater"
 
-  fame_db:
-    image: mongo:4.4.22
-    container_name: fame_db
-    hostname: fame_db
-    command: mongod --auth --quiet --logpath /dev/null
-    env_file:
-      - fame.env
-    networks:
-      - fame_backend
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: admin
-      MONGO_INITDB_ROOT_PASSWORD: admin
-    volumes:
-      - mongodb:/data/db
-      - ./mongo-init-user.sh:/docker-entrypoint-initdb.d/mongo-init-user.sh:ro
+    fame_db:
+        image: mongo:4.4.22
+        container_name: fame_db
+        volumes:
+            - mongodb:/data/db
+            - ./mongo-init-user.sh:/docker-entrypoint-initdb.d/mongo-init-user.sh:ro
+        networks:
+            - fame_backend
+        hostname: fame_db
+        env_file:
+            - fame.env
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: admin
+            MONGO_INITDB_ROOT_PASSWORD: admin
+        command: mongod --auth --quiet --logpath /dev/null
