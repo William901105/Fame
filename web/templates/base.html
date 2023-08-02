@@ -175,22 +175,22 @@
                             </a>
                         </li>
                         <li class="menu-avatar avatar dropdown">
-                            <a href="#" id="avatar-dropdown" class="dropdown-toggle" data-toggle="dropdown">
-                                <img class="img-circle" src="{{current_user._id|avatar}}" />
-                            </a>
-
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu bar1">
                                 {% if not current_user.is_guest(current_user._id) %}
-                                    <li><a href="{{url_for('UsersView:get', id=current_user._id)}}">Profile</a></li>
+                                <li><a href="{{url_for('UsersView:get', id=current_user._id)}}">Profile</a></li>
                                 {% endif %}
                                 {% if current_user.has_permission('manage_modules') %}
-                                    <li><a href="{{ url_for('ModulesView:index') }}">Configuration</a></li>
+                                <li><a href="{{ url_for('ModulesView:index') }}">Configuration</a></li>
                                 {% endif %}
                                 {% if current_user.has_permission('manage_users') %}
-                                    <li><a href="{{ url_for('UsersView:index') }}">Users</a></li>
+                                <li><a href="{{ url_for('UsersView:index') }}">Users</a></li>
                                 {% endif %}
                                 <li><a href="/logout">Logout</a></li>
                             </ul>
+
+                            <a href="#" id="avatar-dropdown" class="dropdown-toggle" data-toggle="dropdown">
+                                <img class="img-circle" src="{{current_user._id|avatar}}" />
+                            </a>
                         </li>
 
                     </ul>
