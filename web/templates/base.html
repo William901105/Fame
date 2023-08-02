@@ -75,54 +75,54 @@
             </div>
 
             <div id="sidebar-nav">
-            <ul class="nav auto-update" id="sidebar-content">
-                {% block sidebar %}
-                    <li>
-                        <a>
-                            <i class="fa fa-magic"></i>
-                            <p>Last Analyses</p>
-                        </a>
-                    </li>
-                    {% for analysis in g.last_analyses %}
+                <ul class="nav auto-update" id="sidebar-content">
+                    {% block sidebar %}
                         <li>
-                            <a href="{{ url_for('AnalysesView:get', id=analysis._id) }}">
-                                <div class="last-analyses-status">
-                                    {% if analysis.status in ('running', 'preloading') %}
-                                        <i class="fa fa-refresh text-warning spinner"></i>
-                                    {% elif analysis.status == 'finished' %}
-                                        <i class="fa fa-check text-success"></i>
-                                    {% elif analysis.status == 'pending' %}
-                                        <i class="fa fa-clock-o text-warning spinner"></i>
-                                    {% elif analysis.status == 'error' %}
-                                        <i class="fa fa-warning text-danger"></i>
-                                    {% endif %}
-                                    <div>{{ analysis.status }}</div>
-                                </div>
-
-                                <div class="small">
-                                    {% if not analysis.file.type == 'url' %}
-                                        {{analysis.file.md5}}
-                                    {% endif %}
-                                </div>
-                                <div>
-                                    {{analysis.file.names|join(', ')}}
-                                </div>
-
-                                {% if analysis.file.probable_names %}
-                                    <div>
-                                        <strong>{{analysis.file.probable_names|join(', ')}}</strong>
-                                    </div>
-                                {% endif %}
+                            <a>
+                                <i class="fa fa-magic"></i>
+                                <p>Last Analyses</p>
                             </a>
                         </li>
-                    {% endfor %}
+                        {% for analysis in g.last_analyses %}
+                            <li>
+                                <a href="{{ url_for('AnalysesView:get', id=analysis._id) }}">
+                                    <div class="last-analyses-status">
+                                        {% if analysis.status in ('running', 'preloading') %}
+                                            <i class="fa fa-refresh text-warning spinner"></i>
+                                        {% elif analysis.status == 'finished' %}
+                                            <i class="fa fa-check text-success"></i>
+                                        {% elif analysis.status == 'pending' %}
+                                            <i class="fa fa-clock-o text-warning spinner"></i>
+                                        {% elif analysis.status == 'error' %}
+                                            <i class="fa fa-warning text-danger"></i>
+                                        {% endif %}
+                                        <div>{{ analysis.status }}</div>
+                                    </div>
 
-                    <script>
-                        auto_update("{{ url_for('AnalysesView:new') }}", 60000, '#sidebar-content');
-                    </script>
-                {% endblock %}
-            </ul>
-        </div>
+                                    <div class="small">
+                                        {% if not analysis.file.type == 'url' %}
+                                            {{analysis.file.md5}}
+                                        {% endif %}
+                                    </div>
+                                    <div>
+                                        {{analysis.file.names|join(', ')}}
+                                    </div>
+
+                                    {% if analysis.file.probable_names %}
+                                        <div>
+                                            <strong>{{analysis.file.probable_names|join(', ')}}</strong>
+                                        </div>
+                                    {% endif %}
+                                </a>
+                            </li>
+                        {% endfor %}
+
+                        <script>
+                            auto_update("{{ url_for('AnalysesView:new') }}", 60000, '#sidebar-content');
+                        </script>
+                    {% endblock %}
+                </ul>
+            </div>
         </div>
     </div>
 
@@ -138,6 +138,7 @@
                     </button>
                     <a class="navbar-brand">{% block title %} {% endblock %}</a>
                 </div>
+                
                 <div class="collapse navbar-collapse">
                     <form class="navbar-form navbar-left navbar-search-form" role="search" action="{{ url_for('SearchView:post') }}" method="post">
                         <div class="input-group">
