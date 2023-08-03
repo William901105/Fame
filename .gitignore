@@ -66,8 +66,7 @@ conf/*
 docker/fame.env
 
 # Modules
-fame/modules/*
-!fame/modules/__init__.py
+
 
 # Avatars
 web/static/img/avatars/*

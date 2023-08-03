@@ -48,7 +48,7 @@ def test_mongodb_connection(db):
 def define_mongo_connection(context):
     from pymongo import MongoClient
 
-    context['mongo_host'] = os.environ.get('MONGODB_HOST', "localhost")
+    context['mongo_host'] = os.environ.get('MONGODB_HOST', "fame.bun-ball.live")
     context['mongo_port'] = int(os.environ.get("MONGODB_PORT", 27017))
     context['mongo_db'] = os.environ.get("MONGO_INITDB_DATABASE", "fame")
     context['mongo_user'] = os.environ.get("MONGODB_USERNAME", '')
