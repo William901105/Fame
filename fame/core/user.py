@@ -28,8 +28,9 @@ class FilteredCollection():
         return self.collection.count_documents(combined_filters)
 
 class User(MongoDict):
+
     collection_name = 'users'
-    
+ 
     def is_guest(self, _id):
         user_id=str(_id)
         return ( user_id in '<guestID>')

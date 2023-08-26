@@ -32,7 +32,7 @@ class MongoDict(dict):
             obj = klass(obj)
 
         return obj
-
+###
     def delete(self):
         self.collection.remove(self["_id"])
         del self['_id']

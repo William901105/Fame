@@ -4,7 +4,11 @@ from zxcvbn import zxcvbn
 from flask import Blueprint, render_template, request, redirect, flash, url_for
 from flask_login import logout_user, current_user, login_required
 from itsdangerous import BadTimeSignature, SignatureExpired
-from werkzeug.security import check_password_hash
+
+##
+from werkzeug.security import check_password_hash, generate_password_hash
+from web.views.negotiation import validation_error
+from datetime import datetime
 
 from fame.common.config import fame_config
 from fame.common.email_utils import EmailServer
@@ -23,6 +27,13 @@ def create_user(user):
     user.generate_avatar()
 
     token = password_reset_token(user)
+    user_id = validate_password_reset_token(token)
+    user = User(get_or_404(User.get_collection(), _id=user_id.decode('ascii')))
+    user.update_value('auth_token', auth_token(user))
+    # flash("Default password is 'pass'.", 'persistent')
+
+
+    '''
     reset_url = urljoin(fame_config.fame_url, url_for('auth.password_reset', token=token))
     email_server = EmailServer(TEMPLATES_DIR)
 
@@ -34,9 +45,11 @@ def create_user(user):
             error = "Could not connect to SMTP Server."
         else:
             error = "SMTP Server not properly configured."
+        
 
         error += " The new user should visit '{}' in the next 24 hours in order to define his password".format(reset_url)
         flash(error, 'persistent')
+    '''
 
     return True
 
@@ -108,10 +121,14 @@ def password_reset(token):
 
     return render_template('password_reset.html')
 
+#
+guest_num =0
 
 @auth.route('/login', methods=['GET', 'POST'])
 @prevent_csrf
 def login():
+    global guest_num
+
     if request.method == 'GET':
         return render_template('login.html')
     else:
@@ -124,10 +141,35 @@ def login():
                     flash("Invalid credentials.", "danger")
                     return render_template('login.html')
             elif request.form['login'] == 'guest':
-                if authenticate('guestEmail','guestPassword'):
-                    return redirect(url_for("AnalysesView:new"))
+
+                # create guest user
+                guest_mail = str(guest_num) + "@guest"
+                user = User({
+                    'name': 'test'+ str(guest_num),
+                    'email': guest_mail,
+                    'groups': [ "guest" ],
+                    'default_sharing': [ "guest" ],
+                    'permissions': list([ "see_logs" ]),
+                    'enabled': True,
+                    'pwd_hash' : generate_password_hash('pass'),
+                    'create_at':datetime.now()
+                })
+                if not create_user(user):
+                    return validation_error()
+                else:
+                    guest_num += 1
+
+                user.save()
+                if authenticate(guest_mail,'pass'):
+                    return redirect(url_for("AnalysesView:index")) 
+
+###                
 @auth.route('/logout')
 def logout():
+    if current_user['default_sharing'] == ['guest']:
+        flash("You don't have the permission to access this page.\nPlease login !", "danger")
+        return redirect(url_for("AnalysesView:index")) 
+    
     if current_user.is_authenticated:
         current_user.update_value('auth_token', auth_token(current_user))
     logout_user()
