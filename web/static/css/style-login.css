@@ -1,0 +1,41 @@
+.login {
+  padding: 15px 0px;
+  gap: 15px;
+}
+
+.main-content {
+  justify-content: space-between;
+  padding: 100px 40px;
+}
+
+.tech-style-top {
+  position: absolute;
+  filter: blur(4px);
+  width: 166px;
+  height: 141px;
+  top: -41px;
+  left: -52px;
+  overflow: hidden;
+  transform: rotate(-77.38deg);
+}
+
+.tech-style-bottom {
+  position: absolute;
+  filter: blur(6px);
+  width: 277px;
+  bottom: -90px;
+  right: -100px;
+  transform: rotate(-49.13deg);
+}
+
+.login .font-fame {
+  font-size: 48px;
+}
+
+.login .sec {
+  gap: 5px;
+}
+
+.login .sec-name {
+  color: var(--colors-textgray);
+}

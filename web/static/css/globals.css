@@ -1,0 +1,57 @@
+@import url("https://fonts.googleapis.com/css?family=Ibarra+Real+Nova:400|Inter:300|Roboto+Mono:300");
+
+/* General */
+* {
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-shrink: 0;
+  position: relative;
+  box-sizing: border-box;
+  overflow: visible;
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+  background-repeat: no-repeat;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+head, script {
+  display: none;
+}
+
+a {
+  text-decoration: none;
+}
+p {
+  display: block;
+  color: #000000;
+}
+
+input {
+  transition: 0.2s ease-out;
+}
+input:focus {
+  outline: none;
+}
+
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: var(--colors-backgroundgray);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--colors-textgray);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  box-shadow: var(--clicked-option);
+}

@@ -1,30 +1,73 @@
-{% extends "base_unauthenticated.html" %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>FAME - Login</title>
+  
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+  
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+  
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/globals.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styleguide.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style-login.css')}}">
+  </head>
+  <body class="fillfill fal-v5">
+    <div class="fillfill fal-v8 login">
 
-{% block title %}Login{% endblock %}
+      <img class="tech-style-top" src="{{ url_for('static', filename='img/TechStyle.svg')}}" />
+      <img class="tech-style-bottom" src="{{ url_for('static', filename='img/TechStyle.svg')}}" />
 
-{% block body %}
-    <form method="post" action="{{url_for('auth.login')}}">
+      <form method="post" action="{{url_for('auth.login')}}" class="fillfill fal-v8 main-content">
+      
+        <p class="fal-v8 font-fame">FAME</p>
 
-        <div class="card">
-            <div class="content">
-                <div class="form-group">
-                    <label>Email address</label>
-                    <input type="email" name="email" placeholder="Enter email" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" name="password" placeholder="Password" class="form-control">
-                </div>
-            </div>
-            <div class="footer text-center">
-                <button type="submit" class="btn btn-fill btn-warning btn-wd" name="login" value="account">Login</button>
-		<br />
-                <a href="{{url_for('auth.password_reset_form')}}">Reset password</a>
-           	<br />
-    		<br />
-    		<button type="submit" class="btn btn-fill btn-warning btn-wd" name="login" value="guest">Account Free Analyse</button>
-	    </div>
+        <div class="hugfill fal-v8 sec">
+          <div class="hugfill fal-v8 sec">
+            <p class="sec-name font-sec-header">Email</p>
+            <input type="email" name="email" class="input-frame font-sec-header" placeholder="Email">
+            <span></span>
+          </div>
+          <div class="hugfill fal-v8 sec">
+            <p class="sec-name font-sec-header">Password</p>
+            <input type="password" name="password" class="input-frame font-sec-header" placeholder="Password">
+            <span></span>
+          </div>
+
+          <button type="submit" name="login" value="account" class="button-black">
+            <p class="font-mn-opt">Login</p>
+          </button>
+          
         </div>
+        
+        <!-- <a href="{{url_for('auth.password_reset_form')}}">Reset password</a> -->
+        
+        <div class="hugfill fal-v8 sec">
+          <p class="sec-name font-sec-header">Do Not Have an Account?</p>
+          
+          <button type="submit" name="login" value="guest" class="button-black">
+            <p class="font-mn-opt">Guest Login</p>
+          </button>
 
-    </form>
-{% endblock %}
+        </div>        
+      </form>
+
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <div class="hughug fal-v8 messages">
+            {% for category, message in messages %}
+              <div class="hughug fal-v7">
+                <p class="font-mn-opt">message: "{{message}}"</p>
+                <p class="font-mn-opt">category: "{{category}}"</p>
+              </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+      {% endwith %}
+
+    </div>
+
+  </body>
+</html>
