@@ -168,7 +168,11 @@ p.font-hash-value, .font-hash-value::placeholder {
 /* messages */
 .messages {
   position: absolute;
-  
+
+  right: 10px;
+  gap: 10px;
+}
+.messages .message {
   padding: 8px 15px;
   border-radius: 6px;
   border: 1px solid;

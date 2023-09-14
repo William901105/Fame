@@ -58,9 +58,8 @@
         {% if messages %}
           <div class="hughug fal-v8 messages">
             {% for category, message in messages %}
-              <div class="hughug fal-v7">
-                <p class="font-mn-opt">message: "{{message}}"</p>
-                <p class="font-mn-opt">category: "{{category}}"</p>
+              <div class="hughug fal-v7 message">
+                <p class="font-mn-opt">{{category}}: "{{message}}"</p>
               </div>
             {% endfor %}
         </div>
