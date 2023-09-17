@@ -127,7 +127,7 @@ class AnalysesView(FlaskView, UIView):
         for module in ModuleInfo.get_collection().find():
             modules[module['name']] = ModuleInfo(module)
 
-        return render(analysis, 'analyses/show.html', ctx={
+        return render(analysis, 'analyses/show_new.html', ctx={
             'analysis': analysis,
             'modules': modules,
             'av_modules': av_modules,

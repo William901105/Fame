@@ -1,11 +1,8 @@
-.login {
-  padding: 15px 0px;
-  gap: 15px;
-}
-
-.main-content {
+.main {
   justify-content: space-between;
+  gap: 30px;
   padding: 100px 40px;
+  overflow-y: scroll;
 }
 
 .tech-style-top {
@@ -26,16 +23,4 @@
   bottom: -90px;
   right: -100px;
   transform: rotate(-49.13deg);
-}
-
-.login .font-fame {
-  font-size: 48px;
-}
-
-.login .sec {
-  gap: 5px;
-}
-
-.login .sec-name {
-  color: var(--colors-textgray);
 }

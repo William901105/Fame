@@ -1,72 +1,69 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <title>FAME - Login</title>
-  
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-    <meta name="viewport" content="width=device-width" />
-  
-    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
-  
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/globals.css')}}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styleguide.css')}}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style-login.css')}}">
-  </head>
-  <body class="fillfill fal-v5">
-    <div class="fillfill fal-v8 login">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+        <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
+        <meta name="viewport" content="width=device-width" />
+    
+        <title>FAME - Login</title>
+    
+        <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+    
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/globals.css')}}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styleguide.css')}}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style-login.css')}}">
+    </head>
+    <body class="flex-finish fillfill fal-v5">
+        <img class="tech-style-top" src="{{ url_for('static', filename='img/TechStyle.svg')}}" />
+        <img class="tech-style-bottom" src="{{ url_for('static', filename='img/TechStyle.svg')}}" />
 
-      <img class="tech-style-top" src="{{ url_for('static', filename='img/TechStyle.svg')}}" />
-      <img class="tech-style-bottom" src="{{ url_for('static', filename='img/TechStyle.svg')}}" />
-
-      <form method="post" action="{{url_for('auth.login')}}" class="fillfill fal-v8 main-content">
-      
-        <p class="fal-v8 font-fame">FAME</p>
-
-        <div class="hugfill fal-v8 sec">
-          <div class="hugfill fal-v8 sec">
-            <p class="sec-name font-sec-header">Email</p>
-            <input type="email" name="email" class="input-frame font-sec-header" placeholder="Email">
-            <span></span>
-          </div>
-          <div class="hugfill fal-v8 sec">
-            <p class="sec-name font-sec-header">Password</p>
-            <input type="password" name="password" class="input-frame font-sec-header" placeholder="Password">
-            <span></span>
-          </div>
-
-          <button type="submit" name="login" value="account" class="button-black">
-            <p class="font-mn-opt">Login</p>
-          </button>
-          
-        </div>
+        <form method="post" action="{{url_for('auth.login')}}" class="fillfill fal-v8 main">
         
-        <!-- <a href="{{url_for('auth.password_reset_form')}}">Reset password</a> -->
-        
-        <div class="hugfill fal-v8 sec">
-          <p class="sec-name font-sec-header">Do Not Have an Account?</p>
-          
-          <button type="submit" name="login" value="guest" class="button-black">
-            <p class="font-mn-opt">Guest Login</p>
-          </button>
+            <p class="fal-v8 font-fame">FAME</p>
 
-        </div>        
-      </form>
+            <div class="hugfill fal-v8 sec">
+                <div class="hugfill fal-v8 sec">
+                    <p class="sec-name font-sec-header">Email</p>
+                    <div class="hugfix fal-h4 input-frame">
+                        <input type="email" name="email" class="fillfill font-sec-header" placeholder="Email">
+                    </div>
+                </div>
+                <div class="hugfill fal-v8 sec">
+                    <p class="sec-name font-sec-header">Password</p>
+                    <div class="hugfix fal-h4 input-frame">
+                        <input type="password" name="password" class="fillfill font-sec-header" placeholder="Password">
+                    </div>
+                </div>
 
-      {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-          <div class="hughug fal-v8 messages">
-            {% for category, message in messages %}
-              <div class="hughug fal-v7 message">
-                <p class="font-mn-opt">{{category}}: "{{message}}"</p>
-              </div>
-            {% endfor %}
-        </div>
-        {% endif %}
-      {% endwith %}
+                <button type="submit" name="login" value="account" class="button-black">
+                    <p class="font-mn-opt">Login</p>
+                </button>
+                
+            </div>
+            
+            <!-- <a href="{{url_for('auth.password_reset_form')}}">Reset password</a> -->
+            
+            <div class="hugfill fal-v8 sec">
+                <p class="sec-name font-sec-header">Do Not Have an Account?</p>
+                
+                <button type="submit" name="login" value="guest" class="button-black">
+                    <p class="font-mn-opt">Guest Login</p>
+                </button>
 
-    </div>
+            </div>                
+        </form>
 
-  </body>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="hughug fal-v8 messages">
+                    {% for category, message in messages %}
+                        <div class="hughug fal-v7 message">
+                            <p class="font-mn-opt">{{category}}: "{{message}}"</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+    </body>
 </html>

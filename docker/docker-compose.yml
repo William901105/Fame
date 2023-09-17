@@ -45,7 +45,7 @@ services:
         env_file:
             - fame.env
         environment:
-            FAME_URL: 192.168.0.152 # or http://192.168.0.146:4200
+            FAME_URL: 140.118.200.203 # or http://192.168.0.146:4200
         entrypoint: /bin/sh
         command: -c "wait-for -t 0 fame_db:27017 && /opt/fame/docker/docker-entrypoint.sh web"
 

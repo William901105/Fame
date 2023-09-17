@@ -1,7 +1,8 @@
 @import url("https://fonts.googleapis.com/css?family=Ibarra+Real+Nova:400|Inter:300|Roboto+Mono:300");
 
 /* General */
-* {
+.flex-working,.flex-working>*,
+.flex-finish,.flex-finish * {
   -webkit-font-smoothing: antialiased;
   display: flex;
   flex-shrink: 0;
@@ -31,9 +32,6 @@ p {
   color: #000000;
 }
 
-input {
-  transition: 0.2s ease-out;
-}
 input:focus {
   outline: none;
 }

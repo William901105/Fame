@@ -6,42 +6,46 @@
   box-shadow: var(--menu);
 }
 
-.menu .menu-head {
+.menu>.head {
   width: 195px;
 
   background-color: #ffffff;
   border-radius: 0px 0px 20px 20px;
   box-shadow: var(--menu);
 }
+.menu>.head .font-fame {
+  font-size: 32px;
+}
 
-.menu .menu-content {
+.menu>.content {
   overflow-y: scroll;
 }
 
-.menu .menu-options {
+.menu>.content .options {
   gap: 3px;
 }
 
-.menu .menu-option {
+.menu>.content .options>a {
   height: 42px;
   
   padding: 0px 0px 0px 20px;
   background-color: #ffffff;
   border-radius: 0px 20px 20px 0px;
 }
-.menu .menu-option.current {
-  box-shadow: var(--clicked-option);
-}
-.menu .menu-option:hover {
+.menu>.content .options>a.current,
+.menu>.content .options>a:hover,
+.menu>.content .histories>a:hover,
+.menu>.content .show-more:hover {
+  transition: 0.1s ease-out;
   box-shadow: var(--clicked-option);
 }
 
-.menu .recent-analyses {
+.menu>.content .recent-analyses {
   gap: 5px;
   padding: 10px 12px;
 }
 
-.menu .histories {
+.menu>.content .histories {
   height: 166px;
 
   padding: 10px 0px;
@@ -51,24 +55,18 @@
   box-shadow: inset 0px 0px 2px #00000040;
 }
 
-.menu .history {
+.menu>.content .histories>a {
   height: 45px;
   justify-content: space-between;
   padding: 0px 15px;
 }
-.menu .history:hover {
-  box-shadow: var(--clicked-option);
-}
 
-.menu .show-more {
+.menu>.content .show-more {
   padding: 3px 5px;
   border-radius: 25px;
 }
-.menu .show-more:hover {
-  box-shadow: var(--clicked-option);
-}
 
-.menu .show-more p {
+.menu>.content .show-more>p {
   color: var(--colors-textgray);
 }
 
@@ -79,37 +77,46 @@
   padding: 15px 10px;
 }
 
-.main .main-head {
+.main>.head {
   padding: 0px 30px;
 }
 
-.main .head-frame {
+.main>.head .head-frame {
   background-color: var(--colors-backgroundgray);
   border-radius: 25px;
   box-shadow: var(--menu);
-  padding: 0px 0px 0px 15px;
 }
 
-.main .search-sec {
-  padding: 5px;
+.main>.head .search {
   border-radius: 25px;
+  background-image: url("../img/Magnifier.svg");
+  background-repeat: no-repeat;
+  background-position: top 50% left 10px;
+  background-size: 20px;
+  
+  transition: 0.3s;
+  padding-left: 35px;
 }
-.main .search-sec::placeholder {
+.main>.head .search::placeholder {
   color: var(--colors-textgray);
 }
-.main .search-sec:focus {
+.main>.head .search:focus {
   box-shadow: var(--clicked-option);
+  background-size: 0px;
+  padding-left: 15px;
 }
 
-.main img.avatar {
+.main>.head img.avatar {
   width: 35px;
   height: 35px;
+
+  object-fit: cover;
   border-radius: 20px;
   box-shadow: 0px 0px 2px 1px #00000080;
   overflow: hidden;
 }
 
-.main .main-content {
+.main>content {
   gap: 30px;
   padding: 10px 30px;
 }

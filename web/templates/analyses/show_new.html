@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base_new.html" %}
 
 {% set analysis = analysis['analysis'] %}
 
@@ -86,7 +86,7 @@
 {% block body %}
 
     {% with file=analysis.file %}
-        {% include "files/details.html" %}
+        {% include "files/details_new.html" %}
     {% endwith %}
 
     <div class="row" id="execution-path">
@@ -349,9 +349,9 @@
         {% for name, results in analysis.results.items() %}
             <div class="row" id="results-{{name|replace(' ', '-')}}">
                 {% if name in modules %}
-                    {% include [modules[name].details_template(), 'analyses/details.html'] %}
+                    {% include [modules[name].details_template(), 'analyses/details_new.html'] %}
                 {% else %}
-                    {% include 'analyses/details.html' %}
+                    {% include 'analyses/details_new.html' %}
                 {% endif %}
             </div>
         {% endfor %}
