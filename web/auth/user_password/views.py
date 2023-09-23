@@ -7,7 +7,7 @@ from itsdangerous import BadTimeSignature, SignatureExpired
 
 ##
 from werkzeug.security import check_password_hash, generate_password_hash
-from web.views.negotiation import validation_error
+from web.views.negotiation import validation_error, render
 from datetime import datetime
 
 from fame.common.config import fame_config
@@ -162,7 +162,56 @@ def login():
                 user.save()
                 if authenticate(guest_mail,'pass'):
                     return redirect(url_for("AnalysesView:index")) 
+            elif request.form['login'] == 'creat_user':
+                return redirect(url_for('auth.become_user'))
 
+@auth.route('/become_user', methods=['GET', 'POST'])
+@prevent_csrf
+def become_user():
+        context = {'user': {}}
+
+        return render(context, 'new.html')
+
+def _valid_form(name, email, previous_email=None):
+        for var in ['name', 'email']:
+            if not locals()[var]:
+                flash('"{}" is required'.format(var), 'danger')
+                return False
+
+        if (previous_email is None) or (previous_email != email):
+            existing_user = User.get_collection().find_one({'email': email})
+            if existing_user:
+                flash('User with email "{}" already exists.'.format(email), 'danger')
+                return False
+
+        return True
+
+@auth.route('/create_new_user', methods=['POST'])
+def create_new_user():
+        name = request.form.get('name')
+        email = request.form.get('email').lower()
+        ###
+        pwd ='pass'
+
+        if not _valid_form(name, email, [ "guest", "user" ]):
+            return validation_error()
+        ###
+        user = User({
+            'name': name,
+            'email': email.lower(),
+            'groups': [ "guest", "user" ],
+            'default_sharing': [ "user" ],
+            'permissions': list([ "see_logs" ]),
+            'enabled': True,
+            'pwd_hash' : generate_password_hash(pwd)
+        })
+
+        if not create_user(user):
+            return validation_error()
+
+        user.save()
+
+        return render_template('login.html')
 ###                
 @auth.route('/logout')
 def logout():
