@@ -37,17 +37,23 @@ input:focus {
 }
 
 
+/* Font Awesome */
+[class*="fa-"] {
+  font: normal normal normal 14px/1 FontAwesome;
+}
+
+
 /* Scrollbar */
 ::-webkit-scrollbar {
   width: 7px;
   height: 7px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--colors-backgroundgray);
+  background: var(--color-backgroundgray);
   border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--colors-textgray);
+  background: var(--color-textgray);
   border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {

@@ -386,11 +386,18 @@ input:focus {
 }
 
 .sidebar {
-  position: relative;
-  display: flex;
-  width: 260px;
-  color: #fff;
-  font-weight: 200;
+position: relative;
+display: flex;
+position: absolute;
+top: 0;
+bottom: 0;
+left: 0; width: 260px;
+display: block;
+z-index: 1;
+color: #fff;
+font-weight: 200;
+background-size: cover;
+background-position: center center;
 }
 
 .sidebar .sidebar-wrapper {

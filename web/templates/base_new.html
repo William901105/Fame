@@ -10,7 +10,7 @@
     
         <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
     
-        <!-- Bootstrap core CSS     -->
+        {# <!-- Bootstrap core CSS     -->
         <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" />
 
         <!-- Template CSS -->
@@ -59,14 +59,14 @@
         <script src="{{ url_for('static', filename='js/jquery.flexdatalist.min.js') }}"></script>
 
         <!-- Handlebars -->
-        <script src="{{ url_for('static', filename='js/handlebars.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/handlebars.min.js') }}"></script> #}
         
         <!-- Figma -->
         <link rel="stylesheet" href="{{ url_for('static', filename='css/globals.css')}}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/styleguide.css')}}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
-        <script type="text/javascript" src="{{ url_for('static', filename='js/fame.js') }}"></script>
-        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-1.11.3.min.js') }}"></script>
+        {# <script type="text/javascript" src="{{ url_for('static', filename='js/fame.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-1.11.3.min.js') }}"></script> #}
     </head>
     <body class="flex-working fillfill fal-h7">
         
@@ -77,205 +77,60 @@
             <div class="fillfill fal-v8 content">
 
                 <div class="hugfill fal-v7 options">
-                    <a class="fixfill fal-h4 current" href="#"><p class="font-mn-opt">Preprocessors</p></a>
-                    <a class="fixfill fal-h4" href="#"><p class="font-mn-opt">Configs</p></a>
-                    <a class="fixfill fal-h4" href="#"><p class="font-mn-opt">Objects</p></a>
-                    <a class="fixfill fal-h4" href="#"><p class="font-mn-opt">Analyses</p></a>
-                    <a class="fixfill fal-h4" href="#"><p class="font-mn-opt">Submit</p></a>
+                    <a class="fixfill fal-h4" href="{{ url_for('PreprocessorsView:index') }}">
+                        <p class="font-mn-opt">Preprocessors</p>
+                    </a>
+                    {% if current_user.has_permission('configs') %}
+                    <a class="fixfill fal-h4" href="{{ url_for('ConfigsView:index') }}">
+                        <p class="font-mn-opt">Configs</p>
+                    </a>
+                    {% endif %}
+                    <a class="fixfill fal-h4" href="{{ url_for('FilesView:index') }}">
+                        <p class="font-mn-opt">Objects</p>
+                    </a>
+                    <a class="fixfill fal-h4 current" href="{{ url_for('AnalysesView:index') }}">
+                        <p class="font-mn-opt">Analyses</p>
+                    </a>
+                    <a class="fixfill fal-h4" href="{{ url_for('AnalysesView:new') }}">
+                        <p class="font-mn-opt">Submit</p>
+                    </a>
                 </div>
 
                 <div class="hugfill fal-v8 recent-analyses">
 
                     <div class="hugfill fal-h5"><p class="font-sec-header">Recent Analyses</p></div>
-                    <div class="fixfill fal-v8 histories">
-                        
-                        <a class="fixfill fal-h5" href="#">
-                            <img src="img/CheckMark.svg" />
-                                <p class="font-hash-value">abc1234567890abcdefghijklmnopqrstuvwxyz</p>
-                            <img src="img/External.svg" />
-                        </a>
-
-                        <a class="fixfill fal-h5" href="#">
-                            <img src="img/Clock.svg" />
-                                <p class="font-hash-value">abc1234567890abcdefghijklmnopqrstuvwxyz</p>
-                            <img src="img/External.svg" />
-                        </a>
-
+                    <div class="hugfill fal-v8 histories">
+                        {% for analysis in g.last_analyses %}
+                            <a class="fixfill fal-h5" href="{{ url_for('AnalysesView:get', id=analysis._id) }}">
+                                {% if analysis.status == 'finished' %}
+                                    {% include "includes/icons/CheckMark.html" %}
+                                {% elif analysis.status == 'pending' %}
+                                    {% include "includes/icons/Clock.html" %}
+                                {% elif analysis.status in ('running', 'preloading') %}
+                                    {% include "includes/icons/Refresh.html" %}
+                                {% elif analysis.status == 'error' %}
+                                    {% include "includes/icons/Error.html" %}
+                                {% endif %}
+                                <p class="font-hash-value">
+                                    {% if not analysis.file.type == 'url' %}{{analysis.file.md5}}{% endif %}
+                                </p>
+                                {% include "includes/icons/ExternalPrompt.html" %}                                
+                            </a>
+                        {% endfor %}
                     </div>
-                    <a class="show-more sec-header" href="#"><p class="sec-header">show more</p></a>
 
                 </div>
             </div>
         </div>
 
-        <div class="sidebar">
-            <div class="sidebar-wrapper">
-                <div class="hugfix fal-h5 head">
-                    <a href="/" class="fal-h5 font-fame">FAME</a>
-                </div>
 
-                <div id="sidebar-nav">
-                    <ul class="nav auto-update" id="sidebar-content">
-                        {% block menu %}
-                            <li>
-                                <a>
-                                    <i class="fa fa-magic"></i>
-                                    <p>Last Analyses</p>
-                                </a>
-                            </li>
-                            {% for analysis in g.last_analyses %}
-                                <li>
-                                    <a href="{{ url_for('AnalysesView:get', id=analysis._id) }}">
-                                        <div class="last-analyses-status">
-                                            {% if analysis.status in ('running', 'preloading') %}
-                                                <i class="fa fa-refresh text-warning spinner"></i>
-                                            {% elif analysis.status == 'finished' %}
-                                                <i class="fa fa-check text-success"></i>
-                                            {% elif analysis.status == 'pending' %}
-                                                <i class="fa fa-clock-o text-warning spinner"></i>
-                                            {% elif analysis.status == 'error' %}
-                                                <i class="fa fa-warning text-danger"></i>
-                                            {% endif %}
-                                            <div>{{ analysis.status }}</div>
-                                        </div>
+        <div class="flex-finish fillfill fal-v8 main">
 
-                                        <div class="small">
-                                            {% if not analysis.file.type == 'url' %}
-                                                {{analysis.file.md5}}
-                                            {% endif %}
-                                        </div>
-                                        <div>
-                                            {{analysis.file.names|join(', ')}}
-                                        </div>
-
-                                        {% if analysis.file.probable_names %}
-                                            <div>
-                                                <strong>{{analysis.file.probable_names|join(', ')}}</strong>
-                                            </div>
-                                        {% endif %}
-                                    </a>
-                                </li>
-                            {% endfor %}
-
-                            <script>
-                                auto_update("{{ url_for('AnalysesView:new') }}", 60000, '#sidebar-content');
-                            </script>
-                        {% endblock %}
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="sidebar">
-            <div class="sidebar-wrapper">
-                <div class="hugfix fal-h5 head">
-                    <a href="/" class="fal-h5 font-fame">FAME</a>
-                </div>
-
-                <div id="sidebar-nav">
-                    <ul class="nav auto-update" id="sidebar-content">
-                        {% block sidebar %}
-                            <li>
-                                <a>
-                                    <i class="fa fa-magic"></i>
-                                    <p>Last Analyses</p>
-                                </a>
-                            </li>
-                            {% for analysis in g.last_analyses %}
-                                <li>
-                                    <a href="{{ url_for('AnalysesView:get', id=analysis._id) }}">
-                                        <div class="last-analyses-status">
-                                            {% if analysis.status in ('running', 'preloading') %}
-                                                <i class="fa fa-refresh text-warning spinner"></i>
-                                            {% elif analysis.status == 'finished' %}
-                                                <i class="fa fa-check text-success"></i>
-                                            {% elif analysis.status == 'pending' %}
-                                                <i class="fa fa-clock-o text-warning spinner"></i>
-                                            {% elif analysis.status == 'error' %}
-                                                <i class="fa fa-warning text-danger"></i>
-                                            {% endif %}
-                                            <div>{{ analysis.status }}</div>
-                                        </div>
-
-                                        <div class="small">
-                                            {% if not analysis.file.type == 'url' %}
-                                                {{analysis.file.md5}}
-                                            {% endif %}
-                                        </div>
-                                        <div>
-                                            {{analysis.file.names|join(', ')}}
-                                        </div>
-
-                                        {% if analysis.file.probable_names %}
-                                            <div>
-                                                <strong>{{analysis.file.probable_names|join(', ')}}</strong>
-                                            </div>
-                                        {% endif %}
-                                    </a>
-                                </li>
-                            {% endfor %}
-
-                            <script>
-                                auto_update("{{ url_for('AnalysesView:new') }}", 60000, '#sidebar-content');
-                            </script>
-                        {% endblock %}
-                    </ul>
-                </div>
-            </div>
-        </div>
-        
-
-        {# <div class="main-panel">
-            <nav class="navbar navbar-default navbar-fixed">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand">{% block title %} {% endblock %}</a>
-                    </div>
-                    
-                    <div class="collapse navbar-collapse">
-                        <form class="navbar-form navbar-left navbar-search-form" role="search" action="{{ url_for('SearchView:post') }}" method="post">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                                <input type="text" name="query" value="" class="form-control" placeholder="Search...">
-                            </div>
-                        </form>
-
-                        <ul class="nav navbar-nav navbar-right">
-                            <li>
-                                <a href="{{ url_for('PreprocessorsView:index') }}">
-                                    Preprocessors
-                                </a>
-                            </li>
-                            {% if current_user.has_permission('configs') %}
-                                <li>
-                                    <a href="{{ url_for('ConfigsView:index') }}">
-                                        Configs
-                                    </a>
-                                </li>
-                            {% endif %}
-                            <li>
-                                <a href="{{ url_for('FilesView:index') }}">
-                                    Objects
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ url_for('AnalysesView:index') }}">
-                                    Analyses
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ url_for('AnalysesView:new') }}">
-                                    Submit
-                                </a>
-                            </li>
-                            <li class="menu-avatar avatar dropdown">
-                                <ul class="dropdown-menu bar1">
+            <div class="hugfill fal-h5 head">
+                <form  role="search" action="{{ url_for('SearchView:post') }}" method="post" class="hugfill fal-h5 head-frame">
+                    <input type="text" name="query" value="" class="fillfill fal-h4 search sec-header" placeholder="Search..">
+                                {# TODO #}
+                                {# <ul class="dropdown-menu bar1">
                                     {% if not current_user.is_guest(current_user._id) %}
                                     <li><a href="{{url_for('UsersView:get', id=current_user._id)}}">Profile</a></li>
                                     {% endif %}
@@ -290,11 +145,31 @@
 
                                 <a href="#" id="avatar-dropdown" class="dropdown-toggle" data-toggle="dropdown">
                                     <img class="img-circle" src="{{current_user._id|avatar}}" />
-                                </a>
-                            </li>
+                                </a> #}
+                                {# endTODO #}
+                    <a href="#"><img class="avatar" src="{{current_user._id|avatar}}" /></a>
+                </form>
+            </div>
 
-                        </ul>
+            <div class="hugfill fal-v8 content">
+                <p class="font-main-title">Preprocess</p>
+            </div>
+
+        </div>
+
+        {# <div class="main-panel">
+            <nav class="navbar navbar-default navbar-fixed">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand">{% block title %} {% endblock %}</a>
                     </div>
+                    
                 </div>
             </nav>
 
