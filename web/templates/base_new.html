@@ -68,9 +68,9 @@
         {# <script type="text/javascript" src="{{ url_for('static', filename='js/fame.js') }}"></script>
         <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-1.11.3.min.js') }}"></script> #}
     </head>
-    <body class="flex-working fillfill fal-h7">
+    <body class="flex-all fillfill fal-h7">
         
-        <div class="flex-finish fillfix fal-v8 menu">
+        <div class="fillfix fal-v8 menu">
             <div class="hugfix fal-h5 head">
                 <p class="fal-h5 font-fame">FAME</p>
             </div>
@@ -124,30 +124,38 @@
         </div>
 
 
-        <div class="flex-finish fillfill fal-v8 main">
+        <div class="fillfill fal-v8 main">
 
             <div class="hugfill fal-h5 head">
-                <form  role="search" action="{{ url_for('SearchView:post') }}" method="post" class="hugfill fal-h5 head-frame">
-                    <input type="text" name="query" value="" class="fillfill fal-h4 search sec-header" placeholder="Search..">
-                                {# TODO #}
-                                {# <ul class="dropdown-menu bar1">
-                                    {% if not current_user.is_guest(current_user._id) %}
-                                    <li><a href="{{url_for('UsersView:get', id=current_user._id)}}">Profile</a></li>
-                                    {% endif %}
-                                    {% if current_user.has_permission('manage_modules') %}
-                                    <li><a href="{{ url_for('ModulesView:index') }}">Configuration</a></li>
-                                    {% endif %}
-                                    {% if current_user.has_permission('manage_users') %}
-                                    <li><a href="{{ url_for('UsersView:index') }}">Users</a></li>
-                                    {% endif %}
-                                    <li><a href="/logout">Logout</a></li>
-                                </ul>
+                <form role="search" action="{{ url_for('SearchView:post') }}" method="post" class="hugfill fal-h5 head-frame">
+                    <input type="text" name="query" value="" class="fillfill fal-h4 search font-sec-header" placeholder="Search..">
+                    
+                    <button type="button" class="hughug avatar" onclick="
+                        this.nextElementSibling.classList.toggle('collapsed');
+                        ">
+                        <img src="{{current_user._id|avatar}}" />
+                    </button>
+                    <div class="fal-v8 hugfix avatar-menu collapsed">
+                        {% if not current_user.is_guest(current_user._id) %}
+                        <a class="fixfill fal-h4" href="{{url_for('UsersView:get', id=current_user._id)}}">
+                            <p class="font-mn-opt">Profile</p>
+                        </a>
+                        {% endif %}
+                        {% if current_user.has_permission('manage_modules') %}
+                        <a class="fixfill fal-h4" href="{{ url_for('ModulesView:index') }}">
+                            <p class="font-mn-opt">Configuration</p>
+                        </a>
+                        {% endif %}
+                        {% if current_user.has_permission('manage_users') %}
+                        <a class="fixfill fal-h4" href="{{ url_for('UsersView:index') }}">
+                            <p class="font-mn-opt">Users</p>
+                        </a>
+                        {% endif %}
+                        <a class="fixfill fal-h4" href="/logout">
+                            <p class="font-mn-opt">Logout</p>
+                        </a>
+                    </div>
 
-                                <a href="#" id="avatar-dropdown" class="dropdown-toggle" data-toggle="dropdown">
-                                    <img class="img-circle" src="{{current_user._id|avatar}}" />
-                                </a> #}
-                                {# endTODO #}
-                    <a href="#"><img class="avatar" src="{{current_user._id|avatar}}" /></a>
                 </form>
             </div>
 
@@ -157,51 +165,7 @@
 
         </div>
 
-        {# <div class="main-panel">
-            <nav class="navbar navbar-default navbar-fixed">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand">{% block title %} {% endblock %}</a>
-                    </div>
-                    
-                </div>
-            </nav>
-
-
-            <div class="content">
-                <div class="container-fluid auto-update" id="main-content">
-                    {% with messages = get_flashed_messages(category_filter=["persistent"]) %}
-                        {% if messages %}
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="card messages">
-                                        <div class="header">
-                                            <h4 class="title">Messages</h4>
-                                            <p class="category"></p>
-                                        </div>
-                                        <div class="content">
-                                            {% for message in messages %}
-                                                <p>{{message|safe}}</p>
-                                            {% endfor %}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        {% endif %}
-                    {% endwith %}
-
-                    {% block body %} {% endblock %}
-                </div>
-            </div>
-
-        </div> #}
-
+        {# TODO #}
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
                 <script>
@@ -214,15 +178,9 @@
                                 var category = "{{category}}";
                             {% endif %}
 
-                                $.notify({
-                                    message: "{{message}}"
-                                }, {
-                                    offset: {
-                                        y: 50,
-                                        x: 30
-                                    },
-                                    type: category
-                                });
+                                $.notify(
+                                    {message: "{{message}}"},
+                                    {offset: {y: 50, x: 30}, type: category});
                         {% endif %}
                     {% endfor %}
                 </script>

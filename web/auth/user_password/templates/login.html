@@ -12,13 +12,13 @@
     
         <link rel="stylesheet" href="{{ url_for('static', filename='css/globals.css')}}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/styleguide.css')}}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/style-login.css')}}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
     </head>
-    <body class="flex-finish fillfill fal-v5">
+    <body class="flex-all fillfill fal-v5">
         <img class="tech-style-top" src="{{ url_for('static', filename='img/TechStyle.svg')}}" />
         <img class="tech-style-bottom" src="{{ url_for('static', filename='img/TechStyle.svg')}}" />
 
-        <form method="post" action="{{url_for('auth.login')}}" class="fillfill fal-v8 main">
+        <form method="post" action="{{url_for('auth.login')}}" class="fillfill fal-v8 login">
         
             <p class="fal-v8 font-fame">FAME</p>
 
