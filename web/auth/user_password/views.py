@@ -30,26 +30,25 @@ def create_user(user):
     user_id = validate_password_reset_token(token)
     user = User(get_or_404(User.get_collection(), _id=user_id.decode('ascii')))
     user.update_value('auth_token', auth_token(user))
-    # flash("Default password is 'pass'.", 'persistent')
 
-
-    '''
-    reset_url = urljoin(fame_config.fame_url, url_for('auth.password_reset', token=token))
+    reset_url = url_for('auth.password_reset', token=token, _external=True) 
+    #reset_url = urljoin(fame_config.fame_url, url_for('auth.password_reset', token=token))
     email_server = EmailServer(TEMPLATES_DIR)
 
     if email_server.is_connected:
         msg = email_server.new_message_from_template("Define your FAME account's password.", 'mail_user_creation.html', {'user': user, 'url': reset_url})
         msg.send([user['email']])
+
+        flash('LAUS system has sended the email for you to define your password.\nPlease check your mailbox.', 'persistent')
     else:
         if email_server.is_configured:
             error = "Could not connect to SMTP Server."
         else:
             error = "SMTP Server not properly configured."
         
-
         error += " The new user should visit '{}' in the next 24 hours in order to define his password".format(reset_url)
         flash(error, 'persistent')
-    '''
+    
 
     return True
 
@@ -120,9 +119,6 @@ def password_reset(token):
             return redirect(urljoin(fame_config.fame_url, '/login'))
 
     return render_template('password_reset.html')
-
-#
-guest_num =0
 
 @auth.route('/login', methods=['GET', 'POST'])
 @prevent_csrf

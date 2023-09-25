@@ -17,25 +17,25 @@ NAMED_CONFIG = {
             {
                 'name': 'host',
                 'type': 'str',
-                'default': 'localhost',
+                'default': 'smtp.gmail.com',
                 'description': 'Hostname or IP address of SMTP server'
             },
             {
                 'name': 'port',
                 'type': 'integer',
-                'default': 25,
+                'default': 587,
                 'description': 'Port on which the SMTP server is listening'
             },
             {
                 'name': 'username',
                 'type': 'str',
-                'default': '',
+                'default': 'laus.analysis.1@gmail.com',
                 'description': 'Username if SMTP server requires authentication'
             },
             {
                 'name': 'password',
                 'type': 'str',
-                'default': '',
+                'default': 'nine lvpf idlc xbhp',
                 'description': 'Password if SMTP server requires authentication'
             },
             {
@@ -47,12 +47,13 @@ NAMED_CONFIG = {
             {
                 'name': 'from_address',
                 'type': 'str',
+                'default': 'laus.analysis.1@gmail.com',
                 'description': 'Email address used for "From"'
             },
             {
                 'name': 'replyto',
                 'type': 'str',
-                'default': None,
+                'default': 'laus.analysis.1@gmail.com',
                 'description': 'Email address used for "Reply-to" if different from "From"'
             },
         ]
@@ -70,9 +71,9 @@ class EmailMessage:
 
         self.msg = MIMEMultipart()
         self.msg['Subject'] = subject
-        self.msg['From'] = server.config.from_address
-        self.msg['Reply-to'] = server.config.replyto or server.config.from_address
-        self.msg['Return-path'] = server.config.replyto or server.config.from_address
+        self.msg['From'] = 'laus.analysis.1@gmail.com'
+        self.msg['Reply-to'] = 'laus.analysis.1@gmail.com'
+        self.msg['Return-path'] = 'laus.analysis.1@gmail.com'
         self.msg.preamble = subject
 
     def add_content(self, text, content_type="plain"):
@@ -107,22 +108,32 @@ class EmailServer:
             self.env = Environment(loader=FileSystemLoader(template_path))
 
         try:
-            self.config = Config.get(name="email").get_values()
+            #self.config = Config.get(name="email").get_values()
             self.is_configured = True
 
             try:
-                self.smtp = smtplib.SMTP(self.config.host, self.config.port)
+
+                self.smtp = smtplib.SMTP('smtp.gmail.com', 587)
+                
+                self.smtp.ehlo()
+                self.smtp.starttls()
+                self.smtp.login('laus.analysis.1@gmail.com','nine lvpf idlc xbhp')
+
+                self.is_connected = True
+                '''
 
                 if self.config.tls:
                     self.smtp.ehlo()
                     self.smtp.starttls()
 
+
                 if self.config.username and self.config.password:
-                    self.smtp.login(self.config.username, self.config.password)
+                    self.smtp.login('laus.analysis.1@gmail.com', 'lauslaus')
                     self.is_connected = True
                 else:
                     status = self.smtp.noop()[0]
                     self.is_connected = (status == 250)
+                '''
             except Exception as e:
                 print(e)
                 self.is_connected = False
