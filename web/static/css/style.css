@@ -48,22 +48,38 @@
 }
 
 
-.menu>.content .options {
-  gap: 3px;
-}
-
-.menu>.content .options>a {
-  height: 42px;
-  
-  padding: 0px 0px 0px 20px;
-  background-color: #ffffff;
-  border-radius: 0px 20px 20px 0px;
-}
-.menu>.content .options>a.current,
+.menu>.content .options>a.active,
 .menu>.content .options>a:hover,
+.menu>.content .navigation-bar a:hover,
+.menu>.content .navigation-bar a.active,
 .menu>.content .histories>a:hover,
 .menu>.content .show-more:hover {
   box-shadow: var(--clicked-option);
+}
+.menu>.content .options {
+  gap: 3px;
+}
+.menu>.content .options>a {
+  height: 42px;
+  
+  padding-left: 20px;
+  background-color: #ffffff;
+  border-radius: 0px 20px 20px 0px;
+}
+
+.menu>.content .navigation-bar {
+  gap: 3px;
+  border-radius: 0px 20px 20px 0px;
+  box-shadow: var(--carved-area);
+  /* background-color: var(--color-backgroundgray); */
+  overflow-y: scroll;
+}
+.menu>.content .navigation-bar a {
+  padding: 5px 40px;
+  border-radius: 0px 20px 20px 0px;
+}
+.menu>.content .navigation-bar p {
+  color: var(--color-textgray);
 }
 
 .menu>.content .recent-analyses {
@@ -75,9 +91,8 @@
   padding: 10px 0px;
   background-color: var(--color-backgroundgray);
   border-radius: 20px;
-  box-shadow: inset 0px 0px 2px #00000040;
+  box-shadow: var(--carved-area);
 }
-
 .menu>.content .histories>a {
   height: 45px;
   justify-content: space-between;
@@ -100,6 +115,7 @@
   gap: 15px;
   padding: 15px 10px;
   overflow: hidden;
+  overflow-y: scroll;
 }
 
 .main>.head {
@@ -132,6 +148,7 @@
 }
 
 .main>.head .avatar {
+  cursor: pointer;
   border-radius: 20px;
   overflow: hidden;
 
@@ -147,33 +164,54 @@
   object-fit: cover;
 }
 
-.main>.head .avatar-menu {
+.main>.head .avatar-menu.active {  
   width: 50%;
-
+  
   position: absolute;
   z-index: 1;
   right: 0px;
   top: 110%;
   gap: 5px;
+  padding: 10px 10px;
   overflow: hidden;
   border-radius: 25px;
-  background-color: #ffffff;
+  background-color: var(--color-backgroundgray);
   box-shadow: var(--menu);
+
+  display: flex;
 }
-.main>.head .avatar-menu.collapsed{
-  max-height: 0px;
+.main>.head .avatar-menu{
+  display: none;
 }
 .main>.head .avatar-menu>a {
   height: 42px;
   
-  padding: 0px 0px 0px 20px;
+  background-color: #ffffff;
+  border-radius: 5px;
+  padding-left: 20px;
 }
 .main>.head .avatar-menu>a:hover {
   box-shadow: var(--clicked-option);
 }
 
 
-.main>content {
+/* .main>.navigation-bar {
+  gap: 15px;
+  border-radius: 5px;
+  overflow-x: scroll;
+}
+.main>.navigation-bar a {  
+  padding: 5px 10px;
+  background-color: var(--color-backgroundgray);
+  border-radius: 10px;
+  box-shadow: var(--clicked-option);
+}
+.main>.navigation-bar p {
+  color: var(--color-textgray);
+} */
+
+
+.main>.content {
   gap: 30px;
   padding: 10px 30px;
 }

@@ -66,7 +66,7 @@
 .color-backgroundgray{color: var(--color-backgroundgray);}
 
 /* Font Styles */
-p.font-fame,
+.font-fame,
 .font-fame::placeholder {
   font-family: "Ibarra Real Nova", Helvetica;
   font-weight: 400;
@@ -76,7 +76,7 @@ p.font-fame,
   line-height: normal;
 }
 
-p.font-mn-opt,
+.font-mn-opt,
 .font-mn-opt::placeholder {
   font-family: "Inter", Helvetica;
   font-weight: 500;
@@ -86,7 +86,7 @@ p.font-mn-opt,
   line-height: normal;
 }
 
-p.font-main-title,
+.font-main-title,
 .font-main-title::placeholder {
   font-family: "Inter", Helvetica;
   font-weight: 400;
@@ -96,7 +96,7 @@ p.font-main-title,
   line-height: normal;
 }
 
-p.font-ava-mn-opt,
+.font-ava-mn-opt,
 .font-ava-mn-opt::placeholder {
   font-family: "Inter", Helvetica;
   font-weight: 400;
@@ -106,7 +106,7 @@ p.font-ava-mn-opt,
   line-height: normal;
 }
 
-p.font-item-name,
+.font-item-name,
 .font-item-name::placeholder {
   font-family: "Inter", Helvetica;
   font-weight: 400;
@@ -116,7 +116,7 @@ p.font-item-name,
   line-height: normal;
 }
 
-p.font-sec-header,
+.font-sec-header,
 .font-sec-header::placeholder {
   font-family: "Inter", Helvetica;
   font-weight: 300;
@@ -126,7 +126,7 @@ p.font-sec-header,
   line-height: normal;
 }
 
-p.font-hash-value,
+.font-hash-value,
 .font-hash-value::placeholder {
   font-family: "Roboto Mono", Helvetica;
   font-weight: 300;
@@ -204,7 +204,7 @@ p.font-hash-value,
   position: absolute;
 
   top: 10px;
-  right: 10px;
+  left: 10px;
   gap: 10px;
 }
 .messages .message {
@@ -212,4 +212,5 @@ p.font-hash-value,
   border-radius: 6px;
   border: 1px solid;
   border-color: #000000;
+  background-color: #ffffff;
 }

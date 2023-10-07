@@ -6,7 +6,7 @@
         <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
         <meta name="viewport" content="width=device-width" />
     
-        <title>FAME - Login</title>
+        <title>FAME - {{ self.title() }}</title>
     
         <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
     
@@ -88,14 +88,16 @@
                     <a class="fixfill fal-h4" href="{{ url_for('FilesView:index') }}">
                         <p class="font-mn-opt">Objects</p>
                     </a>
-                    <a class="fixfill fal-h4 current" href="{{ url_for('AnalysesView:index') }}">
+                    <a class="fixfill fal-h4 active" href="{{ url_for('AnalysesView:index') }}">
                         <p class="font-mn-opt">Analyses</p>
                     </a>
                     <a class="fixfill fal-h4" href="{{ url_for('AnalysesView:new') }}">
                         <p class="font-mn-opt">Submit</p>
                     </a>
                 </div>
-
+                
+                <div class="hugfill fal-v4 navigation-bar"><!-- fill here by js --></div>
+                
                 <div class="hugfill fal-v8 recent-analyses">
 
                     <div class="hugfill fal-h5"><p class="font-sec-header">Recent Analyses</p></div>
@@ -127,15 +129,13 @@
         <div class="fillfill fal-v8 main">
 
             <div class="hugfill fal-h5 head">
-                <form role="search" action="{{ url_for('SearchView:post') }}" method="post" class="hugfill fal-h5 head-frame">
-                    <input type="text" name="query" value="" class="fillfill fal-h4 search font-sec-header" placeholder="Search..">
+                <form class="hugfill fal-h5 head-frame" role="search" action="{{ url_for('SearchView:post') }}" method="post">
+                    <input class="fillfill fal-h4 search font-sec-header" type="text" name="query" value="" placeholder="Search..">
                     
-                    <button type="button" class="hughug avatar" onclick="
-                        this.nextElementSibling.classList.toggle('collapsed');
-                        ">
+                    <a class="hughug avatar">
                         <img src="{{current_user._id|avatar}}" />
-                    </button>
-                    <div class="fal-v8 hugfix avatar-menu collapsed">
+                    </a>
+                    <div class="fal-v8 hugfix avatar-menu">
                         {% if not current_user.is_guest(current_user._id) %}
                         <a class="fixfill fal-h4" href="{{url_for('UsersView:get', id=current_user._id)}}">
                             <p class="font-mn-opt">Profile</p>
@@ -158,13 +158,48 @@
 
                 </form>
             </div>
-
+            
             <div class="hugfill fal-v8 content">
-                <p class="font-main-title">Preprocess</p>
+                <h1 class="font-main-title">{{ self.title() }}</h1>
+                
+                <h2 class="font-sec-header" id="file-details">File Details</h2>
+                <p>這個範例中，我們創建了一個滾動內容區域和一個 scrollbar 區域。scrollbar 區域中的列表對應到內容中的標題，並且設置了相應的超連結。當你點擊 scrollbar 上的元素時，內容會滾動到對應標題。同時，內容滾動時會根據目前閱讀的段落在 scrollbar 上顯示陰影效果。</p>
+                
+                <h2 class="font-sec-header" id="execution-path-1">Execution Path 1</h2>
+                <p>這個範例中，我們創建了一個滾動內容區域和一個 scrollbar 區域。scrollbar 區域中的列表對應到內容中的標題，並且設置了相應的超連結。當你點擊 scrollbar 上的元素時，內容會滾動到對應標題。同時，內容滾動時會根據目前閱讀的段落在 scrollbar 上顯示陰影效果。</p>
+                
+                <h2 class="font-sec-header" id="execution-path-2">Execution Path 2</h2>
+                <p>這個範例中，我們創建了一個滾動內容區域和一個 scrollbar 區域。scrollbar 區域中的列表對應到內容中的標題，並且設置了相應的超連結。當你點擊 scrollbar 上的元素時，內容會滾動到對應標題。同時，內容滾動時會根據目前閱讀的段落在 scrollbar 上顯示陰影效果。</p>
+                                
+                <h2 class="font-sec-header" id="execution-path-3">Execution Path 3</h2>
+                <p>這個範例中，我們創建了一個滾動內容區域和一個 scrollbar 區域。scrollbar 區域中的列表對應到內容中的標題，並且設置了相應的超連結。當你點擊 scrollbar 上的元素時，內容會滾動到對應標題。同時，內容滾動時會根據目前閱讀的段落在 scrollbar 上顯示陰影效果。</p>
+                
+                <h2 class="font-sec-header" id="execution-path-4">Execution Path 4</h2>
+                <p>這個範例中，我們創建了一個滾動內容區域和一個 scrollbar 區域。scrollbar 區域中的列表對應到內容中的標題，並且設置了相應的超連結。當你點擊 scrollbar 上的元素時，內容會滾動到對應標題。同時，內容滾動時會根據目前閱讀的段落在 scrollbar 上顯示陰影效果。</p>
+                
+                <h2 class="font-sec-header" id="execution-path-5">Execution Path 5</h2>
+                <p>這個範例中，我們創建了一個滾動內容區域和一個 scrollbar 區域。scrollbar 區域中的列表對應到內容中的標題，並且設置了相應的超連結。當你點擊 scrollbar 上的元素時，內容會滾動到對應標題。同時，內容滾動時會根據目前閱讀的段落在 scrollbar 上顯示陰影效果。</p>
+                
+                <h2 class="font-sec-header" id="execution-path-6">Execution Path 6</h2>
+                <p>這個範例中，我們創建了一個滾動內容區域和一個 scrollbar 區域。scrollbar 區域中的列表對應到內容中的標題，並且設置了相應的超連結。當你點擊 scrollbar 上的元素時，內容會滾動到對應標題。同時，內容滾動時會根據目前閱讀的段落在 scrollbar 上顯示陰影效果。</p>
+                
+                <h2 class="font-sec-header" id="execution-path-7">Execution Path 7</h2>
+                <p>這個範例中，我們創建了一個滾動內容區域和一個 scrollbar 區域。scrollbar 區域中的列表對應到內容中的標題，並且設置了相應的超連結。當你點擊 scrollbar 上的元素時，內容會滾動到對應標題。同時，內容滾動時會根據目前閱讀的段落在 scrollbar 上顯示陰影效果。</p>
+                
+                <h2 class="font-sec-header" id="execution-path-8">Execution Path 8</h2>
+                <p>這個範例中，我們創建了一個滾動內容區域和一個 scrollbar 區域。scrollbar 區域中的列表對應到內容中的標題，並且設置了相應的超連結。當你點擊 scrollbar 上的元素時，內容會滾動到對應標題。同時，內容滾動時會根據目前閱讀的段落在 scrollbar 上顯示陰影效果。</p>
+                
+                <h2 class="font-sec-header" id="execution-path-9">Execution Path 9</h2>
+                <p>這個範例中，我們創建了一個滾動內容區域和一個 scrollbar 區域。scrollbar 區域中的列表對應到內容中的標題，並且設置了相應的超連結。當你點擊 scrollbar 上的元素時，內容會滾動到對應標題。同時，內容滾動時會根據目前閱讀的段落在 scrollbar 上顯示陰影效果。</p>
             </div>
 
         </div>
 
+        <div class="hughug fal-v8 messages">
+            <div class="hughug fal-v7 message">
+                <p class="font-mn-opt"></p>
+            </div>
+        </div>
         {# TODO #}
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
@@ -186,5 +221,7 @@
                 </script>
             {% endif %}
         {% endwith %}
+
+        <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
     </body>
 </html>

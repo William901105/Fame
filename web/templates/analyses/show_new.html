@@ -1,87 +1,18 @@
 {% extends "base_new.html" %}
-
 {% set analysis = analysis['analysis'] %}
 
-{% macro support_files(module) -%}
+{# {% macro support_files(module) -%}
     {% if 'support_files' in analysis %}
         {% for support_file in analysis.support_files[module] %}
             <li><a href="{{url_for('AnalysesView:download_support_file', id=analysis._id, module=module, filename=support_file[1])}}" target="_blank"><i class="pe-7s-link"></i> Download {{support_file[0]}}</a></li>
             {{name}}
         {% endfor %}
     {% endif %}
-{%- endmacro %}
+{%- endmacro %} #}
 
 {% block title %}Analysis{% endblock %}
 
-{% block sidebar %}
-    <li>
-        <a href="#file-details">
-            <i class="pe-7s-note2"></i>
-            <p>File Details</p>
-        </a>
-    </li>
-    <li>
-        <a href="#execution-path">
-            <i class="pe-7s-way"></i>
-            <p>Execution Path</p>
-        </a>
-    </li>
-
-    {% if analysis.extracted_files|length %}
-        <li>
-            <a href="#extracted_files">
-                <i class="fa fa-code-fork"></i>
-                <p>Extracted Files</p>
-            </a>
-        </li>
-    {% endif %}
-    {% if analysis.iocs|length %}
-        <li>
-            <a href="#iocs">
-                <i class="pe-7s-diamond"></i>
-                <p>Observables</p>
-            </a>
-        </li>
-    {% endif %}
-    {% if analysis.extractions|length %}
-        <li>
-            <a href="#extractions">
-                <i class="pe-7s-like2"></i>
-                <p>Extractions <b class="caret caret-right"></b></p>
-            </a>
-            <ul class="nav">
-                {% for extraction in analysis.extractions %}
-                    <li>
-                        <a class="sidebar-subnav" href="#extraction-{{extraction.label|replace(' ', '-')}}">{{extraction.label}}</a>
-                    </li>
-                {% endfor %}
-            </ul>
-        </li>
-    {% endif %}
-    {% if analysis.results|length %}
-        <li>
-            <a href="#details">
-                <i class="pe-7s-notebook"></i>
-                <p>Detailed Results <b class="caret caret-right"></b></p>
-            </a>
-            <ul class="nav">
-                {% for name in analysis.results %}
-                    <li>
-                        <a class="sidebar-subnav" href="#results-{{name|replace(' ', '-')}}">{{name}}</a>
-                    </li>
-                {% endfor %}
-            </ul>
-        </li>
-    {% endif %}
-    {% if analysis.logs|length and current_user.has_permission('see_logs') %}
-        <li>
-            <a href="#logs">
-                <i class="pe-7s-info"></i>
-                <p>Logs</p>
-            </a>
-        </li>
-    {% endif %}
-{% endblock %}
+{#
 
 {% block body %}
 
@@ -389,4 +320,4 @@
         </script>
     {% endif %}
 
-{% endblock %}
+{% endblock %} #}
