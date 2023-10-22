@@ -1,4 +1,106 @@
-{% if file.probable_names %}
+<div class="hugfill fal-v8 sec">
+
+    <h2 class="font-sec-header color-textgray" id="file-details">File Details</h2>
+    <div class="hugfill fal-h8 sec">
+
+        <div class="hugfill fal-v7 sec">
+
+            <div class="hugfill fal-h7 sec">
+                <p class="hughug font-item-name"><strong>Name(s)</strong></p>
+                <p class="hugfill font-item-name">{{file.names|join(', ')}}</p>
+            </div>
+
+            <form class="hugfill fal-h7 sec" method="post" action="{{url_for('FilesView:change_type', id=file._id)}}">
+                <p class="hughug font-item-name"><strong>Type</strong></p>
+                <p class="hughug font-item-name">{{file.type}}</p>
+                <div class="hugfill fal-h7 sec new-item">
+                    <button type="button">{% include "includes/icons/Edit.html" %}</button>
+                    <input class="hughug fal-h4 font-item-name" type="text" name="type" value="" maxlength="32">
+                </div>
+            </form>
+
+            {% if not file.type == 'url' %}
+            <div class="hugfill fal-h7 sec">
+                <p class="hughug font-item-name"><strong>Detailed Type</strong></p>
+                <p class="hugfill font-item-name">{{file.detailed_type}}</p>
+            </div>
+            <div class="hugfill fal-h7 sec">
+                <p class="hughug font-item-name"><strong>Mime</strong></p>
+                <p class="hugfill font-item-name">{{file.mime}}</p>
+            </div>
+            {% if file.size %}
+            <div class="hugfill fal-h7 sec">
+                <p class="hughug font-item-name"><strong>Size</strong></p>
+                <p class="hugfill font-item-name">{{file.size}} bytes</p>
+            </div>
+            {% endif %}
+            {% endif %}
+        </div>
+
+        <div class="hugfill fal-v7 sec">
+        {% if not file.type == 'url' %}
+            <div class="hugfill fal-h7 sec">
+                <p class="hughug font-item-name"><strong>MD5</strong></p>
+                <p class="hugfill font-item-name">{{file.md5}}</p>
+            </div>
+            <div class="hugfill fal-h7 sec">
+                <p class="hughug font-item-name"><strong>SHA1</strong></p>
+                <p class="hugfill font-item-name">{{file.sha1}}</p>
+            </div>
+            <div class="hugfill fal-h7 sec">
+                <p class="hughug font-item-name"><strong>SHA256</strong></p>
+                <p class="hugfill font-item-name">{{file.sha256}}</p>
+            </div>
+        {% endif %}
+        </div>
+    </div>
+    
+    {# 
+    
+    {% if file.parent_analyses %}
+    <div class="hugfill fal-h7">
+        <div class="col-sm-2 text-right"><strong>Parent Analyses</strong></div>
+        <div class="col-sm-10">
+            {% for analysis in file.parent_analyses %}
+                <div><a href="{{ url_for('AnalysesView:get', id=analysis) }}">{{analysis}}</a></div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %} #}
+
+    {# <div class="footer">
+        <br />
+        <hr>
+        <div class="stats">
+            <ul>
+                {% if request.endpoint == 'AnalysesView:get' %}
+                    <li><a href="{{ url_for('FilesView:get', id=file._id)}}"><i class="pe-7s-note2"></i> All analyses</a></li>
+                {% endif %}
+                {% if file.type != 'url' and file.type != 'hash' %}
+
+                    <li><a href="{{ url_for('FilesView:download', id=file._id) }}"><i class="pe-7s-cloud-download"></i> Download</a></li>
+
+                    {% for module in av_modules %}
+                        <li id="av-sent-{{module}}" {% if not file.antivirus[module] %}class="hidden"{% endif %} {% if file.antivirus[module] is string %}data-toggle="tooltip" data-placement="top" title="{{file.antivirus[module]}}"{% endif %}>
+                            <i class="fa fa-check text-success"></i> {{module}}
+                        </li>
+                        <li id="av-sendto-{{module}}" {% if file.antivirus[module] %}class="hidden"{% endif %}>
+                            <a class="av-submission-link" href="{{ url_for('FilesView:submit_to_av', id=file._id, module=module) }}" data-module="{{module}}"><i class="fa fa-send"></i> Send to {{module}}</a>
+                        </li>
+                    {% endfor %}
+                {% endif %}
+
+                <script src="{{ url_for('static', filename='js/fame-file.js') }}"></script>
+                <script>
+                    $('[data-toggle="tooltip"]').tooltip();
+                </script>
+            </ul>
+        </div>
+    </div> #}
+</div>
+
+
+{# {% if file.probable_names %}
     <h4 class="probable-names">Probable Name(s): {{file.probable_names|join(', ')}}</h4>
 {% endif %}
 
@@ -194,4 +296,4 @@
             </div>
         {% endif %}
     </div>
-</div>
+</div> #}

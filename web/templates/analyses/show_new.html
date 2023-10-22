@@ -12,6 +12,13 @@
 
 {% block title %}Analysis{% endblock %}
 
+{% block content %}
+
+    {% with file=analysis.file %}
+        {% include "files/details_new.html" %}
+    {% endwith %}
+{% endblock %}
+
 {#
 
 {% block body %}

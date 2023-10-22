@@ -9,6 +9,7 @@
   position: relative;
   box-sizing: border-box;
   overflow: visible;
+  word-break: break-word;
   margin: 0px;
   padding: 0px;
   border: 0px;
@@ -21,18 +22,13 @@ body {
   width: 100%;
   overflow: hidden;
 }
-head,
-script {
-  display: none;
-}
 
-a {
-  text-decoration: none;
-}
-p {
-  display: block;
-  color: #000000;
-}
+head,
+script {display: none;}
+
+a {text-decoration: none;}
+p {display: block; color: #000000;}
+button {background-color:transparent;}
 
 input {filter: none;}
 input:focus {outline: none;}

@@ -19,25 +19,27 @@
 
 
 /* Figma Auto Layout */
-.fal-h1{flex-direction:row;justify-content:flex-start;  align-items:flex-end;}
-.fal-h2{flex-direction:row;justify-content:center;      align-items:flex-end;}
-.fal-h3{flex-direction:row;justify-content:flex-end;    align-items:flex-end;}
-.fal-h4{flex-direction:row;justify-content:flex-start;  align-items:center;}
-.fal-h5{flex-direction:row;justify-content:center;      align-items:center;}
-.fal-h6{flex-direction:row;justify-content:flex-end;    align-items:center;}
-.fal-h7{flex-direction:row;justify-content:flex-start;  align-items:flex-start;}
-.fal-h8{flex-direction:row;justify-content:center;      align-items:flex-start;}
-.fal-h9{flex-direction:row;justify-content:flex-end;    align-items:flex-start;}
+.fal-h1,.fal-ha1{flex-direction:row;justify-content:flex-start;  align-items:flex-end;}
+.fal-h2,.fal-ha2{flex-direction:row;justify-content:center;      align-items:flex-end;}
+.fal-h3,.fal-ha3{flex-direction:row;justify-content:flex-end;    align-items:flex-end;}
+.fal-h4,.fal-ha4{flex-direction:row;justify-content:flex-start;  align-items:center;}
+.fal-h5,.fal-ha5{flex-direction:row;justify-content:center;      align-items:center;}
+.fal-h6,.fal-ha6{flex-direction:row;justify-content:flex-end;    align-items:center;}
+.fal-h7,.fal-ha7{flex-direction:row;justify-content:flex-start;  align-items:flex-start;}
+.fal-h8,.fal-ha8{flex-direction:row;justify-content:center;      align-items:flex-start;}
+.fal-h9,.fal-ha9{flex-direction:row;justify-content:flex-end;    align-items:flex-start;}
+[class*="fal-ha"]{justify-content:space-between;}
 
-.fal-v1{flex-direction:column;justify-content:flex-end;   align-items:flex-start;}
-.fal-v2{flex-direction:column;justify-content:flex-end;   align-items:center;}
-.fal-v3{flex-direction:column;justify-content:flex-end;   align-items:flex-end;}
-.fal-v4{flex-direction:column;justify-content:center;     align-items:flex-start;}
-.fal-v5{flex-direction:column;justify-content:center;     align-items:center;}
-.fal-v6{flex-direction:column;justify-content:center;     align-items:flex-end;}
-.fal-v7{flex-direction:column;justify-content:flex-start; align-items:flex-start;}
-.fal-v8{flex-direction:column;justify-content:flex-start; align-items:center;}
-.fal-v9{flex-direction:column;justify-content:flex-start; align-items:flex-end;}
+.fal-v1,.fal-va1{flex-direction:column;justify-content:flex-end;   align-items:flex-start;}
+.fal-v2,.fal-va2{flex-direction:column;justify-content:flex-end;   align-items:center;}
+.fal-v3,.fal-va3{flex-direction:column;justify-content:flex-end;   align-items:flex-end;}
+.fal-v4,.fal-va4{flex-direction:column;justify-content:center;     align-items:flex-start;}
+.fal-v5,.fal-va5{flex-direction:column;justify-content:center;     align-items:center;}
+.fal-v6,.fal-va6{flex-direction:column;justify-content:center;     align-items:flex-end;}
+.fal-v7,.fal-va7{flex-direction:column;justify-content:flex-start; align-items:flex-start;}
+.fal-v8,.fal-va8{flex-direction:column;justify-content:flex-start; align-items:center;}
+.fal-v9,.fal-va9{flex-direction:column;justify-content:flex-start; align-items:flex-end;}
+[class*="fal-va"]{justify-content:space-between;}
 
 [class*="fal-h"]>.fillfill{align-self:stretch;  min-width:0;flex:1 1;}
 [class*="fal-h"]>.fillfix{align-self:stretch;}
@@ -147,9 +149,6 @@
 .sec {
   gap: 5px;
 }
-.sec-name {
-  color: var(--color-textgray);
-}
 
 
 /* input-frame */
@@ -184,6 +183,36 @@
 }
 .input-frame:focus-within::after {
   width: 100%;
+}
+
+/* new-item */
+.new-item>input {
+  max-width: 0%;
+
+  border-radius: 25px;
+  padding: 0px 15px 0px;
+  
+  transition: 0.3s;
+  background-color: transparent;
+  box-shadow: none;
+}
+.new-item>input.active {
+  max-width: 100%;
+  background-color: var(--color-backgroundgray);
+  box-shadow: var(--menu);
+}
+.new-item>button {
+  scale: 1;
+  border-radius: 5px;
+  overflow: hidden;
+  position: absolute;
+  z-index: 1;
+  cursor: pointer;
+
+  transition: 0.15s;
+}
+.new-item>button.active {
+  scale: 0;
 }
 
 /* button */

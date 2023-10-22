@@ -37,7 +37,7 @@ function verticalNavigation (content, targets, navigation)
   
   
   const
-    anchors = Array.prototype.slice.call(navigation.children), // put navigation.children into array
+    anchors = Array.from(navigation.children), // put navigation.children into array
     offsetCtntBoundingTop = content.getBoundingClientRect().top; // offset relative to viewport
   let
     isScrollBySet = false,
@@ -54,16 +54,20 @@ function verticalNavigation (content, targets, navigation)
       }
     })
   }
-  
 
-  // Record each offsets
-  targets.forEach((target, index) => {
-    if (index == 0) {offsetsTrgtToCtnt.push(offsetBetween(targets[0], content).top);}
-    else {offsetsTrgtToCtnt.push(offsetsTrgtToCtnt[0] - targets[0].offsetTop + target.offsetTop);}
-  });
-  // to guarantee less than
-  offsetsTrgtToCtnt.push(Number.MAX_SAFE_INTEGER);
-  
+  function renew_offsetsTrgtToCtnt () {
+    offsetsTrgtToCtnt = [];
+    // Record each offsets
+    targets.forEach((target) => {
+      offsetsTrgtToCtnt.push(offsetBetween(target, content).top);
+    });
+    // to guarantee less than
+    offsetsTrgtToCtnt.push(Number.MAX_SAFE_INTEGER);
+  }
+
+  renew_offsetsTrgtToCtnt();
+  window.addEventListener('resize', renew_offsetsTrgtToCtnt);
+
   // Listen for click on each anchor to clear mousePosY
   anchors.forEach((anchor, index) => {
     anchor.addEventListener('click', () => {
@@ -86,29 +90,41 @@ function verticalNavigation (content, targets, navigation)
   });
 }
 
-// Close the popups if the user clicks outside of it
-function closePopupIfClickOutside (trigger, popup)
+// Close the target if the user clicks outside of it
+function deactivateIfClickOutside (trigger, targets, focusIdx)
 {
-  let isTriggerClicked = false; // prevent activation followed by immediate deactivation
+  try {targets.forEach(() => {});}
+  catch (e) {targets = [targets];}
+
   trigger.addEventListener('click', () => {
-    popup.classList.toggle('active');
-    isTriggerClicked = true;
+    targets.forEach((target) => {target.classList.toggle('active');});
+    if (typeof focusIdx !== 'undefined') {targets[focusIdx].focus();}
   });
   
   window.addEventListener('click', (event) => {
-    if (!isTriggerClicked && event.target.nextElementSibling !== popup) {popup.classList.remove('active');}
-    isTriggerClicked = false;
+    if (event.target != trigger && !Array.from(trigger.childNodes).includes(event.target) && !targets.includes(event.target))
+    {
+      targets.forEach((target) => {
+        target.classList.remove('active');
+      });
+      if (typeof focusIdx !== 'undefined') {targets[focusIdx].blur();}
+    }
   });
 }
 
 
 verticalNavigation(
   document.querySelectorAll('.main')[0],
-  document.querySelectorAll('.main>.content h2'),
+  document.querySelectorAll('.main>.content *>h2'),
   document.querySelectorAll('.navigation-bar')[0]
 );
 
-closePopupIfClickOutside(
-  document.querySelectorAll('a.avatar')[0],
+deactivateIfClickOutside(
+  document.querySelectorAll('button.avatar')[0],
   document.querySelectorAll('.avatar-menu')[0]
+);
+deactivateIfClickOutside(
+  document.querySelectorAll('.new-item>button')[0],
+  [document.querySelectorAll('.new-item>button')[0], document.querySelectorAll('.new-item>input')[0]],
+  1
 );

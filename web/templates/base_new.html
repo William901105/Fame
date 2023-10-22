@@ -103,7 +103,7 @@
                     <div class="hugfill fal-h5"><p class="font-sec-header">Recent Analyses</p></div>
                     <div class="hugfill fal-v8 histories">
                         {% for analysis in g.last_analyses %}
-                            <a class="fixfill fal-h5" href="{{ url_for('AnalysesView:get', id=analysis._id) }}">
+                            <a class="fixfill fal-ha5" href="{{ url_for('AnalysesView:get', id=analysis._id) }}">
                                 {% if analysis.status == 'finished' %}
                                     {% include "includes/icons/CheckMark.html" %}
                                 {% elif analysis.status == 'pending' %}
@@ -129,12 +129,12 @@
         <div class="fillfill fal-v8 main">
 
             <div class="hugfill fal-h5 head">
-                <form class="hugfill fal-h5 head-frame" role="search" action="{{ url_for('SearchView:post') }}" method="post">
-                    <input class="fillfill fal-h4 search font-sec-header" type="text" name="query" value="" placeholder="Search..">
+                <form class="hugfill fal-h5 search head-frame" role="search" action="{{ url_for('SearchView:post') }}" method="post">
+                    <input class="fillfill fal-h4 font-sec-header" type="text" name="query" value="" placeholder="Search..">
                     
-                    <a class="hughug avatar">
+                    <button type="button" class="hughug avatar">
                         <img src="{{current_user._id|avatar}}" />
-                    </a>
+                    </button>
                     <div class="fal-v8 hugfix avatar-menu">
                         {% if not current_user.is_guest(current_user._id) %}
                         <a class="fixfill fal-h4" href="{{url_for('UsersView:get', id=current_user._id)}}">
@@ -161,9 +161,8 @@
             
             <div class="hugfill fal-v8 content">
                 <h1 class="font-main-title">{{ self.title() }}</h1>
-                
-                <h2 class="font-sec-header" id="file-details">File Details</h2>
-                <p>這個範例中，我們創建了一個滾動內容區域和一個 scrollbar 區域。scrollbar 區域中的列表對應到內容中的標題，並且設置了相應的超連結。當你點擊 scrollbar 上的元素時，內容會滾動到對應標題。同時，內容滾動時會根據目前閱讀的段落在 scrollbar 上顯示陰影效果。</p>
+
+                {{ self.content() }}
                 
                 <h2 class="font-sec-header" id="execution-path-1">Execution Path 1</h2>
                 <p>這個範例中，我們創建了一個滾動內容區域和一個 scrollbar 區域。scrollbar 區域中的列表對應到內容中的標題，並且設置了相應的超連結。當你點擊 scrollbar 上的元素時，內容會滾動到對應標題。同時，內容滾動時會根據目前閱讀的段落在 scrollbar 上顯示陰影效果。</p>
