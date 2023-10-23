@@ -1,3 +1,4 @@
 [submodule "fame/modules"]
 	path = fame/modules
 	url = https://github.com/William901105/fame_module.git
+    branch = test_module

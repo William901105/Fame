@@ -131,14 +131,14 @@ def create_admin_user(context):
 def add_community_repository():
     from fame.core.repository import Repository
 
-    repo = Repository.get(name="Connlab")
+    repo = Repository.get(name="Connlab_module")
 
     if repo:
-        print("[+] Connlab repository already installed.")
+        print("[+] Connlab_module repository already installed.")
     else:
-        print("[+] Installing Connlab repository ...")
+        print("[+] Installing Connlab_module repository ...")
         repo = Repository({
-            'name': 'Connlab',
+            'name': 'Connlab_module',
             'address': 'https://github.com/William901105/fame_module.git',
             'private': False,
             'status': 'cloning'
