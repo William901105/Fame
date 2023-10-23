@@ -131,7 +131,7 @@ def create_admin_user(context):
 def add_community_repository():
     from fame.core.repository import Repository
 
-    repo = Repository.get(name="community")
+    repo = Repository.get(name="Connlab")
 
     if repo:
         print("[+] Connlab repository already installed.")
