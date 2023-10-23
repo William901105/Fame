@@ -60,6 +60,8 @@ def authenticate(email, password):
                 user.update_value('last_activity', datetime.now().timestamp())
                 login_user(user)
                 return user
+    else :
+        print("--------------unable")
 
     return None
 

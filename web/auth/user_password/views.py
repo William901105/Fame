@@ -121,11 +121,15 @@ def login():
                     redir = request.args.get('next', '/')
                     return redirect(urljoin(fame_config.fame_url, redir))
                 else:
-                    flash("Invalid credentials.", "danger")
+                    flash("Invalid credentials.3", "danger")
                     return render_template('login.html')
             elif request.form['login'] == 'guest':
                 if authenticate('guestEmail','guestPassword'):
                     return redirect(url_for("AnalysesView:new"))
+            else :
+                flash("Invalid credentials.2", "danger")
+        else :
+            flash("Invalid credentials.1", "danger")
 @auth.route('/logout')
 def logout():
     if current_user.is_authenticated:

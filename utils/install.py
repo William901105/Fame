@@ -134,12 +134,12 @@ def add_community_repository():
     repo = Repository.get(name="community")
 
     if repo:
-        print("[+] Community repository already installed.")
+        print("[+] Connlab repository already installed.")
     else:
-        print("[+] Installing community repository ...")
+        print("[+] Installing Connlab repository ...")
         repo = Repository({
-            'name': 'community',
-            'address': 'https://github.com/certsocietegenerale/fame_modules.git',
+            'name': 'Connlab',
+            'address': 'https://github.com/William901105/fame_module.git',
             'private': False,
             'status': 'cloning'
         })
