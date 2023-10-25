@@ -144,23 +144,27 @@ class Analysis(MongoDict):
         self.log('debug', "Adding support file '{}' at '{}'".format(name, filepath))
 
         if fame_config.remote:
+            self.log('debug','0')
             response = send_file_to_remote(filepath, '/analyses/{}/support_file/{}'.format(self['_id'], module_name))
             dstfilepath = response.json()['path']
         else:
             dirpath = os.path.join(fame_config.storage_path, 'support_files', module_name, str(self['_id']))
             dstfilepath = os.path.join(dirpath, os.path.basename(filepath))
-
+            self.log('debug','1')
             # Create parent dirs if they don't exist
             try:
+                self.log('debug','2')
                 os.makedirs(dirpath)
             except:
+                self.log('debug','Support file Error : Failed dirpath.')
                 pass
-
+            self.log('debug','3')
             copy(filepath, dstfilepath)
 
         if module_name not in self['support_files']:
+            self.log('debug','4')
             self['support_files'][module_name] = []
-
+        self.log('debug','5')
         self.append_to(['support_files', module_name], (name, os.path.basename(dstfilepath)))
 
     def add_extraction(self, label, extraction):
