@@ -1,0 +1,1514 @@
+[33mcommit 00eee40ca4fa8472d533e2c11dcb30e4bf4d632a[m[33m ([m[1;36mHEAD[m[33m)[m
+Author: finacoa <fallmay.6@gmail.com>
+Date:   Sat Sep 23 10:10:21 2023 +0800
+
+    user_register_pw_pass
+
+[33mcommit 58c9c7ec11c8efb978ee8dc99905e49a096abd90[m[33m ([m[1;32manonymous_user[m[33m)[m
+Author: finacoa <fallmay.6@gmail.com>
+Date:   Sat Aug 26 15:41:15 2023 +0800
+
+    anonymous_user
+
+[33mcommit feb447d06ce440e3326437c4e212c039fed382be[m[33m ([m[1;31morigin/cc-PLC[m[33m)[m
+Merge: e685c64 f6490b1
+Author: cc-PLC <leohappy0531@gmail.com>
+Date:   Sun Aug 6 13:29:47 2023 +0800
+
+    Merge branch 'frontend' into cc-PLC
+
+[33mcommit f6490b10e05286870af5c51cc88ce8072333f0ab[m
+Author: cc-PLC <leohappy0531@gmail.com>
+Date:   Sun Aug 6 13:29:28 2023 +0800
+
+    Fix: Floating List when resize
+
+[33mcommit 6af156eac8f98bf161d216bda4f944869246e3af[m
+Author: cc-PLC <leohappy0531@gmail.com>
+Date:   Thu Aug 3 18:50:25 2023 +0800
+
+    Fix: Do Your Ma, Floating List (https://hackmd.io/m9IP9z3rSuufJnaGvf5f1A?view)
+
+[33mcommit 62ddf186106dfba1265694671ec9fa8d17ff7a70[m
+Author: cc-PLC <leohappy0531@gmail.com>
+Date:   Thu Aug 3 14:29:40 2023 +0800
+
+    Fix: Text Overflow
+
+[33mcommit 173978c6bc8797243bb803856b22811dc7ecd0bd[m
+Author: cc-PLC <leohappy0531@gmail.com>
+Date:   Thu Aug 3 13:11:47 2023 +0800
+
+    Html element is full now
+
+[33mcommit 5c953b47cf1e4744b05a906a21cb7ff70a444dc7[m
+Author: cc-PLC <leohappy0531@gmail.com>
+Date:   Thu Aug 3 01:16:37 2023 +0800
+
+    Move sidebar to the left but html element isn't full
+
+[33mcommit e685c647a3e69efe455ea79677f59243f2e3789c[m
+Merge: db1f216 53f386b
+Author: cc-PLC <leohappy0531@gmail.com>
+Date:   Wed Aug 2 21:56:07 2023 +0800
+
+    Merge branch 'docker' into cc-PLC
+
+[33mcommit 53f386ba0daafd346310b8535ba4809e34580a93[m
+Author: cc-PLC <leohappy0531@gmail.com>
+Date:   Wed Aug 2 12:42:10 2023 +0800
+
+    Reorder docker-compose.yml
+
+[33mcommit db1f2160e88c52ec71a8414fc42e78c24564a738[m
+Author: cc-PLC <leohappy0531@gmail.com>
+Date:   Wed Aug 2 13:08:42 2023 +0800
+
+    Fix 991 bluescreen; mobile user menu scrolls up
+
+[33mcommit c061c3a1c69212bc097782a8de8f441e20f0c565[m
+Author: cc-PLC <leohappy0531@gmail.com>
+Date:   Tue Aug 1 19:43:48 2023 +0800
+
+    Correct the path of volumes (storage, temp); align tabs in base.html
+
+[33mcommit 7d53c571af7b75bd4d31eafcbb0aeefa66974368[m
+Merge: 1be8ed9 3e0df5f
+Author: cc-PLC <leohappy0531@gmail.com>
+Date:   Tue Aug 1 13:52:36 2023 +0800
+
+    Fix conflicts
+
+[33mcommit 1be8ed97d48ec24c9757f9fbca585ad843eb162c[m
+Author: cc-PLC <leohappy0531@gmail.com>
+Date:   Tue Aug 1 13:41:13 2023 +0800
+
+    Change the names of docker-volumes & docker-network; worker is online
+
+[33mcommit 2f8631533ed937b2350fd9068af9d48153a16aa7[m
+Author: cc-PLC <leohappy0531@gmail.com>
+Date:   Mon Jul 31 15:30:42 2023 +0800
+
+    Restore some ip settings
+
+[33mcommit 3e0df5f0874cc7b21ffc431856953e340c2a2e34[m
+Author: cc-PLC <leohappy0531@gmail.com>
+Date:   Sat Jul 29 17:20:22 2023 +0800
+
+    Fix missing: PreprocessorsView:index; use ip: 192.168.0.146 as ENV in fame.env.template
+
+[33mcommit cbe7476ae2243cd52540c2c4d86a12d2966add4f[m
+Author: cc-PLC <leohappy0531@gmail.com>
+Date:   Sat Jul 29 16:03:17 2023 +0800
+
+    Use ip: 192.168.0.146 for VirtualBox Bridge Adapter; use Mongo4.x
+
+[33mcommit 8daf42138f5e3a9b8f7ee671d69d608ea6e40496[m
+Author: William901105 <a876531240@gmail.com>
+Date:   Wed Jul 19 13:53:49 2023 +0000
+
+    correct_dockerfile
+
+[33mcommit 0f40123f53edb7ac28a4ea31ac104f4dd22f8551[m
+Author: william <a876531240@gmail.com>
+Date:   Thu Jul 6 10:10:58 2023 +0000
+
+    InitialVersion
+
+[33mcommit e97baea451114c55313e33f24e0d531aa0062fdb[m
+Author: jtsnkk <juttysunny@gmail.com>
+Date:   Fri Mar 3 01:12:52 2023 +0800
+
+    Add new module type: Preprocessing, add free login function(guest user), and some small change
+
+[33mcommit a043f17f2415e50259915ae34a3bf94da1275e3b[m
+Author: Augustin-FL <Augustin-FL@users.noreply.github.com>
+Date:   Tue Aug 16 17:11:07 2022 +0200
+
+    pip is now using utf8, decode output in case of error
+
+[33mcommit 467a2f921dfd7ec0c5600cfd69ea110a570ee626[m
+Merge: 8320415 9f3fc93
+Author: Augustin-FL <Augustin-FL@users.noreply.github.com>
+Date:   Tue Aug 16 10:25:16 2022 +0200
+
+    bump requests to the latest version
+
+[33mcommit 8320415ff27c4e7f78672e7b61069608414d86c6[m
+Merge: e6da7c9 c37156d
+Author: Augustin-FL <Augustin-FL@users.noreply.github.com>
+Date:   Tue Aug 16 10:24:35 2022 +0200
+
+    Improve git modules repository fetching (#116)
+
+[33mcommit e6da7c94af72296ebf95a078fa427bdbbd9b417a[m
+Merge: 6321945 10e35f7
+Author: Augustin-FL <Augustin-FL@users.noreply.github.com>
+Date:   Tue Aug 16 10:23:41 2022 +0200
+
+    Report error when a FAME module can't be loaded (#117)
+
+[33mcommit 63219458c044f91eb325653b2e238aa3b246bd19[m
+Merge: f0f768c 74dc415
+Author: Augustin-FL <Augustin-FL@users.noreply.github.com>
+Date:   Tue Aug 16 10:22:17 2022 +0200
+
+    Fix troubleshoot script
+
+[33mcommit f0f768c32b1e591496a8723933fdb750b2076c61[m
+Author: Augustin-FL <Augustin-FL@users.noreply.github.com>
+Date:   Mon Aug 15 03:47:54 2022 +0200
+
+    Add an option to not generate random key on startup
+
+[33mcommit 0cbcf9d3568260c6bbd934c385ce45c4c8e554d3[m
+Author: Augustin-FL <Augustin-FL@users.noreply.github.com>
+Date:   Sun Aug 14 13:49:07 2022 +0200
+
+    move /var/lib/docker to a volume, use a common volume for the environment
+
+[33mcommit 971bbd368ae8bbc12e14e2d3e07f89b2f00e2da1[m
+Author: Augustin-FL <Augustin-FL@users.noreply.github.com>
+Date:   Sun Aug 14 01:54:55 2022 +0200
+
+    Configure user.name/user.email in the Dockerfile
+    Otherwise we get an error when updating repository: "fatal: unable to auto-detect email address"
+
+[33mcommit 10e35f7b2144710b53a18e72fed1ad99b79ab38f[m
+Author: Augustin-FL <Augustin-FL@users.noreply.github.com>
+Date:   Sat Aug 13 19:09:51 2022 +0200
+
+    Report error when a FAME module can't be loaded
+
+[33mcommit 9f3fc9386912ce04a88e7c11f2409d1e87f2d383[m
+Author: Augustin-FL <Augustin-FL@users.noreply.github.com>
+Date:   Sat Aug 13 19:35:43 2022 +0200
+
+    bump requests to the latest version
+
+[33mcommit c37156dd12b4d7f0ef3a5004df983924a4ab36b4[m
+Author: Augustin-FL <Augustin-FL@users.noreply.github.com>
+Date:   Sat Aug 13 13:45:44 2022 +0200
+
+    always ignore git SSH Key verification
+    This fix issue when using SSH for public repositories
+    
+    Also, improve error message when failing to pull
+
+[33mcommit 74dc41592f033a734d885408828249690c188f69[m
+Author: Augustin-FL <Augustin-FL@users.noreply.github.com>
+Date:   Sat Aug 13 11:31:09 2022 +0200
+
+    Add MongoDB authentication, fix pip warning, change OS release
+
+[33mcommit 78a2e487999f66fd6413a19bcb8cdec96cca1907[m
+Author: Augustin-FL <Augustin-FL@users.noreply.github.com>
+Date:   Fri Aug 12 00:25:37 2022 +0200
+
+    bump markdown2 to the latest version
+
+[33mcommit a7e1f54cef92f65d9018193806a659f6c47bb194[m
+Author: Augustin-FL <Augustin-FL@users.noreply.github.com>
+Date:   Thu Aug 11 23:43:28 2022 +0200
+
+    override docker variable : fame URL is "localhost" from browser point of view
+
+[33mcommit 8911bac8041c346ffa58a348735757662b0b15df[m
+Author: Augustin-FL <Augustin-FL@users.noreply.github.com>
+Date:   Thu Aug 11 23:40:40 2022 +0200
+
+    Bump celery to the latest version
+    Provide a fix for CVE-2021-23727
+
+[33mcommit db7faad36e009690046a57efbb931dbb7d191cba[m
+Author: Augustin-FL <Augustin-FL@users.noreply.github.com>
+Date:   Thu Aug 11 14:16:26 2022 +0200
+
+    bump requests to 2.25.1
+    Newer versions of hatching-triage require request >= 2.25.1
+
+[33mcommit 272691e518d54c8b7a7103d022641f7f9349ed0c[m
+Author: Augustin FL <Augustin-FL@users.noreply.github.com>
+Date:   Thu Aug 11 13:24:07 2022 +0200
+
+    Change the installation steps, rework fame Dockerfile (#101)
+    
+    - Add support for environment variables instead of input() during install
+    - Rework the docker file and FAME setup using docker
+
+[33mcommit 214626348d0a8e1883c85fd754a06a5fe942fa00[m
+Author: Augustin-FL <Augustin-FL@users.noreply.github.com>
+Date:   Mon Aug 8 11:51:44 2022 +0200
+
+    make sure user exist before checking last activity time
+
+[33mcommit d603767568d607ddfe50ed4f50c30f11b6d273a1[m
+Merge: 26f881f bb24d0e
+Author: Augustin FL <Augustin-FL@users.noreply.github.com>
+Date:   Mon Aug 8 11:35:59 2022 +0200
+
+    Merge pull request #108 from Augustin-FL/invalidate_token_on_logout
+    
+    renew auth_token on login, invalidate it on logout
+
+[33mcommit bb24d0ed63a7574046a50be382232bdfcc190f54[m
+Author: Augustin-FL <Augustin-FL@users.noreply.github.com>
+Date:   Wed Aug 3 17:14:07 2022 +0200
+
+    Also change the auth token on login.
+    This has a side effect : it prevents multi-sessions (eg, 1 user connected with 2 browsers at the same time..multitab is still supported)
+
+[33mcommit bca24c329e68afaa6628a2dd61d70dcebc10b950[m
+Author: Augustin-FL <Augustin-FL@users.noreply.github.com>
+Date:   Wed Aug 3 12:27:25 2022 +0200
+
+    Invalidate auth_token on logout
+    This prevent attempts to reuse the session cookie
+
+[33mcommit 26f881fabc49f456ae336860eb983c0613ae9708[m
+Author: Augustin-FL <Augustin-FL@users.noreply.github.com>
+Date:   Mon Jun 27 16:31:59 2022 +0200
+
+    use URL and scheme defined in fame config
+
+[33mcommit ca489a89eacfb22762e8b268b61365c1a22344b1[m
+Author: Augustin-FL <Augustin-FL@users.noreply.github.com>
+Date:   Wed Aug 3 17:04:19 2022 +0200
+
+    Add an optional setting "max_inactivity_time" in fame.conf
+
+[33mcommit 2e1e4004e55b3f8f58d7bd975c7dab4e159d0e37[m
+Author: Augustin-FL <Augustin-FL@users.noreply.github.com>
+Date:   Wed Aug 3 17:50:42 2022 +0200
+
+    Use secure flag on cookies whenever possible
+
+[33mcommit 0a6cd9bdb31cc1a055a58bd06d43d891354c5861[m
+Merge: 4285a42 34ea7d5
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Tue Mar 29 09:26:26 2022 +0200
+
+    Merge pull request #102 from idiomaticrefactoring/patch-1
+    
+    refactoring code with dict comprehension
+
+[33mcommit 34ea7d5610ece8a9150177d4c50a5e65a05b39f7[m
+Author: zzj <29055749+zjzh@users.noreply.github.com>
+Date:   Tue Mar 8 10:09:27 2022 +0800
+
+    refactoring code with dict comprehension
+    
+    refactoring code with dict comprehension which is more pythonic, concise, readable and efficient
+
+[33mcommit 4285a425cd5daa8f8b7ac5c98a946e99712e82d8[m
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Wed Mar 2 14:47:54 2022 +0100
+
+    fix(update): properly connect to database
+
+[33mcommit 2498a154cb9129737d399b1a4a98ecf52ebf3616[m
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Tue Jan 25 16:54:45 2022 +0100
+
+    fix(single_module): fix test mode with mongodb authentication enabled
+
+[33mcommit 6bb758063b1ac5de6792fd3316a4635d1ffecfd1[m
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Tue Nov 9 09:10:48 2021 +0100
+
+    feat(web): add a hash endpoint
+
+[33mcommit 9f24b8c0bc66942ff0d6cf39233119c1c66816a4[m
+Merge: b33725a e340142
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Thu Apr 22 09:42:51 2021 +0200
+
+    Merge pull request #93 from MatteoManzoni/master
+    
+    Refactor remote worker module download for Python3
+
+[33mcommit e3401423b5adaab60516f2c2e2a9070be93627fb[m
+Author: Matteo Manzoni <manzoni.matteo@mailfence.com>
+Date:   Wed Apr 21 19:14:17 2021 +0200
+
+    Refactor remote worker module download for Python3
+    
+    In Python3 there is a change in return from requests.
+    During the download of the zipfile form the master the worker expect a str but due to this change requests return a byte failing the module installation on remote workers
+    With this refactor the remote worker can unzip a stream of byte matching the return of requests
+
+[33mcommit b33725a5f5663bb6aaec928e33b52d9825e154e1[m
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Thu Apr 15 10:20:56 2021 +0200
+
+    fix virtualenv creation
+
+[33mcommit 23cbce31a6a01c666f636c7b780445a3e1b2d3bd[m
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Thu Apr 15 10:19:15 2021 +0200
+
+    fix: some python3 fixes
+
+[33mcommit 548ce6e218209ef3f8157271212795caa585dcff[m
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Thu Apr 8 16:22:14 2021 +0200
+
+    fix: remove typing to improve compatibility
+
+[33mcommit d61adb6e23b6bf129f559bb25fe9f069280091d5[m
+Merge: e798b09 038299a
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Thu Apr 8 15:35:43 2021 +0200
+
+    Merge pull request #92 from certsocietegenerale/python3
+    
+    Python3 port
+
+[33mcommit 038299a02b689331eb229bb19a197cc52d08a6d1[m
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Mon Apr 5 13:46:36 2021 +0200
+
+    feat: update documentation for python 3
+
+[33mcommit 8e281ed1914717840fc94250ebe8d140325a208f[m
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Mon Apr 5 13:45:56 2021 +0200
+
+    fix: virtualenv creation
+
+[33mcommit 11ae52db6b3215d917b1733bfe728ee9275ee3ef[m
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Mon Apr 5 11:34:29 2021 +0200
+
+    fix: update virtualenv creation
+
+[33mcommit 7eeb69868c5c778bacb644a2e5e30ed37dd1c5c7[m
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Sun Apr 4 18:59:28 2021 +0200
+
+    fix: remove useless dependency
+
+[33mcommit 6f1dc03372da332e26579073499900583920e0a2[m
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Sun Apr 4 18:58:59 2021 +0200
+
+    fix: agent stability by putting only the necessary bits in the queue
+
+[33mcommit 10872f4855b89f81147e374e5e4d55901dd7dc1b[m
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Tue Jan 19 20:49:23 2021 +0100
+
+    feat: port agent to python3 + some typing
+
+[33mcommit 3c146b5a7de1ada2c44fbdc0e49a78a112e7b0c5[m
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Fri Jan 1 11:37:12 2021 +0100
+
+    fix(python3): fix URL submission
+
+[33mcommit c34c47dc8694a8bc98e8b3989a76343de86b8eae[m
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Thu Nov 12 09:13:00 2020 +0100
+
+    feat: port to python 3
+
+[33mcommit e798b09908f43521eaaafca7546ca7f0687453cb[m
+Author: Heat Miser <github@heat-miser.net>
+Date:   Thu May 28 18:10:48 2020 +0200
+
+    Update initial_data.py
+    
+    Updated default types to add iso / 7z and rar files supported by "extract" module
+
+[33mcommit 16e4ca09ceb60ac7690cbc87a056a24f0996e1f0[m
+Merge: ca628b6 05adb34
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Wed May 27 08:26:04 2020 +0200
+
+    Merge pull request #80 from GDATAAdvancedAnalytics/implement-ldap-authentication
+    
+    add ad authentication
+
+[33mcommit ca628b695e13126d9d6af171a904d92af8e21cf5[m
+Author: udgover <udgover@digital-forensic.org>
+Date:   Thu May 7 17:28:29 2020 +0200
+
+    * Adds current analysis Groups to all extracted files. Otherwise, analyst won't be able to access extracted file objects and analysis
+
+[33mcommit eea5c2fbf2303765b15a6863ed15631c97faba5b[m
+Author: udgover <udgover@digital-forensic.org>
+Date:   Thu May 7 17:26:28 2020 +0200
+
+    * Fixes issue with add_extracted_file with no processing module to enqueue. Handles case when module is None.
+
+[33mcommit c3e08ec9632713d387738e9d12b662671420326c[m
+Author: udgover <udgover@digital-forensic.org>
+Date:   Thu May 7 17:23:31 2020 +0200
+
+    * Fixes issue on add_extracted_file to handle automatic_analysis argument.
+
+[33mcommit 05adb3456fe38b072843f77494ded4df92ed7780[m
+Author: Luca Ebach <luca.ebach@gdata-adan.de>
+Date:   Mon May 4 13:03:26 2020 +0200
+
+    docu: add hint that ad module is not compatible with OpenLDAP
+
+[33mcommit 8f0951c012fe68e3861e8c38c86ce3f4c8c2f3ce[m
+Author: Luca Ebach <luca.ebach@gdata-adan.de>
+Date:   Mon May 4 13:00:41 2020 +0200
+
+    fix imports
+
+[33mcommit c063e6c1e3454c5429b6985a74fdad192762c6bd[m
+Author: Luca Ebach <luca.ebach@gdata-adan.de>
+Date:   Mon May 4 12:52:03 2020 +0200
+
+    change module name from LDAP to AD
+
+[33mcommit b6f463b20833b2f72786eada2c60ef80ab66109a[m
+Author: Luca Ebach <luca.ebach@gdata-adan.de>
+Date:   Mon May 4 12:49:30 2020 +0200
+
+    check for optional userPrincipalName to be present
+
+[33mcommit ef348d761b53355e7bb36039859abfec0f291fe6[m
+Author: Luca Ebach <luca.ebach@gdata-adan.de>
+Date:   Wed Apr 29 13:05:25 2020 +0200
+
+    feat: do not login if user has no groups or sharing
+
+[33mcommit ec4bb5464128e1e61bf1b9a4f08a25eabf7f2c32[m
+Author: Luca Ebach <luca.ebach@gdata-adan.de>
+Date:   Wed Apr 29 13:04:31 2020 +0200
+
+    add small passage where to put settings
+
+[33mcommit 4b503a9466837ee965f8e5104c5b1984666aa82a[m
+Author: lucebac <github@lucebac.net>
+Date:   Tue Apr 28 15:58:48 2020 +0200
+
+    fix typos
+    
+    Co-Authored-By: Gael Muller <muller.gael@gmail.com>
+
+[33mcommit 770442ba26fcabe626878e410745159359eab989[m
+Merge: 7ae3c0f 8dae479
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Tue Apr 28 15:26:34 2020 +0200
+
+    Merge pull request #86 from certsocietegenerale/preloading
+    
+    Implement Preloading Modules
+
+[33mcommit 8dae4796e34c3303c086cdfd4d702e034d887a4a[m
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Tue Apr 28 15:00:32 2020 +0200
+
+    ignore mypy files
+
+[33mcommit d29b9ede09716c89530c21b4797a7ff231893510[m
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Tue Apr 28 15:00:10 2020 +0200
+
+    do not use fake filename
+
+[33mcommit 492398ae3525987594f8f7a2b1d753df77f0ea2a[m
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Wed Apr 22 08:49:05 2020 +0200
+
+    feat: preloading modules priority
+
+[33mcommit 223056cd0b6196d31c80491855735e02f7ee8466[m
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Tue Apr 21 19:23:06 2020 +0200
+
+    feat: improve preloading modules (add support for target modules)
+
+[33mcommit 17cc99c85cc95c530b074da1ca18641cfe90730c[m
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Mon Apr 20 18:23:16 2020 +0200
+
+    fix: display only one Download link
+
+[33mcommit 683385f8b45d49817c7b5718bf1be4b58a718944[m
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Mon Apr 20 18:22:49 2020 +0200
+
+    add preloaded file to existing file object
+
+[33mcommit 83f50c7ebe1925def506ff1c3fee0d815926b9ac[m
+Author: Luca Ebach <luca.ebach@gdata-adan.de>
+Date:   Mon Jan 6 12:53:54 2020 +0100
+
+    fix copy-paste failure
+
+[33mcommit ea025eb5d050b3ec5ae533d2685903904a99cfa5[m
+Author: Luca Ebach <luca.ebach@gdata-adan.de>
+Date:   Mon Jan 6 12:26:09 2020 +0100
+
+    typo/whitespace fix
+
+[33mcommit 24ab334dae7088c1be287fcd0c0f6ad8acb57457[m
+Author: Luca Ebach <luca.ebach@gdata-adan.de>
+Date:   Mon Jan 6 12:25:58 2020 +0100
+
+    split init method into submethods
+
+[33mcommit a9e40dbb178304d5afe807960a323f8bf164ffaa[m
+Author: Luca Ebach <luca.ebach@gdata-adan.de>
+Date:   Mon Jan 6 12:25:21 2020 +0100
+
+    add exception handling to preloading
+
+[33mcommit 02a16417cd1b0151d7a8767d43435d2487c13a0f[m
+Author: Luca Ebach <luca.ebach@gdata-adan.de>
+Date:   Mon Jan 6 12:23:50 2020 +0100
+
+    revert single_module
+
+[33mcommit 9c8c35540828796eaf0c3a13cc2af1d0bc5394c4[m
+Author: Luca Ebach <luca.ebach@gdata-adan.de>
+Date:   Mon Jan 6 12:23:37 2020 +0100
+
+    change location of preloading/processing module section
+
+[33mcommit 840ee9c512741415fd8c7b00bef5a9bb947414b8[m
+Author: Luca Ebach <luca.ebach@gdata-adan.de>
+Date:   Mon Jan 6 12:23:18 2020 +0100
+
+    bugfix
+
+[33mcommit 91da4196e7537b6c1f46e4db3820d624b4800039[m
+Author: Luca Ebach <luca.ebach@gdata-adan.de>
+Date:   Mon Jan 6 12:22:45 2020 +0100
+
+    enhance preloading docu
+
+[33mcommit 280a69649e6b8b2c6098b7e26da56d52419ba311[m
+Author: Luca Ebach <luca.ebach@gdata-adan.de>
+Date:   Mon Jan 6 10:41:02 2020 +0100
+
+    reorder sections
+
+[33mcommit a918e54a868aff9fa175bac54f96d344a3fbb751[m
+Author: Luca Ebach <luca.ebach@gdata-adan.de>
+Date:   Mon Jan 6 10:38:36 2020 +0100
+
+    rephrase 'adding preloading result' and remove testing section
+
+[33mcommit 6a1d7d94fe5b9f0a27ba67be9dc161f2cd432194[m
+Author: Luca Ebach <luca.ebach@gdata-adan.de>
+Date:   Thu Dec 26 20:28:47 2019 +0100
+
+    remove duplicate queue
+
+[33mcommit a30cc52ae1ef798df1c25f4c295f35b3f523ee98[m
+Author: Luca Ebach <luca.ebach@gdata-adan.de>
+Date:   Thu Dec 26 20:28:27 2019 +0100
+
+    remove 'acts_on' from modules view for preloading modules
+
+[33mcommit a69b36405a7079cea7a8b1304c727d3ff68da990[m
+Author: Luca Ebach <luca.ebach@gdata-adan.de>
+Date:   Thu Dec 26 20:27:41 2019 +0100
+
+    remove unrelated bugfix
+
+[33mcommit 2c48ecf0bcdef0cc0da5dcbcf57eb4dbaab3ee15[m
+Author: Luca Ebach <luca.ebach@gdata-adan.de>
+Date:   Thu Dec 26 20:21:58 2019 +0100
+
+    removed docker-related docu hint
+
+[33mcommit 2801027a79e7ae82b14b89fe4e0019c8db8c3bee[m
+Author: Luca Ebach <luca.ebach@gdata-adan.de>
+Date:   Thu Dec 26 20:20:58 2019 +0100
+
+    remove inconsistency with docu/implementation
+
+[33mcommit b1ed2127cc13a6dfc47ab1ad45f8cf281d5b81dc[m
+Author: Luca Ebach <luca.ebach@gdata-adan.de>
+Date:   Thu Dec 26 20:17:12 2019 +0100
+
+    move log function to Module class
+
+[33mcommit aeaa56d4ff946bcb38820d303d859cb8f38ce1ab[m
+Author: Luca Ebach <luca.ebach@gdata-adan.de>
+Date:   Thu Dec 26 18:10:30 2019 +0100
+
+    add preloading web changes
+
+[33mcommit a9d01069eb36973457852c8416ded5067438c910[m
+Author: Luca Ebach <luca.ebach@gdata-adan.de>
+Date:   Thu Dec 26 18:10:20 2019 +0100
+
+    apply preloading changes to utils
+
+[33mcommit 953184366a384bd0e0a1b69ee64e4c766061b825[m
+Author: Luca Ebach <luca.ebach@gdata-adan.de>
+Date:   Thu Dec 26 18:10:02 2019 +0100
+
+    add preloading docs
+
+[33mcommit 1b5e6aaa5ddd193b424f1d7a9109b419a585f732[m
+Author: Luca Ebach <luca.ebach@gdata-adan.de>
+Date:   Tue Dec 24 22:41:12 2019 +0100
+
+    use dispatcher.get_module
+
+[33mcommit a1bf747efa4496300e705e773eab9b4c589df508[m
+Author: Luca Ebach <luca.ebach@gdata-adan.de>
+Date:   Tue Dec 24 22:23:59 2019 +0100
+
+    implement preloading modules
+
+[33mcommit b1fa3d8e05fcf5eb5f4eaed9238a266ccf13d48e[m
+Author: Luca Ebach <luca.ebach@gdata-adan.de>
+Date:   Mon Apr 27 16:35:18 2020 +0200
+
+    add check for config values to avoid internal errors
+
+[33mcommit 1e6ca85bafc8cc0bb54626752f24637c8cfc2e42[m
+Author: Luca Ebach <luca.ebach@gdata-adan.de>
+Date:   Mon Apr 27 16:35:00 2020 +0200
+
+    remove file
+
+[33mcommit 7a98dd4c5276205a1afe836c2e7976393c6f084f[m
+Author: Luca Ebach <luca.ebach@gdata-adan.de>
+Date:   Mon Apr 27 16:34:51 2020 +0200
+
+    add documentation and remove python-ldap from requirements
+
+[33mcommit ebd0172053f4b99cee87c24228ac65163e24936e[m
+Author: Luca Ebach <luca.ebach@gdata-adan.de>
+Date:   Mon Apr 27 14:53:46 2020 +0200
+
+    fix update set
+
+[33mcommit a92a9c811f6e77c2db36b6eb5dc213ed41ba5609[m
+Author: Luca Ebach <luca.ebach@gdata-adan.de>
+Date:   Mon Apr 27 14:49:56 2020 +0200
+
+    let get_or_create_user also update values from ldap
+
+[33mcommit 7ae3c0f303f76dafe3e748c5093624425dc66031[m
+Merge: 05ea804 eb3d463
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Thu Apr 23 10:19:52 2020 +0200
+
+    Merge branch 'chemberger-singleUser'
+
+[33mcommit eb3d463a201feb63b5c43a92945cddca28e3dc5b[m
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Thu Apr 23 10:18:12 2020 +0200
+
+    single_user: cleanup + automatically create admin user
+
+[33mcommit 609791983fdea783d8defbeba62d1ad9000bb566[m
+Merge: 05ea804 3af38a7
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Thu Apr 23 09:37:59 2020 +0200
+
+    Merge branch 'singleUser' of https://github.com/chemberger/fame into chemberger-singleUser
+
+[33mcommit 05ea804bdca17321ce00702c44f0f5a6476a006e[m
+Merge: dfa9a0e c94f4e1
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Thu Apr 23 08:40:29 2020 +0200
+
+    Merge pull request #81 from halos/master
+    
+    Added check to fix #82
+
+[33mcommit dfa9a0eda55f8115d42e0719e240121cd1c78abd[m
+Merge: 25844ab 559eba1
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Thu Apr 23 08:35:17 2020 +0200
+
+    Merge pull request #66 from javimb02/master
+    
+    fix remove group from file
+
+[33mcommit 25844ab4c30a27f648a8b79a058ac28546e2b2b7[m
+Author: Heat Miser <github@heat-miser.net>
+Date:   Fri Apr 17 16:26:14 2020 +0200
+
+    Rename README.txt to README.md
+
+[33mcommit ca14e4aa050406ebdb7acfcc81f0034103aa51b7[m
+Merge: ff92f36 55b040c
+Author: Heat Miser <github@heat-miser.net>
+Date:   Fri Apr 17 16:25:24 2020 +0200
+
+    Merge pull request #70 from raggadhub/master
+    
+    Added docker support for dev instance
+
+[33mcommit 55b040c083be0295a63ecf7dc3cf8f4a4958a11f[m
+Author: Heat Miser <github@heat-miser.net>
+Date:   Fri Apr 17 16:23:58 2020 +0200
+
+    Update README.txt
+
+[33mcommit c404ce0968e8481ecd241e1ad498b10a6eb4c2d0[m
+Author: raggadhub <46328562+raggadhub@users.noreply.github.com>
+Date:   Fri Apr 17 15:48:25 2020 +0200
+
+    werkzeug to werkzeug.url
+
+[33mcommit ff92f36871e472b1a6e8bf31c21f1283bb3243f8[m
+Author: Heat Miser <github@heat-miser.net>
+Date:   Fri Apr 17 15:37:41 2020 +0200
+
+    Bugfix
+    
+    Corrected import to support latest Werkzeug version
+
+[33mcommit 1b4335ae1b08f1e139156ee6f4b301790936685b[m
+Author: Heat Miser <heatmiser.contact@gmail.com>
+Date:   Thu Apr 16 14:55:14 2020 +0200
+
+    Improvement: new functionality to refresh observables with threat intel modules
+
+[33mcommit 9aa48b357a4de71d8126ed3a31c677ac90d05537[m
+Author: Heat Miser <heatmiser.contact@gmail.com>
+Date:   Mon Mar 23 17:26:00 2020 +0100
+
+    Bugfix: all analysis button now displayed on url analysis
+
+[33mcommit c94f4e124f75d5d3c390fe8776fd3d38c5e210f1[m
+Author: Javier Rascon <halos@sonar>
+Date:   Tue Feb 4 15:39:19 2020 +0100
+
+    Added check to detect error when loading a failing module
+
+[33mcommit 478a74c5606df3631ab74cb9e1ff4758d6d50443[m
+Author: Luca Ebach <luca.ebach@gdata-adan.de>
+Date:   Thu Dec 26 20:12:57 2019 +0100
+
+    add ldap authentication
+
+[33mcommit 5b9a98397c7f48d04a2782d2d8075d9c24661886[m
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Wed Oct 2 09:38:40 2019 +0200
+
+    fix filetype module
+
+[33mcommit 28a80ece07d868cb2faf4279d8175bb70246df85[m
+Merge: ce05360 7601438
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Tue Aug 13 22:58:13 2019 +0200
+
+    Merge branch 'jmesa-patch-2'
+
+[33mcommit 76014387f28d3f5e7121d4a92b7850baf14b8fd5[m
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Tue Aug 13 22:58:01 2019 +0200
+
+    remove dead code and fix email body
+
+[33mcommit f214333334d97dfe25585465fca761f0ed32c09e[m
+Author: raggadhub <46328562+raggadhub@users.noreply.github.com>
+Date:   Fri Aug 2 14:09:38 2019 +0200
+
+    switch on certsocietegenerale
+    
+    raggadhub replaced by certsocietegenerale
+
+[33mcommit 508ab3994e081074f2291523463c77a9e10b609e[m
+Author: José Mesa <jmesa@users.noreply.github.com>
+Date:   Thu Aug 1 09:12:24 2019 +0200
+
+    Fix for no visible attachments / text body when sending emails
+    
+    
+    ### Description
+    Hi, I am developing a simple reporting plugin and have encountered some problems while sending emails. For example, the zipped files are not showing as attachment, nor the text body.
+    
+    ### Steps to Reproduce
+    * Use a Antivir Module (like McAfee) and modify the mailing address in the code with your own email address:
+    ```
+    class McAfee(MailSubmission):
+        name = "McAfee"
+        description = "Submit the file to McAfee for inclusion in detections."
+    
+        mail_submission = "johndoe@mydomain.com"
+    ```
+    * Or use the mailing class/configuration from FAME in your plugin:
+    ```
+    from fame.common.email_utils import EmailMixin, EmailServer
+    ...
+            server = EmailServer()
+            msg = server.new_message(subject), mailbody)
+            msg.add_attachment(attachment)
+            msg.send([self.sender])
+    ```
+    #### Expected behavior
+    Zipped files showed as attachment (clip symbol) and text body visible.
+    
+    #### Actual behavior
+    No attachment or body text, visible. You have to open the message and view the sources
+    
+    ### Debug
+    Using the default code of email_utils.py:
+    https://github.com/certsocietegenerale/fame/blob/master/fame/common/email_utils.py
+    ```
+    class EmailMessage:
+        def __init__(self, server, subject):
+    ....
+            self.msg = MIMEMultipart('alternative')
+    ...
+    ```
+    The received email source was:
+    
+    > --===============8280141680987609642==
+    > Content-Type: text/text; charset="utf-8"
+    > Content-Transfer-Encoding: base64
+    >
+    > --===============8280141680987609642==
+    > Content-Type: application/octet-stream; content-disposition="attachment;
+    >  filename=\"report_5d417207019ba90f587cbb36.zip\"";
+    >       name="report_5d417207019ba90f587cbb36.zip"
+    > Content-Transfer-Encoding: base64
+    
+    Note that there isn't any "Content-Disposition", so it seems a there is a problem in "add_attachment()"
+    
+    ### Workaround
+    Use "MIMEMultipart()" instead of "MIMEMultipart('alternative')" and this modifications in "add_attachment()":
+    
+            with open(filepath, "rb") as f:
+                part = MIMEApplication(f.read(), Name=os.path.basename(filepath))
+                part['Content-Disposition'] = 'attachment; filename="{0}"'.format(filename)
+                self.msg.attach(part)
+    
+    
+     I am still testing it but seems to work.
+    
+    `        self.msg = MIMEMultipart()
+    `
+    
+    The received email source (with different analysis):
+    
+    > --===============8650156058168977947==
+    > Content-Type: text/text; charset="utf-8"; name="ATT00001"
+    > Content-Transfer-Encoding: base64
+    > Content-Description: ATT00001
+    > Content-Disposition: attachment; filename="ATT00001"
+    >
+    > UmVwb3J0IG9mIDVkNDE4NzcxMDE5YmE5MjBjYTBmZDFjNCBhbmFseXNpcyBpcyBhdHRhY2hlZA==
+    >
+    > --===============8650156058168977947==
+    > Content-Type: application/octet-stream;
+    >       name="report_5d418771019ba920ca0fd1c4.zip"
+    > Content-Transfer-Encoding: base64
+    > Content-Disposition: attachment;
+    >       filename="report_5d418771019ba920ca0fd1c4.zip"
+    > Content-Description: report_5d418771019ba920ca0fd1c4.zip
+
+[33mcommit 184a0670a614e482c0a3de5f4daf18348c4296cf[m
+Author: raggadhub <46328562+raggadhub@users.noreply.github.com>
+Date:   Sun Jul 28 23:41:21 2019 +0200
+
+    /bin/bash not needed
+
+[33mcommit 53149dcfa9e1826c82f8b8a86562802d2cab3eb4[m
+Author: raggadhub <46328562+raggadhub@users.noreply.github.com>
+Date:   Sun Jul 28 23:40:50 2019 +0200
+
+    volume binding for fame temp directory
+    
+    [Host] <-2 binds-> [Fame container] -------> [Fame modules sub containers]
+             ^-----------------------------------------------/
+
+[33mcommit 3355702ac384dd1a7cca408287613324778782a4[m
+Merge: 3eb785c bcc4521
+Author: raggadhub <46328562+raggadhub@users.noreply.github.com>
+Date:   Sun Jul 28 01:05:22 2019 +0200
+
+    Merge pull request #12 from raggadhub/challenger
+    
+    fix git url to test launch in repo
+
+[33mcommit bcc4521122b1c84511f0071bae9976ad4bf09fef[m
+Author: raggadhub <46328562+raggadhub@users.noreply.github.com>
+Date:   Sun Jul 28 01:04:40 2019 +0200
+
+    fix git url to test launch in repo
+
+[33mcommit 3eb785c3a0c15d47ffe1e6d9b9c63dd3e4c68ee3[m
+Merge: 11ed68e 038d90e
+Author: raggadhub <46328562+raggadhub@users.noreply.github.com>
+Date:   Sun Jul 28 01:01:38 2019 +0200
+
+    Merge pull request #11 from raggadhub/challenger
+    
+    readme
+
+[33mcommit 038d90ee6702415153479aadc23b624293745962[m
+Author: raggadhub <46328562+raggadhub@users.noreply.github.com>
+Date:   Sun Jul 28 01:00:55 2019 +0200
+
+    readme
+
+[33mcommit 11ed68e2cb5ce1f7b171ed0db1e017a5ea8e11e0[m
+Merge: 59dfde6 9d1f38c
+Author: raggadhub <46328562+raggadhub@users.noreply.github.com>
+Date:   Sun Jul 28 00:58:46 2019 +0200
+
+    Merge pull request #10 from raggadhub/challenger
+    
+    Challenger
+
+[33mcommit 9d1f38cfe203712068fce9ca3ca7007f0a04227c[m
+Author: raggadhub <46328562+raggadhub@users.noreply.github.com>
+Date:   Sun Jul 28 00:57:55 2019 +0200
+
+    ep
+
+[33mcommit 0efa889ba904382a285771c9aa0a14f4ae724335[m
+Merge: 40cf56b 04c6957
+Author: raggadhub <46328562+raggadhub@users.noreply.github.com>
+Date:   Sun Jul 28 00:57:26 2019 +0200
+
+    Merge branch 'challenger' of https://github.com/raggadhub/fame into challenger
+
+[33mcommit 40cf56bcf5d86abe1adaa45dc745607b01620ca5[m
+Author: raggadhub <46328562+raggadhub@users.noreply.github.com>
+Date:   Sun Jul 28 00:57:23 2019 +0200
+
+    fix entrypoint
+
+[33mcommit 59dfde6fbc597ae2c6b04379a9d4bb3b09be543a[m
+Merge: e0a4bf3 04c6957
+Author: raggadhub <46328562+raggadhub@users.noreply.github.com>
+Date:   Sun Jul 28 00:53:44 2019 +0200
+
+    Merge pull request #9 from raggadhub/challenger
+    
+    fix entrypoint
+
+[33mcommit 04c69572bcbf1274b42b02b4026a2e0c358be92f[m
+Author: raggadhub <46328562+raggadhub@users.noreply.github.com>
+Date:   Sun Jul 28 00:52:52 2019 +0200
+
+    fix entrypoint
+
+[33mcommit e0a4bf3d86d170feeeac832a371e4e6ec1ba9b88[m
+Merge: d6bbd16 e76442e
+Author: raggadhub <46328562+raggadhub@users.noreply.github.com>
+Date:   Sun Jul 28 00:44:26 2019 +0200
+
+    Merge pull request #8 from raggadhub/challenger
+    
+    remove copy launch because is in repo
+
+[33mcommit e76442e5eae6f4095866a12cc0b1387792963cd8[m
+Author: raggadhub <46328562+raggadhub@users.noreply.github.com>
+Date:   Sun Jul 28 00:43:14 2019 +0200
+
+    remove copy launch because is in repo
+
+[33mcommit d6bbd167b82d80cad19b9736642773596e4e950d[m
+Merge: 0b52db1 ccc5a7b
+Author: raggadhub <46328562+raggadhub@users.noreply.github.com>
+Date:   Sun Jul 28 00:29:20 2019 +0200
+
+    Merge pull request #7 from raggadhub/challenger
+    
+    back stretch
+
+[33mcommit ccc5a7b78a654207dfd9a23074f26c08a0c08a6a[m
+Author: raggadhub <46328562+raggadhub@users.noreply.github.com>
+Date:   Sun Jul 28 00:28:40 2019 +0200
+
+    back stretch
+
+[33mcommit 0b52db1dfb34881f48d53c5224e2553eae0b6259[m
+Merge: c163d2f 57c36e2
+Author: raggadhub <46328562+raggadhub@users.noreply.github.com>
+Date:   Sun Jul 28 00:20:54 2019 +0200
+
+    Merge pull request #6 from raggadhub/challenger
+    
+    separate two run docker mongod
+
+[33mcommit 57c36e2da9637aeb2a21ddf4ea6d4cfd158d1613[m
+Author: raggadhub <46328562+raggadhub@users.noreply.github.com>
+Date:   Sun Jul 28 00:20:15 2019 +0200
+
+    separate two run docker mongod
+
+[33mcommit c163d2f6d2abb9001a29073a0b083d8574feda55[m
+Merge: badb42c 0f09006
+Author: raggadhub <46328562+raggadhub@users.noreply.github.com>
+Date:   Sun Jul 28 00:16:44 2019 +0200
+
+    Merge pull request #5 from raggadhub/challenger
+    
+    fix
+
+[33mcommit 0f0900694b7c7776041a7cf5ab63b27e0079a1e2[m
+Author: raggadhub <46328562+raggadhub@users.noreply.github.com>
+Date:   Sun Jul 28 00:15:42 2019 +0200
+
+    fix
+
+[33mcommit badb42c13dc8222e81766e0efdb3c32d1f345e81[m
+Merge: 0d840bf 2d2e512
+Author: raggadhub <46328562+raggadhub@users.noreply.github.com>
+Date:   Sun Jul 28 00:06:08 2019 +0200
+
+    Merge pull request #4 from raggadhub/challenger
+    
+    no comment
+
+[33mcommit 2d2e512fa9d17cfe2771afd8f001c667a44b9f6f[m
+Author: raggadhub <46328562+raggadhub@users.noreply.github.com>
+Date:   Sun Jul 28 00:03:10 2019 +0200
+
+    no comment
+
+[33mcommit 0d840bfc8c45361e0ed4ffbd06b66e70e54bf2d2[m
+Merge: ac44e6a ce05360
+Author: raggadhub <46328562+raggadhub@users.noreply.github.com>
+Date:   Sat Jul 27 22:56:17 2019 +0200
+
+    Merge pull request #3 from certsocietegenerale/master
+    
+    pull commits from original repo
+
+[33mcommit ac44e6ad7dbe3711c1c699af55b4431a992637f8[m
+Merge: f74895d eca6e32
+Author: raggadhub <46328562+raggadhub@users.noreply.github.com>
+Date:   Sat Jul 27 22:47:35 2019 +0200
+
+    Merge pull request #2 from raggadhub/challenger
+    
+    docker readme and name
+
+[33mcommit eca6e329e08f2a72db5db7244b674233149b36b0[m
+Author: raggadhub <46328562+raggadhub@users.noreply.github.com>
+Date:   Sat Jul 27 22:45:55 2019 +0200
+
+    container name
+
+[33mcommit b512f9b04a0046f217527e1222f27d005a7c61dc[m
+Author: raggadhub <46328562+raggadhub@users.noreply.github.com>
+Date:   Sat Jul 27 22:39:17 2019 +0200
+
+    docker readme
+
+[33mcommit f74895dd68693fa54d2982d7b8524bdfaf6dda80[m
+Merge: 1db3352 3e1e35f
+Author: raggadhub <46328562+raggadhub@users.noreply.github.com>
+Date:   Sat Jul 27 22:27:05 2019 +0200
+
+    Merge pull request #1 from raggadhub/challenger
+    
+    dockerfile
+
+[33mcommit 3e1e35f0e04f160d3db651de44fd39448c77cf51[m
+Author: raggadhub <46328562+raggadhub@users.noreply.github.com>
+Date:   Sat Jul 27 22:15:56 2019 +0200
+
+    not needed
+
+[33mcommit b1e1c51c6745b3884a7612602c8437489a50356b[m
+Author: raggadhub <46328562+raggadhub@users.noreply.github.com>
+Date:   Sat Jul 27 22:00:11 2019 +0200
+
+    to build a docker fame image for developpers
+
+[33mcommit ce05360399791314bff72509a640b1e2ff3c8d5c[m
+Author: udgover <udgover@digital-forensic.org>
+Date:   Fri Jul 26 18:47:54 2019 +0200
+
+    Unicode erverywhere!
+
+[33mcommit 3f69d73f01a23214e23dd7b01ee01b601af184df[m
+Author: udgover <udgover@digital-forensic.org>
+Date:   Fri Jul 26 18:24:19 2019 +0200
+
+    Adds email notification (option in web view) when adding a comment.
+
+[33mcommit 784f5c13c544c888df8fde988437118376911d44[m
+Author: udgover <udgover@digital-forensic.org>
+Date:   Mon Jul 22 11:24:27 2019 +0200
+
+    * Fixes bad merge conflict resulting in bad TI modules generation
+
+[33mcommit 559eba1e9395d88c699f6d865dac3260cce8f00c[m
+Author: javimb02 <javimb02@gmail.com>
+Date:   Thu Jul 4 12:24:39 2019 +0200
+
+    fix remove group from file
+
+[33mcommit 1db335221ac2fec3c58e5f58609e1b53b441c077[m
+Author: udgover <udgover@digital-forensic.org>
+Date:   Tue Jul 2 15:22:16 2019 +0200
+
+    Remove single quote when downloading file
+
+[33mcommit d14e6d9b63726605e5794871f2a1ece3186c8587[m
+Author: udgover <udgover@digital-forensic.org>
+Date:   Thu May 16 13:33:35 2019 +0200
+
+    * Add feature to choose default modules to schedule with extracted files
+
+[33mcommit f7bd5981a0d902883c5f68803112a0604b5f3587[m
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Thu Feb 7 14:55:13 2019 +0100
+
+    fix: do not add comment when empty
+
+[33mcommit 1465864ae44bd9fada5d394dde7526bf0fccd3ef[m
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Thu Feb 7 14:31:54 2019 +0100
+
+    fix new analysis endpoint
+
+[33mcommit 357176b4e8c0c7ce43b4a17d37124ecb576130e3[m
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Fri Feb 1 12:48:25 2019 +0100
+
+    possibility to add comments to objects
+
+[33mcommit 846c7b6ec52473ea52f050e94d11a0a01a7c5c72[m
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Fri Feb 1 12:45:45 2019 +0100
+
+    do not always automatically analyze extracted files
+
+[33mcommit 19fb50cc326a5e34820cdbfeacf6b8c245199f2f[m
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Fri Jan 25 11:48:37 2019 +0100
+
+    configurable magic + select multiple modules
+
+[33mcommit 6e0e1bd74af77049408914d81feef2b7e00efb89[m
+Author: bdu <benoit.durivault@sekoia.fr>
+Date:   Thu Jan 17 11:34:12 2019 +0100
+
+    TIModule: send-to link fix
+
+[33mcommit 3bcf29587be0e642157edfb89812c428a4df7d4a[m
+Author: udgover <udgover@digital-forensic.org>
+Date:   Thu Mar 28 11:42:13 2019 +0100
+
+    Add shebang to fix issue with latest Werkzeug version. Fixes #65
+
+[33mcommit c23b4338369e343fbdc229db9cf9affe93e740a7[m
+Merge: 3ca1108 d90d60e
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Fri Jan 25 16:03:58 2019 +0100
+
+    Merge pull request #63 from ant1/init-t
+    
+    Initialize module when using single_module.py -t
+
+[33mcommit d90d60ed3354f00a5af91d2afede72b27efa1278[m
+Author: Antoine <ant1@users.noreply.github.com>
+Date:   Tue Jan 15 15:58:48 2019 +0000
+
+    Initialize module when using single_module.py -t
+
+[33mcommit 3ca1108053cdabbfd458e3a193845007ee9602d5[m
+Merge: 3990d5a 3e01d4f
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Fri Dec 21 09:17:46 2018 +0100
+
+    Merge pull request #60 from lucebac/master
+    
+    enable auto reload of changed Jinja2 templates
+
+[33mcommit 3e01d4ffd86def92dee3668db47bceedeb21cd5d[m
+Author: lucebac <github@lucebac.net>
+Date:   Thu Dec 20 15:42:36 2018 +0100
+
+    enable auto reload of changed Jinja2 templates
+
+[33mcommit 3990d5a4a195e1f4bb69a526280a91b614093ed4[m
+Merge: ab0e9cc cd14d62
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Mon Oct 15 10:53:33 2018 +0200
+
+    Merge pull request #52 from certsocietegenerale/fix-pip-install
+    
+    Fix internal use of pip install
+
+[33mcommit cd14d6216784b30087a8fd6dd8df33cf116efab2[m
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Wed Oct 10 12:00:51 2018 +0200
+
+    fix use of pip internals
+
+[33mcommit ab0e9cc3640b2337dbd873a41e03987ba1ba8035[m
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Thu May 17 11:54:18 2018 +0200
+
+    add size to file objects
+
+[33mcommit c3077c930d355bd2b80063f25c1ff03433a4d892[m
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Thu May 17 11:28:49 2018 +0200
+
+    fixes installation issues #38 and #39
+
+[33mcommit 3af38a7dc21c753251efbe0bcda49e62a9fa3c7e[m
+Author: Claude Hemberger <hemberger.cl@gmail.com>
+Date:   Sun Feb 4 07:17:09 2018 +0100
+
+    Removed the temporary install script
+    
+    Having a proper install script requires decent changes.
+    Let's make it another feature branch.
+    Advanced users will be able to figure out how to use the single user
+    plugin, just like they have to for the saml auth method until an install
+    script is ready.
+
+[33mcommit b2112dedee19bcf814952f54fbaec87057b32cca[m
+Author: Claude Hemberger <hemberger.cl@gmail.com>
+Date:   Sun Feb 4 06:26:11 2018 +0100
+
+    The UI requires you to always have a default group to share with, so let's just add one
+
+[33mcommit 057bd3ae5be0c182c0a652149d6c752bf98b8fca[m
+Author: Claude Hemberger <hemberger.cl@gmail.com>
+Date:   Sun Feb 4 06:07:55 2018 +0100
+
+    rajout d'une action pour le log out pour éviter une erreur
+
+[33mcommit 2e12fb35f7f31d2fb71afba70a8d9bd78861834a[m
+Author: Claude Hemberger <hemberger.cl@gmail.com>
+Date:   Sun Feb 4 06:06:43 2018 +0100
+
+    rajout de l'option single_user
+
+[33mcommit 0aa2ce1e2039d6df0c2180eb169c451206f0d2fd[m
+Author: Claude Hemberger <hemberger.cl@gmail.com>
+Date:   Sun Feb 4 05:53:14 2018 +0100
+
+    json is hard
+
+[33mcommit bef50810e063c32f30f09d8b81584de2dd6e0cbd[m
+Author: Claude Hemberger <hemberger.cl@gmail.com>
+Date:   Sun Feb 4 05:50:55 2018 +0100
+
+    small bug fixes
+
+[33mcommit 31cafca1d4e0b98b6444b8ee7de41fa377a840f3[m
+Author: Claude Hemberger <hemberger.cl@gmail.com>
+Date:   Sun Feb 4 05:34:21 2018 +0100
+
+    Rajout d'une commande pour la création
+
+[33mcommit 1577fc642fe7a4ba7dd903dc3b5f79a8b467ea74[m
+Author: Claude Hemberger <hemberger.cl@gmail.com>
+Date:   Sun Feb 4 05:29:49 2018 +0100
+
+    Test d'un truc minimaliste
+
+[33mcommit 2efe6c5fb34848dce47308cd6ae086539b68b6e6[m
+Merge: d04c400 0f10660
+Author: Heat Miser <heatmiser.contact@gmail.com>
+Date:   Mon Dec 11 18:38:33 2017 +0100
+
+    Merge pull request #33 from sch3m4/patch-1
+    
+    Fixed MongoDB authentication pb on MongoDB with authentication enabled
+
+[33mcommit 0f10660b016c915a518477f9f838d9e13305eeeb[m
+Author: Chema García <chema@safetybits.net>
+Date:   Sat Dec 9 19:51:13 2017 +0100
+
+    Fixed MongoDB authentication
+    
+    Reproduction example:
+    - MongoDB with authentication enabled
+    - Run: utils/run.sh utils/troubleshoot.py
+    - Output:
+    (...)
+    ########## Configuration ##########
+    
+    Traceback (most recent call last):
+      File "utils/troubleshoot.py", line 84, in <module>
+        main()
+      File "utils/troubleshoot.py", line 81, in main
+        configuration()
+      File "utils/troubleshoot.py", line 59, in configuration
+        for config in Config.find():
+      File "/opt/fame/fame/fame/common/mongo_dict.py", line 24, in find
+        for obj in objs:
+      File "/opt/fame/fame/env/local/lib/python2.7/site-packages/pymongo/cursor.py", line 1176, in next
+        if len(self.__data) or self._refresh():
+      File "/opt/fame/fame/env/local/lib/python2.7/site-packages/pymongo/cursor.py", line 1087, in _refresh
+        self.__send_message(q)
+      File "/opt/fame/fame/env/local/lib/python2.7/site-packages/pymongo/cursor.py", line 974, in __send_message
+        helpers._check_command_response(first)
+      File "/opt/fame/fame/env/local/lib/python2.7/site-packages/pymongo/helpers.py", line 146, in _check_command_response
+        raise OperationFailure(msg % errmsg, code, response)
+    pymongo.errors.OperationFailure: not authorized on fame to execute command { find: "settings", filter: {} }
+
+[33mcommit d04c40019f8b727ad5ce7b928a2655533eebb4be[m
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Mon Oct 16 15:51:05 2017 +0200
+
+    add end_date and indexes
+
+[33mcommit f56b7b9d910137f650614327b624befa68a3663e[m
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Mon Sep 25 12:58:40 2017 +0200
+
+    allow IsolatedProcessingModules to use multiple VMs
+
+[33mcommit 1ff6b645cd652eb6c87e7287a5f9c9f655ec79d4[m
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Thu Sep 21 14:52:38 2017 +0200
+
+    better output when submitting files with the API
+
+[33mcommit 84da6bde2f77058337c201384c8917db2f22e9aa[m
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Wed Sep 20 11:23:15 2017 +0200
+
+    avoid name collisions in support files
+
+[33mcommit 0747ab19be2db94434a976b421c59b5213ef7295[m
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Tue Sep 12 17:42:17 2017 +0200
+
+    add API endpoints to get file by hash
+
+[33mcommit 281076c59fd8c59731ef99f282d44304f259b0a4[m
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Thu Aug 10 17:38:10 2017 +0200
+
+    add Filetype modules
+
+[33mcommit d20d37046fa31825c5ba81d802c14ca1cdf5287a[m
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Thu Aug 10 17:36:37 2017 +0200
+
+    use copy instead of move for support files
+
+[33mcommit c8314dad511524e0dd7ee422fd03001c8e683c28[m
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Mon Jul 10 15:34:49 2017 +0200
+
+    fix support files for IsolatedProcessingModule
+
+[33mcommit f8d4d99e873442956ad5040109bdb9aace959fd1[m
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Mon Jul 3 18:03:36 2017 +0200
+
+    fix virtualization module and add kvm to docs
+
+[33mcommit 3f6a690917eeea62c10d62f369996e918c19d767[m
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Fri Jun 23 10:24:03 2017 +0200
+
+    Update requirements.txt
+
+[33mcommit bc1ac07ab5289e662d7b4d2d1c922b74f68aff6d[m
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Sat May 6 23:58:29 2017 +0200
+
+    working IsolatedProcessingModule
+
+[33mcommit 74c0b9e44b973b886e5022f4ad193046f8a9e4c5[m
+Merge: ad30857 8e1aa78
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Wed Mar 29 16:09:01 2017 +0200
+
+    Merge pull request #11 from 3c7/master
+    
+    Clarify the use of python2's virtualenv package
+
+[33mcommit 8e1aa783b7f1cbd097eaa095b70285ed3f9a4086[m
+Author: Nils Kuhnert <3c7@users.noreply.github.com>
+Date:   Wed Mar 29 14:04:52 2017 +0200
+
+    Update run.cmd
+    
+    Adding the same change as in run.sh
+
+[33mcommit 3cebdbf22a0b1a0a354e63a019296aa64b686c51[m
+Author: Nils Kuhnert <3c7@users.noreply.github.com>
+Date:   Wed Mar 29 13:29:48 2017 +0200
+
+    Update run.sh
+    
+    When multiple python versions (and therefore virtualenv-packages) this clarifies to use the python 2.7 virtualenv.
+
+[33mcommit ad3085768866f598308d2559eea13d6f2ad8dafb[m
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Tue Mar 28 14:52:39 2017 +0200
+
+    fix issue when temp dir does not exists
+
+[33mcommit 573d542658fe0dda013f53f2473331c64e535039[m
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Thu Mar 23 16:24:16 2017 +0100
+
+    fix display error for module READMEs
+
+[33mcommit 2216da2588d06f4627c85bcc8e3cd5e6810c6412[m
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Thu Mar 23 12:30:48 2017 +0100
+
+    Fix issue with utf-8 in emails
+
+[33mcommit e5ca84548f2023f7c29e5395d3280e535d6a89db[m
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Wed Mar 22 23:19:30 2017 +0100
+
+    add paragraph on how to update
+
+[33mcommit 0d3649911426153f91af5fa7320341ad455d2508[m
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Wed Mar 22 17:49:57 2017 +0100
+
+    add issue template
+
+[33mcommit 80100e4484e6455e2b91c4e08ff6d7db37a635ca[m
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Wed Mar 22 16:29:07 2017 +0100
+
+    add python-dev dependency
+
+[33mcommit 49e94dd17d4faba394be025042b1e70cc87ac96c[m
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Wed Mar 22 15:16:30 2017 +0100
+
+    update link in README
+
+[33mcommit fa0b19e2e77bd907fe386e6620018983d6b3b76f[m
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Wed Mar 22 15:09:33 2017 +0100
+
+    make sure doc can be generated without MongoDB connection
+
+[33mcommit ee4a55a3a6961af407555fd6d621aec21dd9423d[m
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Wed Mar 22 14:47:20 2017 +0100
+
+    initial commit with code
+
+[33mcommit 15e0fe7e1588568fa630bf7b1d1fd28848ce9516[m
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Tue Mar 21 22:47:45 2017 +0100
+
+    add requirements file
+
+[33mcommit e00231ede6ab567c89c5452d234a21dd89680b5e[m
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Tue Mar 21 22:37:27 2017 +0100
+
+    add documentation
+
+[33mcommit 524a6b430624a9bc5129d2af99ecf3e38c280a17[m
+Author: Gael Muller <muller.gael@gmail.com>
+Date:   Tue Mar 21 17:36:05 2017 +0100
+
+    Initial commit

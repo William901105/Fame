@@ -52,6 +52,18 @@ def create_user(user):
 
     return True
 
+def create_guest(user):
+    user.save()
+
+    user.generate_avatar()
+
+    token = password_reset_token(user)
+    user_id = validate_password_reset_token(token)
+    user = User(get_or_404(User.get_collection(), _id=user_id.decode('ascii')))
+    user.update_value('auth_token', auth_token(user))
+
+    return True
+
 
 def valid_new_password(password, confirmation):
     strength = zxcvbn(password)
@@ -82,7 +94,7 @@ def password_reset_form():
 
                 if user:
                     token = password_reset_token(user)
-                    reset_url = urljoin(fame_config.fame_url, url_for('auth.password_reset', token=token))
+                    reset_url = url_for('auth.password_reset', token=token, _external=True)
 
                     msg = email_server.new_message_from_template("Reset your FAME account's password.", 'mail_reset_password.html', {'user': user, 'url': reset_url})
                     msg.send([user['email']])
@@ -123,7 +135,6 @@ def password_reset(token):
 @auth.route('/login', methods=['GET', 'POST'])
 @prevent_csrf
 def login():
-    global guest_num
 
     if request.method == 'GET':
         return render_template('login.html')
@@ -138,22 +149,22 @@ def login():
                     return render_template('login.html')
             elif request.form['login'] == 'guest':
 
+                nowTime = datetime.now()
+
                 # create guest user
-                guest_mail = str(guest_num) + "@guest"
+                guest_mail = str(nowTime) + "@guest"
                 user = User({
-                    'name': 'test'+ str(guest_num),
+                    'create_at':nowTime,
+                    'name': 'test'+ str(nowTime),
                     'email': guest_mail,
                     'groups': [ "guest" ],
                     'default_sharing': [ "guest" ],
                     'permissions': list([ "see_logs" ]),
                     'enabled': True,
-                    'pwd_hash' : generate_password_hash('pass'),
-                    'create_at':datetime.now()
-                })
-                if not create_user(user):
+                    'pwd_hash' : generate_password_hash('pass')
+                    })
+                if not create_guest(user):
                     return validation_error()
-                else:
-                    guest_num += 1
 
                 user.save()
                 if authenticate(guest_mail,'pass'):
