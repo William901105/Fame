@@ -31,6 +31,7 @@
 .fal-h8,.fal-ha8{flex-direction:row;justify-content:center;      align-items:flex-start;}
 .fal-h9,.fal-ha9{flex-direction:row;justify-content:flex-end;    align-items:flex-start;}
 [class*="fal-ha"]{justify-content:space-between;}
+[class*="fal-hw"]{flex-wrap: wrap;}
 
 .fal-v1,.fal-va1{flex-direction:column;justify-content:flex-end;   align-items:flex-start;}
 .fal-v2,.fal-va2{flex-direction:column;justify-content:flex-end;   align-items:center;}
@@ -42,6 +43,7 @@
 .fal-v8,.fal-va8{flex-direction:column;justify-content:flex-start; align-items:center;}
 .fal-v9,.fal-va9{flex-direction:column;justify-content:flex-start; align-items:flex-end;}
 [class*="fal-va"]{justify-content:space-between;}
+[class*="fal-vw"]{flex-wrap: wrap;}
 
 [class*="fal-h"]>.fillfill{align-self:stretch;  min-width:0;flex:1 1;}
 [class*="fal-h"]>.fillfix{align-self:stretch;}
@@ -187,7 +189,64 @@
   width: 100%;
 }
 
-/* new-item */
+/* button */
+.button-black {
+  padding: 10px 15px;
+  border-radius: 6px;
+
+  background-color: var(--color-black);
+}
+.button-black>p {
+  color: var(--color-white);
+}
+.button-black:hover {
+  background-color: var(--color-textgray);
+}
+
+.button-function {
+  gap: 5px;
+  padding: 7px 10px;
+  border-radius: 20px;
+
+  box-shadow: var(--menu);
+}
+.button-function>p {
+  color: var(--color-black);
+}
+.button-function:hover {
+  box-shadow: var(--clicked-option);
+}
+
+
+/* item & tag */
+.item button {
+  padding: 5px 10px;
+  border-radius: 20px;
+  border: 1.5px solid;
+  border-color: var(--color-black);
+
+  transition: gap 0.2s;
+  gap: 0px;
+}
+.item button>p {color: var(--color-black);}
+.item button svg {display: none;}
+.item:hover button svg {display: flex;}
+.item button:hover {
+  gap: 5px;
+  box-shadow: var(--clicked-option);
+}
+.item input {display: none;}
+.new-item>button {
+  scale: 1;
+  position: absolute;
+  z-index: 1;
+  cursor: pointer;
+
+  transition: 0.15s;
+}
+.new-item>button.active {
+  scale: 0;
+}
 .new-item>input {
   max-width: 0%;
 
@@ -203,30 +262,7 @@
   background-color: var(--color-backgroundgray);
   box-shadow: var(--menu);
 }
-.new-item>button {
-  scale: 1;
-  position: absolute;
-  z-index: 1;
-  cursor: pointer;
-
-  transition: 0.15s;
-}
-.new-item>button.active {
-  scale: 0;
-}
-
-/* button */
-.button-black {
-  padding: 10px 15px;
-  background-color: var(--color-black);
-  border-radius: 6px;
-}
-.button-black>p {
-  color: var(--color-white);
-}
-.button-black:hover {
-  background-color: var(--color-textgray);
-}
+.new-item>.padding {visibility: hidden;}
 
 /* messages */
 .messages {

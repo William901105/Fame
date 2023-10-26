@@ -102,13 +102,12 @@ function deactivateIfClickOutside (trigger, targets, focusIdx)
   });
   
   window.addEventListener('click', (event) => {
-    if (event.target != trigger && !Array.from(trigger.childNodes).includes(event.target) && !targets.includes(event.target))
-    {
-      targets.forEach((target) => {
-        target.classList.remove('active');
-      });
-      if (typeof focusIdx !== 'undefined') {targets[focusIdx].blur();}
-    }
+    if (event.target == trigger || Array.from(trigger.childNodes).includes(event.target) || targets.includes(event.target)) {return;}
+    
+    targets.forEach((target) => {
+      target.classList.remove('active');
+    });
+    if (typeof focusIdx !== 'undefined') {targets[focusIdx].blur();}
   });
 }
 
@@ -123,8 +122,10 @@ deactivateIfClickOutside(
   document.querySelectorAll('button.avatar')[0],
   document.querySelectorAll('.avatar-menu')[0]
 );
-deactivateIfClickOutside(
-  document.querySelectorAll('.new-item>button')[0],
-  [document.querySelectorAll('.new-item>button')[0], document.querySelectorAll('.new-item>input')[0]],
-  1
-);
+document.querySelectorAll('.new-item').forEach((new_item) => {
+  deactivateIfClickOutside(
+    new_item.querySelectorAll('button')[0],
+    [new_item.querySelectorAll('button')[0], new_item.querySelectorAll('input')[0]],
+    1
+  );
+});
