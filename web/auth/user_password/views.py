@@ -198,7 +198,6 @@ def create_new_user():
         name = request.form.get('name')
         email = request.form.get('email').lower()
         ###
-        pwd ='pass'
 
         if not _valid_form(name, email, [ "guest", "user" ]):
             return validation_error()
@@ -210,7 +209,6 @@ def create_new_user():
             'default_sharing': [ "user" ],
             'permissions': list([ "see_logs" ]),
             'enabled': True,
-            'pwd_hash' : generate_password_hash(pwd)
         })
 
         if not create_user(user):
