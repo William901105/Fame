@@ -31,14 +31,14 @@
   gap: 5px;
   overflow-x: hidden;
   overflow-y: scroll;
-  background-color: #ffffff;
+  background-color: var(--color-white);
   box-shadow: var(--menu);
 }
 
 .menu>.head {
   width: 195px;
 
-  background-color: #ffffff;
+  background-color: var(--color-white);
   border-radius: 0px 0px 20px 20px;
   box-shadow: var(--menu);
 }
@@ -62,7 +62,7 @@
   height: 42px;
   
   padding-left: 20px;
-  background-color: #ffffff;
+  background-color: var(--color-white);
   border-radius: 0px 20px 20px 0px;
 }
 
@@ -70,7 +70,6 @@
   gap: 3px;
   border-radius: 0px 20px 20px 0px;
   box-shadow: var(--carved-area);
-  /* background-color: var(--color-backgroundgray); */
   overflow-y: scroll;
 }
 .menu>.content .navigation-bar a {
@@ -184,7 +183,7 @@
 .main>.head .avatar-menu>a {
   height: 42px;
   
-  background-color: #ffffff;
+  background-color: var(--color-white);
   border-radius: 20px;
   padding-left: 20px;
 }

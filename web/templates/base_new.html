@@ -105,18 +105,18 @@
                         {% for analysis in g.last_analyses %}
                             <a class="fixfill fal-ha5" href="{{ url_for('AnalysesView:get', id=analysis._id) }}">
                                 {% if analysis.status == 'finished' %}
-                                    {% include "includes/icons/CheckMark.html" %}
+                                    {% with stroke="var(--color-success)" %}{% include "includes/icons/CheckMark.html" %}{% endwith %}
                                 {% elif analysis.status == 'pending' %}
-                                    {% include "includes/icons/Clock.html" %}
+                                    {% with stroke="var(--color-pending)" %}{% include "includes/icons/Clock.html" %}{% endwith %}
                                 {% elif analysis.status in ('running', 'preloading') %}
-                                    {% include "includes/icons/Refresh.html" %}
+                                    {% with stroke="var(--color-waiting)" %}{% include "includes/icons/Refresh.html" %}{% endwith %}
                                 {% elif analysis.status == 'error' %}
-                                    {% include "includes/icons/Error.html" %}
+                                    {% with stroke="var(--color-cancelled)" %}{% include "includes/icons/Error.html" %}{% endwith %}
                                 {% endif %}
                                 <p class="font-hash-value">
                                     {% if not analysis.file.type == 'url' %}{{analysis.file.md5}}{% endif %}
                                 </p>
-                                {% include "includes/icons/ExternalPrompt.html" %}                                
+                                {% with stroke="var(--color-textgray)" %}{% include "includes/icons/ExternalPrompt.html" %}{% endwith %}
                             </a>
                         {% endfor %}
                     </div>

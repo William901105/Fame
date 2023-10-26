@@ -27,7 +27,7 @@ head,
 script {display: none;}
 
 a {text-decoration: none;}
-p {display: block; color: #000000;}
+p {display: block; color: var(--color-black);}
 button {background-color:transparent;}
 
 input {filter: none;}
@@ -48,7 +48,7 @@ input:autofill {background: transparent;}
 }
 ::-webkit-scrollbar-thumb {
   background: var(--color-textgray);
-  border: 3px solid #ffffff;
+  border: 3px solid var(--color-white);
   border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
