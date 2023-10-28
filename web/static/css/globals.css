@@ -1,8 +1,8 @@
 @import url("https://fonts.googleapis.com/css?family=Ibarra+Real+Nova:400|Inter:300|Roboto+Mono:300");
 
 /* General */
-.flex-all,
-.flex-all * {
+body,
+body * {
   -webkit-font-smoothing: antialiased;
   display: flex;
   flex-shrink: 0;
@@ -31,6 +31,7 @@ script {display: none;}
 
 a {text-decoration: none;}
 p {display: block; color: var(--color-black);}
+span {display: inline;}
 button {background-color:transparent;}
 
 input {filter: none;}

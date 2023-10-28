@@ -100,7 +100,6 @@
   padding: 0rem 2rem;
 }
 
-
 .main>.head .search>input {
   border-radius: 1.5rem;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='19' height='23' viewBox='0 0 19 23' fill='none'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M8.63001 1.91755C4.92953 1.91755 1.92862 4.91461 1.92862 8.61301C1.92862 12.3114 4.92953 15.3085 8.63001 15.3085C12.3305 15.3085 15.3314 12.3114 15.3314 8.61301C15.3314 4.91461 12.3305 1.91755 8.63001 1.91755ZM0.297852 8.61301C0.297852 4.01674 4.02769 0.289642 8.63001 0.289642C13.2323 0.289642 16.9622 4.01674 16.9622 8.61301C16.9622 13.2093 13.2323 16.9364 8.63001 16.9364C4.02769 16.9364 0.297852 13.2093 0.297852 8.61301Z' fill='%23888888'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M17.5373 21.0021L13.3415 15.0158C13.3171 14.981 13.255 14.897 13.1479 14.8205C13.0262 14.7336 12.8203 14.6405 12.5617 14.6764C12.4057 14.698 12.2871 14.7595 12.2063 14.816C12.1835 14.8319 12.1638 14.8475 12.147 14.8616C12.165 14.8464 12.1848 14.831 12.2063 14.816C11.8375 15.074 11.7478 15.5816 12.006 15.95L16.2017 21.9363C16.2261 21.9711 16.2882 22.0551 16.3953 22.1316C16.517 22.2185 16.723 22.3116 16.9815 22.2757C17.1375 22.254 17.2562 22.1926 17.3369 22.1361C17.3581 22.1213 17.3767 22.1068 17.3926 22.0934C17.3756 22.1077 17.357 22.122 17.3369 22.1361C17.7057 21.8781 17.7954 21.3704 17.5373 21.0021Z' fill='%23888888'/%3E%3C/svg%3E");
@@ -168,12 +167,46 @@
 .main>.content .comment {
   padding: 0.625rem 1rem;
   border-radius: 1.25rem;
-
   box-shadow: var(--menu);
 }
-.main>.content .comment>.head {
-  width: 10rem;
+.main>.content .comment p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-.main>.content .comment>.content {
-  height: 3.2rem;
+.main>.content .comment.active p {
+  white-space: normal;
+}
+.main>.content .comment>.head {
+  width: 8.5rem;
+}
+.main>.content .comment>.head a {
+  text-decoration: underline;
+}
+.main>.content .comment>.head a:hover {
+  text-decoration: none;
+}
+
+.main>.content .comment>.content {  
+  padding: 0rem 0.75rem;
+  border-left: 0.08rem solid;
+  border-right: 0.08rem solid;
+  border-color: var(--color-textgray);
+  
+  transition: 0.3s;
+  max-height: 3.2rem;
+}
+.main>.content .comment.active>.content {
+  max-height: 100%;
+}
+
+.main>.content .comment>.content .open-prompt {
+  cursor: pointer;
+}
+.main>.content .comment>.content .open-prompt svg {
+  transition: 0.3s;
+  transform: rotate(90deg);
+}
+.main>.content .comment.active>.content .open-prompt svg {
+  transform: rotate(-90deg);
 }
