@@ -12,9 +12,10 @@
 
             <div class="hugfill fal-v7 sec_5">
                 <p class="hughug font-item-name bold">Type</p>
-                <div class="fillhug fal-h4 sec_5">
+
+                <div class="hugfill fal-h4 sec_5">
                     <p class="hughug font-item-name">{{file.type}}</p>
-                    <form class="hughug sec new-item" method="post" action="{{url_for('FilesView:change_type', id=file._id)}}">
+                    <form class="hugfill sec new-item" method="post" action="{{url_for('FilesView:change_type', id=file._id)}}">
                         <button type="button">{% with stroke="var(--color-textgray)" %}{% include "includes/icons/Pencil.html" %}{% endwith %}</button>
                         <input class="fillhug fal-h4 font-item-name" type="text" name="type" value="" maxlength="32">
                         <p class="padding font-item-name">p</p>
@@ -61,7 +62,7 @@
 
         {% if file.type != 'url' and file.type != 'hash' %}
 
-            <a class="hughug fal-h7 button-function" href="{{ url_for('FilesView:download', id=file._id) }}">
+            <a class="hughug fal-h4 button-function" href="{{ url_for('FilesView:download', id=file._id) }}">
                 {% include "includes/icons/Download.html" %}
                 <p class="font-item-name">Download</p>
             </a>
