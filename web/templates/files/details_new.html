@@ -1,4 +1,4 @@
-<div class="hugfill fal-v8 sec">
+<div class="hugfill fal-v8 file-details sec">
 
     <h2 id="file-details" class="font-sec-header color-textgray">File Details</h2>
     <div class="hugfill fal-h8 sec">
@@ -58,6 +58,23 @@
         {% endif %}
         </div>
     </div>
+    {% if file.probable_names %}
+    <div class="hugfill fal-v8 sec">
+        <p class="hughug font-item-name bold">Probable Family(s)</p>
+
+        <div class="hugfill fal-v8 probable-families sec_5">
+            {% for probable_name in file.probable_names %}
+            <p class="hugfill font-item-name">{{probable_name}}</p>
+            {% endfor %}
+        </div>
+
+        <button class="hugfill fal-v8 open-prompt" type="button" onclick="
+            this.previousElementSibling.classList.toggle('active');
+        ">
+            {% with stroke="var(--color-textgray)" %}{% include "includes/icons/ExpandPrompt.html" %}{% endwith %}
+        </button>
+    </div>
+    {% endif %}
     <div class="hugfill fal-h8">
 
         {% if file.type != 'url' and file.type != 'hash' %}
@@ -94,7 +111,7 @@
     </div>
 </div>
 
-<div class="hugfill fal-v8 sec">
+<div class="hugfill fal-v8 sharing sec">
 
     <h2 id="sharing" class="font-sec-header color-textgray">Sharing</h2>
     <div class="hugfill fal-hw4 sec_5">
@@ -120,7 +137,7 @@
 
 
 {% if comments_enabled %}
-<div class="hugfill fal-v8 sec">
+<div class="hugfill fal-v8 comments sec">
 
     <h2 id="comments" class="font-sec-header color-textgray">Comments</h2>
 
@@ -133,22 +150,21 @@
             <div class="fillfill fal-v7">
                 {% if comment.analyst %}<p class="hugfill font-item-name bold">{{comment.analyst.name}}</p>{% endif %}
                 {% if comment.analysis %}
-                <p class="fillfill font-item-name color-textgray">when browsing <a href="{{ url_for('AnalysesView:get', id=comment.analysis) }}">this analysis</a></p>
+                <p class="fillfill font-item-name color-textgray">when browsing <br><a href="{{ url_for('AnalysesView:get', id=comment.analysis) }}">this analysis</a></p>
                 {% endif %}
             </div>
         </div>
 
         <div class="hugfill fal-va7 content sec_25">
-            {% if comment.probable_name %}<p class="hugfill font-item-name color-textgray">Add Probable Name: <span class="bold">{{comment.probable_name}}</span></p>{% endif %}
+            {% if comment.probable_name %}<p class="hugfill font-item-name color-textgray">Adding Probable Family: <span class="bold">{{comment.probable_name}}</span></p>{% endif %}
             
             <p class="hugfill font-item-name">{{comment.comment}}</p>
             
             <button class="hugfill fal-v8 open-prompt" type="button" onclick="
-                    this.classList.toggle('active');
-                    this.parentElement.parentElement.classList.toggle('active');
-                    this.parentElement.classList.toggle('sec_25'); this.parentElement.classList.toggle('sec');
+                this.parentElement.parentElement.classList.toggle('active');
+                this.parentElement.classList.toggle('sec_25'); this.parentElement.classList.toggle('sec');
             ">
-                {% with stroke="var(--color-textgray)" %}{% include "includes/icons/OpenPrompt.html" %}{% endwith %}
+                {% with stroke="var(--color-textgray)" %}{% include "includes/icons/ExpandPrompt.html" %}{% endwith %}
             </button>
         </div>
 
@@ -174,9 +190,9 @@
         </div>
 
         <div class="fillhug fal-v5 sec">
-            <div class="hughug fal-h5 notify sec_5">
+            <div class="hughug fal-h5 notify color-textgray sec_5">
                 <div class="hugfix fal-v7 message">
-                    <p class="hugfill font-item-name color-textgray">When enabled, analyst will be notified by mail about the new comment.</p>
+                    <p class="hugfill font-item-name">When enabled, the analyst will be notified by mail about your comment.</p>
                 </div>
                 <p class="hughug font-item-name color-textgray">Notify</p>
                 <input type="checkbox" name="notify" unchecked>
@@ -189,40 +205,27 @@
 </div>
 {% endif %}
     
-{# {% if file.probable_names %}
-    <h4 class="probable-names">Probable Name(s): {{file.probable_names|join(', ')}}</h4>
+
+
+{# {% if file.parent_analyses %}
+    <div class="row">
+        <div class="col-sm-2 text-right"><strong>Parent Analyses</strong></div>
+        <div class="col-sm-10">
+            {% for analysis in file.parent_analyses %}
+                <div><a href="{{ url_for('AnalysesView:get', id=analysis) }}">{{analysis}}</a></div>
+            {% endfor %}
+        </div>
+    </div>
 {% endif %}
 
-<div class="row" id="file-details">
-    <div class="col-md-12">
-
-        <div class="card">
-
-            <div class="content">
-                
-                {% if file.parent_analyses %}
-                    <div class="row">
-                        <div class="col-sm-2 text-right"><strong>Parent Analyses</strong></div>
-                        <div class="col-sm-10">
-                            {% for analysis in file.parent_analyses %}
-                                <div><a href="{{ url_for('AnalysesView:get', id=analysis) }}">{{analysis}}</a></div>
-                            {% endfor %}
-                        </div>
-                    </div>
-                {% endif %}
-
-                <div class="footer">
-                    <br />
-                    <hr>
-                    <div class="stats">
-                        <ul>
-                            {% if request.endpoint == 'AnalysesView:get' %}
-                                <li><a href="{{ url_for('FilesView:get', id=file._id)}}"><i class="pe-7s-note2"></i> All analyses</a></li>
-                            {% endif %}
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div class="footer">
+    <br />
+    <hr>
+    <div class="stats">
+        <ul>
+            {% if request.endpoint == 'AnalysesView:get' %}
+                <li><a href="{{ url_for('FilesView:get', id=file._id)}}"><i class="pe-7s-note2"></i> All analyses</a></li>
+            {% endif %}
+        </ul>
     </div>
 </div> #}

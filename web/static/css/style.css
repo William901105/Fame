@@ -162,30 +162,51 @@
   padding: 0.625rem 2rem;
 }
 
-.main>.content .comment {
+
+.main .file-details .probable-families {
+  padding: 0rem 8rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  transition: 0.1s;
+  max-height: 5rem;
+}
+.main .file-details .probable-families.active {
+  max-height: 100%;
+}
+.main .file-details .probable-families+.open-prompt svg {
+  transition: 0.3s;
+  transform: rotate(90deg);
+}
+.main .file-details .probable-families.active+.open-prompt svg {
+  transform: rotate(-90deg);
+}
+
+
+.main .comments .comment {
   padding: 0.625rem 1rem;
   border-radius: 1.25rem;
   box-shadow: var(--menu);
 }
-.main>.content .comment p {
+.main .comments .comment p {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.main>.content .comment.active p {
-  white-space: pre;
+.main .comments .comment.active p {
+  white-space: pre-wrap;
 }
-.main>.content .comment>.head {
+.main .comments .comment>.head {
   width: 8.5rem;
 }
-.main>.content .comment>.head a {
+.main .comments .comment>.head a {
   text-decoration: underline;
 }
-.main>.content .comment>.head a:hover {
+.main .comments .comment>.head a:hover {
   text-decoration: none;
 }
 
-.main>.content .comment>.content {  
+.main .comments .comment>.content {  
   padding: 0rem 0.75rem;
   border-left: 0.08rem solid;
   border-right: 0.08rem solid;
@@ -194,23 +215,23 @@
   transition: 0.3s;
   max-height: 3.2rem;
 }
-.main>.content .comment.active>.content {
+.main .comments .comment.active>.content {
   max-height: 100%;
 }
 
-.main>.content .comment>.content .open-prompt svg {
+.main .comments .comment>.content .open-prompt svg {
   transition: 0.3s;
   transform: rotate(90deg);
 }
-.main>.content .comment.active>.content .open-prompt svg {
+.main .comments .comment.active>.content .open-prompt svg {
   transform: rotate(-90deg);
 }
 
-.main>.content .comment-form .message {
+.main .comments .comment-form .message {
   bottom: -50%;
   right: 115%;
   visibility: hidden;
 }
-.main>.content .comment-form .notify:hover .message {
+.main .comments .comment-form .notify:hover .message {
   visibility: visible;
 }

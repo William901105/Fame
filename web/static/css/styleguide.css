@@ -312,8 +312,6 @@ img.avatar {
   position: absolute;
   padding: 0.5rem 1rem;
   border-radius: 1.125rem;
-  border: 0.08rem solid;
-  border-color: var(--color-black);
-  background-color: var(--color-backgroundgray);
+  background-color: var(--color-white);
   box-shadow: var(--menu);
 }

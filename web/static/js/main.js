@@ -65,8 +65,9 @@ function verticalNavigation (content, targets, navigation)
     offsetsTrgtToCtnt.push(Number.MAX_SAFE_INTEGER);
   }
 
-  renew_offsetsTrgtToCtnt();
   window.addEventListener('resize', renew_offsetsTrgtToCtnt);
+  new ResizeObserver(renew_offsetsTrgtToCtnt).observe(document.querySelector('.main>.content'));
+  renew_offsetsTrgtToCtnt();
 
   // Listen for click on each anchor to clear mousePosY
   anchors.forEach((anchor, index) => {
@@ -113,19 +114,19 @@ function deactivateIfClickOutside (trigger, targets, focusIdx)
 
 
 verticalNavigation(
-  document.querySelectorAll('.main')[0],
+  document.querySelector('.main'),
   document.querySelectorAll('.main>.content *>h2'),
-  document.querySelectorAll('.navigation-bar')[0]
+  document.querySelector('.navigation-bar')
 );
 
 deactivateIfClickOutside(
-  document.querySelectorAll('.avatar')[0],
-  document.querySelectorAll('.avatar-menu')[0]
+  document.querySelector('.avatar'),
+  document.querySelector('.avatar-menu')
 );
 document.querySelectorAll('.new-item').forEach((new_item) => {
   deactivateIfClickOutside(
-    new_item.querySelectorAll('button')[0],
-    [new_item.querySelectorAll('button')[0], new_item.querySelectorAll('input')[0]],
+    new_item.querySelector('button'),
+    [new_item.querySelector('button'), new_item.querySelector('input')],
     1
   );
 });
