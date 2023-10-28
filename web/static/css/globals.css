@@ -1,6 +1,21 @@
 @import url("https://fonts.googleapis.com/css?family=Ibarra+Real+Nova:400|Inter:300|Roboto+Mono:300");
 
+
+/* RWD */
+@media screen and (max-width: 700px) {html {font-size: 8px;}} /* TODO: Phone */
+@media screen and (min-width: 701px) {html {font-size: 14px;}}
+@media screen and (min-width: 801px) {html {font-size: 16px;}}
+@media screen and (min-width: 1001px) {html {font-size: 18px;}}
+@media screen and (min-width: 1601px) {html {font-size: 20px;}}
+
+
 /* General */
+html,
+body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
 body,
 body * {
   -webkit-font-smoothing: antialiased;
@@ -8,23 +23,13 @@ body * {
   flex-shrink: 0;
   position: relative;
   box-sizing: border-box;
-  overflow: visible;
   word-break: break-word;
   margin:  0rem;
   padding: 0rem;
   border: 0rem;
   background-repeat: no-repeat;
 }
-
-html,
-body {
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-
-  /* RWD */
-  font-size: 16px;
-}
+body * {overflow: visible;}
 
 head,
 script {display: none;}
@@ -32,11 +37,15 @@ script {display: none;}
 a {text-decoration: none;}
 p {display: block; color: var(--color-black);}
 span {display: inline;}
-button {background-color:transparent;}
+button {background-color:transparent; cursor: pointer;}
 
 input {filter: none;}
 input:focus {outline: none;}
 input:autofill {background: transparent;}
+input[type=checkbox] {cursor: pointer;}
+textarea {filter: none;}
+textarea:focus {outline: none;}
+textarea:autofill {background: transparent;}
 
 
 /* Scrollbar */

@@ -123,174 +123,71 @@
 <div class="hugfill fal-v8 sec">
 
     <h2 id="comments" class="font-sec-header color-textgray">Comments</h2>
+
     {% for comment in file.comments %}
+    {# NOTE: this section will use `white-space: pre;`, so be carful when formatting #}
     <div class="hugfill fal-h4 comment sec_5">
         <div class="fillfix fal-h7 head sec_5">
-            {% if comment.analyst %}
-            <img class="avatar" src="{{comment.analyst._id|avatar}}" />
-            {% endif %}
+            {% if comment.analyst %}<img class="avatar" src="{{comment.analyst._id|avatar}}" />{% endif %}
 
             <div class="fillfill fal-v7">
-                {% if comment.analyst %}
-                <p class="hugfill font-item-name bold">{{comment.analyst.name}}</p>
-                {% endif %}
+                {% if comment.analyst %}<p class="hugfill font-item-name bold">{{comment.analyst.name}}</p>{% endif %}
                 {% if comment.analysis %}
-                <p class="fillfill font-item-name color-textgray">when browsing <br />
-                    <a href="{{ url_for('AnalysesView:get', id=comment.analysis) }}">this analysis</a>
-                </p>
+                <p class="fillfill font-item-name color-textgray">when browsing <a href="{{ url_for('AnalysesView:get', id=comment.analysis) }}">this analysis</a></p>
                 {% endif %}
             </div>
         </div>
 
         <div class="hugfill fal-va7 content sec_25">
-            {% if comment.probable_name %}
-            <p class="hugfill font-item-name color-textgray">Add Probable Name: <span class="bold">{{comment.probable_name}}</span></p>
-            {% endif %}
+            {% if comment.probable_name %}<p class="hugfill font-item-name color-textgray">Add Probable Name: <span class="bold">{{comment.probable_name}}</span></p>{% endif %}
+            
             <p class="hugfill font-item-name">{{comment.comment}}</p>
+            
             <button class="hugfill fal-v8 open-prompt" type="button" onclick="
                     this.classList.toggle('active');
                     this.parentElement.parentElement.classList.toggle('active');
                     this.parentElement.classList.toggle('sec_25'); this.parentElement.classList.toggle('sec');
             ">
-            {# this.parentElement.classList.toggle('fixfill');  
-                    this.parentElement.classList.toggle('hugfill');#}
                 {% with stroke="var(--color-textgray)" %}{% include "includes/icons/OpenPrompt.html" %}{% endwith %}
             </button>
         </div>
 
-        <div class="fillhug fal-v2">
-            <p class="hughug font-item-name color-textgray">
-                {{comment.date|date}}
-            </p>
-        </div>
+        <div class="fillhug fal-v2"><p class="hughug font-item-name color-textgray">{{comment.date|date}}</p></div>
     </div>
     {% endfor %}
 
-    {# <div class="content comment-form">
-        <form class="form-horizontal" method="post" action="{{url_for('FilesView:add_comment', id=file._id)}}">
-
+    <form class="hugfill fal-h8 comment-form sec2" method="post" action="{{url_for('FilesView:add_comment', id=file._id)}}">
+        <div class="hugfill fal-v7 sec_5">
             {% if analysis %}
-                <input type="hidden" name="analysis" value="{{analysis._id}}" />
+            <input type="hidden" name="analysis" value="{{analysis._id}}" />
             {% endif %}
 
             {% if current_user.has_permission('add_probable_name') %}
-                <div class="form-group">
-                    <label for="probable_name" class="col-sm-2 control-label">Probable Name</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" name="probable_name" value="" placeholder="Malware family name, optional">
-                    </div>
-                </div>
+            <div class="hugfill fal-h4 input-frame">
+                <input class="hugfill font-item-name" type="text" class="form-control" name="probable_name" value="" placeholder="Probable malware family name, optional">
+            </div>
             {% endif %}
 
-            <div class="form-group">
-                <label for="comment" class="col-sm-2 control-label">Comment</label>
-                <div class="col-sm-8">
-                    <textarea type="text" class="form-control small-text" name="comment" placeholder="Comment" required></textarea>
+            <div class="hugfill fal-h4 input-frame">
+                <textarea class="hugfill font-item-name" type="text" name="comment" placeholder="Comment" required></textarea>
+            </div>
+        </div>
+
+        <div class="fillhug fal-v5 sec">
+            <div class="hughug fal-h5 notify sec_5">
+                <div class="hugfix fal-v7 message">
+                    <p class="hugfill font-item-name color-textgray">When enabled, analyst will be notified by mail about the new comment.</p>
                 </div>
+                <p class="hughug font-item-name color-textgray">Notify</p>
+                <input type="checkbox" name="notify" unchecked>
             </div>
-
-            <div class="form-group text-center">
-                <label class="checkbox checkbox-inline" style="padding-top:2px">
-                    <input type="checkbox" name="notify" unchecked data-toggle="checkbox">Notify
-                </label>
-                <a class="help" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Notify"
-                    data-html="true" data-content="When enabled, analyst will be notified by mail about the new comment."
-                    data-placement="top">
-                    <i class="glyphicon glyphicon-question-sign"></i>
-                </a>
-            </div>
-
-            <script>
-                $(function () {
-                $('[data-toggle="popover"]').popover()
-                })
-            </script>
-
-            <div class="form-group text-center">
-                <button type="submit" class="btn btn-info btn-fill">Add Comment</button>
-            </div>
-        </form>
-    </div> #}
+            <button type="submit">
+                {% include "includes/icons/Send.html" %}
+            </button>
+        </div>
+    </form>
 </div>
 {% endif %}
-
-{# {% if comments_enabled %}
-<div class="hugfill fal-v8 sec">
-
-    <h2 id="comments" class="font-sec-header color-textgray">Comments</h2>
-    <div class="content row comments">
-        {% for comment in file.comments %}
-            <div class="col-md-2 list-avatar avatar text-center">
-                {% if comment.analyst %}
-                    <img class="img-circle" src="{{comment.analyst._id|avatar}}" />
-                    <span class="comment-analyst-name">{{comment.analyst.name}}</span>
-                {% endif %}
-            </div>
-            <div class="col-md-8 comment-comment">
-                <pre class="initial">{{comment.comment}}</pre>
-
-                {% if comment.probable_name %}
-                    <span class="comment-info">Probable Name was set to {{comment.probable_name}}.</span>
-                {% endif %}
-                {% if comment.analysis %}
-                    <span class="comment-info">Comment submitted on <a href="{{ url_for('AnalysesView:get', id=comment.analysis) }}">this analysis</a>.</span>
-                {% endif %}
-            </div>
-            <div class="col-md-2">
-                {{comment.date|date}}
-            </div>
-
-            <div class="col-md-12"><hr /></div>
-        {% endfor %}
-
-        <div class="content comment-form">
-            <form class="form-horizontal" method="post" action="{{url_for('FilesView:add_comment', id=file._id)}}">
-
-                {% if analysis %}
-                    <input type="hidden" name="analysis" value="{{analysis._id}}" />
-                {% endif %}
-
-                {% if current_user.has_permission('add_probable_name') %}
-                    <div class="form-group">
-                        <label for="probable_name" class="col-sm-2 control-label">Probable Name</label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" name="probable_name" value="" placeholder="Malware family name, optional">
-                        </div>
-                    </div>
-                {% endif %}
-
-                <div class="form-group">
-                    <label for="comment" class="col-sm-2 control-label">Comment</label>
-                    <div class="col-sm-8">
-                        <textarea type="text" class="form-control small-text" name="comment" placeholder="Comment" required></textarea>
-                    </div>
-                </div>
-                <div class="form-group text-center">
-                    <label class="checkbox checkbox-inline" style="padding-top:2px">
-                        <input type="checkbox" name="notify" unchecked data-toggle="checkbox">Notify
-                    </label>
-                    <a class="help" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Notify"
-                        data-html="true" data-content="When enabled, analyst will be notified by mail about the new comment."
-                        data-placement="top">
-                        <i class="glyphicon glyphicon-question-sign"></i>
-                    </a>
-                </div>
-
-                <script>
-                    $(function () {
-                    $('[data-toggle="popover"]').popover()
-                    })
-                </script>
-
-                <div class="form-group text-center">
-                    <button type="submit" class="btn btn-info btn-fill">Add Comment</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-</div>
-{% endif %} #}
     
 {# {% if file.probable_names %}
     <h4 class="probable-names">Probable Name(s): {{file.probable_names|join(', ')}}</h4>
