@@ -119,7 +119,7 @@ verticalNavigation(
 );
 
 deactivateIfClickOutside(
-  document.querySelectorAll('button.avatar')[0],
+  document.querySelectorAll('.avatar')[0],
   document.querySelectorAll('.avatar-menu')[0]
 );
 document.querySelectorAll('.new-item').forEach((new_item) => {

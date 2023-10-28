@@ -6,13 +6,13 @@
         <div class="hugfill fal-v7 sec">
 
             <div class="hugfill fal-v7 sec_5">
-                <p class="hughug font-item-name"><strong>Name(s)</strong></p>
+                <p class="hughug font-item-name bold">Name(s)</p>
                 <p class="hugfill font-item-name">{{file.names|join(', ')}}</p>
             </div>
 
             <div class="hugfill fal-v7 sec_5">
-                <p class="hughug font-item-name"><strong>Type</strong></p>
-                <div class="fillhug fal-h7 sec_5">
+                <p class="hughug font-item-name bold">Type</p>
+                <div class="fillhug fal-h4 sec_5">
                     <p class="hughug font-item-name">{{file.type}}</p>
                     <form class="hughug sec new-item" method="post" action="{{url_for('FilesView:change_type', id=file._id)}}">
                         <button type="button">{% with stroke="var(--color-textgray)" %}{% include "includes/icons/Pencil.html" %}{% endwith %}</button>
@@ -24,16 +24,16 @@
 
             {% if not file.type == 'url' %}
             <div class="hugfill fal-v7 sec_5">
-                <p class="hughug font-item-name"><strong>Detailed Type</strong></p>
+                <p class="hughug font-item-name bold">Detailed Type</p>
                 <p class="hugfill font-item-name">{{file.detailed_type}}</p>
             </div>
             <div class="hugfill fal-v7 sec_5">
-                <p class="hughug font-item-name"><strong>Mime</strong></p>
+                <p class="hughug font-item-name bold">Mime</p>
                 <p class="hugfill font-item-name">{{file.mime}}</p>
             </div>
             {% if file.size %}
             <div class="hugfill fal-v7 sec_5">
-                <p class="hughug font-item-name"><strong>Size</strong></p>
+                <p class="hughug font-item-name bold">Size</p>
                 <p class="hugfill font-item-name">{{file.size}} bytes</p>
             </div>
             {% endif %}
@@ -43,15 +43,15 @@
         <div class="hugfill fal-v7 sec">
         {% if not file.type == 'url' %}
             <div class="hugfill fal-v7 sec_5">
-                <p class="hughug font-item-name"><strong>MD5</strong></p>
+                <p class="hughug font-item-name bold">MD5</p>
                 <p class="hugfill font-item-name">{{file.md5}}</p>
             </div>
             <div class="hugfill fal-v7 sec_5">
-                <p class="hughug font-item-name"><strong>SHA1</strong></p>
+                <p class="hughug font-item-name bold">SHA1</p>
                 <p class="hugfill font-item-name">{{file.sha1}}</p>
             </div>
             <div class="hugfill fal-v7 sec_5">
-                <p class="hughug font-item-name"><strong>SHA256</strong></p>
+                <p class="hughug font-item-name bold">SHA256</p>
                 <p class="hugfill font-item-name">{{file.sha256}}</p>
             </div>
         {% endif %}
@@ -116,29 +116,167 @@
         </form>
     </div>
 </div>
-    
-    {# 
-    
-    {% if file.parent_analyses %}
-    <div class="hugfill fal-h7">
-        <div class="col-sm-2 text-right"><strong>Parent Analyses</strong></div>
-        <div class="col-sm-10">
-            {% for analysis in file.parent_analyses %}
-                <div><a href="{{ url_for('AnalysesView:get', id=analysis) }}">{{analysis}}</a></div>
-            {% endfor %}
+
+
+{% if comments_enabled %}
+<div class="hugfill fal-v8 sec">
+
+    <h2 id="comments" class="font-sec-header color-textgray">Comments</h2>
+    {% for comment in file.comments %}
+    <div class="hugfill fal-h4 comment sec_5">
+        <div class="hugfix fal-h1 head sec_5">
+            {% if comment.analyst %}
+            <img class="avatar" src="{{comment.analyst._id|avatar}}" />
+            <p class="hugfill font-item-name">{{comment.analyst.name}}</p>
+            {% endif %}
+        </div>
+
+        <div class="fixfill fal-v7 content">
+            {% if comment.probable_name %}
+            <p class="hugfill font-item-name color-textgray">{{comment.probable_name}}</p>
+            {% endif %}
+
+            <p class="hugfill font-item-name">{{comment.comment}}</p>
+
+            {% if comment.analysis %}
+            <span class="comment-info">
+                Comment submitted on <a href="{{ url_for('AnalysesView:get', id=comment.analysis) }}">this analysis</a>.
+            </span>
+            {% endif %}
+        </div>
+
+        <div class="col-md-2">
+            {{comment.date|date}}
         </div>
     </div>
-    {% endif %} #}
+    {% endfor %}
 
-    {# <div class="footer">
-        <br />
-        <hr>
-        <div class="stats">
-            
-        </div>
+    {# <div class="content comment-form">
+        <form class="form-horizontal" method="post" action="{{url_for('FilesView:add_comment', id=file._id)}}">
+
+            {% if analysis %}
+                <input type="hidden" name="analysis" value="{{analysis._id}}" />
+            {% endif %}
+
+            {% if current_user.has_permission('add_probable_name') %}
+                <div class="form-group">
+                    <label for="probable_name" class="col-sm-2 control-label">Probable Name</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" name="probable_name" value="" placeholder="Malware family name, optional">
+                    </div>
+                </div>
+            {% endif %}
+
+            <div class="form-group">
+                <label for="comment" class="col-sm-2 control-label">Comment</label>
+                <div class="col-sm-8">
+                    <textarea type="text" class="form-control small-text" name="comment" placeholder="Comment" required></textarea>
+                </div>
+            </div>
+
+            <div class="form-group text-center">
+                <label class="checkbox checkbox-inline" style="padding-top:2px">
+                    <input type="checkbox" name="notify" unchecked data-toggle="checkbox">Notify
+                </label>
+                <a class="help" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Notify"
+                    data-html="true" data-content="When enabled, analyst will be notified by mail about the new comment."
+                    data-placement="top">
+                    <i class="glyphicon glyphicon-question-sign"></i>
+                </a>
+            </div>
+
+            <script>
+                $(function () {
+                $('[data-toggle="popover"]').popover()
+                })
+            </script>
+
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-info btn-fill">Add Comment</button>
+            </div>
+        </form>
     </div> #}
+</div>
+{% endif %}
 
+{# {% if comments_enabled %}
+<div class="hugfill fal-v8 sec">
 
+    <h2 id="comments" class="font-sec-header color-textgray">Comments</h2>
+    <div class="content row comments">
+        {% for comment in file.comments %}
+            <div class="col-md-2 list-avatar avatar text-center">
+                {% if comment.analyst %}
+                    <img class="img-circle" src="{{comment.analyst._id|avatar}}" />
+                    <span class="comment-analyst-name">{{comment.analyst.name}}</span>
+                {% endif %}
+            </div>
+            <div class="col-md-8 comment-comment">
+                <pre class="initial">{{comment.comment}}</pre>
+
+                {% if comment.probable_name %}
+                    <span class="comment-info">Probable Name was set to {{comment.probable_name}}.</span>
+                {% endif %}
+                {% if comment.analysis %}
+                    <span class="comment-info">Comment submitted on <a href="{{ url_for('AnalysesView:get', id=comment.analysis) }}">this analysis</a>.</span>
+                {% endif %}
+            </div>
+            <div class="col-md-2">
+                {{comment.date|date}}
+            </div>
+
+            <div class="col-md-12"><hr /></div>
+        {% endfor %}
+
+        <div class="content comment-form">
+            <form class="form-horizontal" method="post" action="{{url_for('FilesView:add_comment', id=file._id)}}">
+
+                {% if analysis %}
+                    <input type="hidden" name="analysis" value="{{analysis._id}}" />
+                {% endif %}
+
+                {% if current_user.has_permission('add_probable_name') %}
+                    <div class="form-group">
+                        <label for="probable_name" class="col-sm-2 control-label">Probable Name</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="probable_name" value="" placeholder="Malware family name, optional">
+                        </div>
+                    </div>
+                {% endif %}
+
+                <div class="form-group">
+                    <label for="comment" class="col-sm-2 control-label">Comment</label>
+                    <div class="col-sm-8">
+                        <textarea type="text" class="form-control small-text" name="comment" placeholder="Comment" required></textarea>
+                    </div>
+                </div>
+                <div class="form-group text-center">
+                    <label class="checkbox checkbox-inline" style="padding-top:2px">
+                        <input type="checkbox" name="notify" unchecked data-toggle="checkbox">Notify
+                    </label>
+                    <a class="help" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Notify"
+                        data-html="true" data-content="When enabled, analyst will be notified by mail about the new comment."
+                        data-placement="top">
+                        <i class="glyphicon glyphicon-question-sign"></i>
+                    </a>
+                </div>
+
+                <script>
+                    $(function () {
+                    $('[data-toggle="popover"]').popover()
+                    })
+                </script>
+
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-info btn-fill">Add Comment</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+{% endif %} #}
+    
 {# {% if file.probable_names %}
     <h4 class="probable-names">Probable Name(s): {{file.probable_names|join(', ')}}</h4>
 {% endif %}
@@ -169,109 +307,10 @@
                             {% if request.endpoint == 'AnalysesView:get' %}
                                 <li><a href="{{ url_for('FilesView:get', id=file._id)}}"><i class="pe-7s-note2"></i> All analyses</a></li>
                             {% endif %}
-                            {% if file.type != 'url' and file.type != 'hash' %}
-
-                                <li><a href="{{ url_for('FilesView:download', id=file._id) }}"><i class="pe-7s-cloud-download"></i> Download</a></li>
-
-                                {% for module in av_modules %}
-                                    <li id="av-sent-{{module}}" {% if not file.antivirus[module] %}class="hidden"{% endif %} {% if file.antivirus[module] is string %}data-toggle="tooltip" data-placement="top" title="{{file.antivirus[module]}}"{% endif %}>
-                                        <i class="fa fa-check text-success"></i> {{module}}
-                                    </li>
-                                    <li id="av-sendto-{{module}}" {% if file.antivirus[module] %}class="hidden"{% endif %}>
-                                        <a class="av-submission-link" href="{{ url_for('FilesView:submit_to_av', id=file._id, module=module) }}" data-module="{{module}}"><i class="fa fa-send"></i> Send to {{module}}</a>
-                                    </li>
-                                {% endfor %}
-                            {% endif %}
-
-                            <script src="{{ url_for('static', filename='js/fame-file.js') }}"></script>
-                            <script>
-                                $('[data-toggle="tooltip"]').tooltip();
-                            </script>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
-
-        {% if comments_enabled %}
-            <div class="card">
-
-                <div class="header">
-                    <h4 class="title">Comments</h4>
-                </div>
-
-                <div class="content row comments">
-                    {% for comment in file.comments %}
-                        <div class="col-md-2 list-avatar avatar text-center">
-                            {% if comment.analyst %}
-                                <img class="img-circle" src="{{comment.analyst._id|avatar}}" />
-                                <span class="comment-analyst-name">{{comment.analyst.name}}</span>
-                            {% endif %}
-                        </div>
-                        <div class="col-md-8 comment-comment">
-                            <pre class="initial">{{comment.comment}}</pre>
-
-                            {% if comment.probable_name %}
-                                <span class="comment-info">Probable Name was set to {{comment.probable_name}}.</span>
-                            {% endif %}
-                            {% if comment.analysis %}
-                                <span class="comment-info">Comment submitted on <a href="{{ url_for('AnalysesView:get', id=comment.analysis) }}">this analysis</a>.</span>
-                            {% endif %}
-                        </div>
-                        <div class="col-md-2">
-                            {{comment.date|date}}
-                        </div>
-
-                        <div class="col-md-12"><hr /></div>
-                    {% endfor %}
-
-                    <div class="content comment-form">
-                        <form class="form-horizontal" method="post" action="{{url_for('FilesView:add_comment', id=file._id)}}">
-
-                            {% if analysis %}
-                                <input type="hidden" name="analysis" value="{{analysis._id}}" />
-                            {% endif %}
-
-                            {% if current_user.has_permission('add_probable_name') %}
-                                <div class="form-group">
-                                    <label for="probable_name" class="col-sm-2 control-label">Probable Name</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" name="probable_name" value="" placeholder="Malware family name, optional">
-                                    </div>
-                                </div>
-                            {% endif %}
-
-                            <div class="form-group">
-                                <label for="comment" class="col-sm-2 control-label">Comment</label>
-                                <div class="col-sm-8">
-                                    <textarea type="text" class="form-control small-text" name="comment" placeholder="Comment" required></textarea>
-                                </div>
-                            </div>
-                            <div class="form-group text-center">
-                                <label class="checkbox checkbox-inline" style="padding-top:2px">
-                                    <input type="checkbox" name="notify" unchecked data-toggle="checkbox">Notify
-                                </label>
-                                <a class="help" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Notify"
-                                    data-html="true" data-content="When enabled, analyst will be notified by mail about the new comment."
-                                    data-placement="top">
-                                    <i class="glyphicon glyphicon-question-sign"></i>
-                                </a>
-                            </div>
-
-                            <script>
-                                $(function () {
-                                $('[data-toggle="popover"]').popover()
-                                })
-                            </script>
-
-                            <div class="form-group text-center">
-                                <button type="submit" class="btn btn-info btn-fill">Add Comment</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
-            </div>
-        {% endif %}
     </div>
 </div> #}
