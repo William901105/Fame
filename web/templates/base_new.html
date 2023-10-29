@@ -24,21 +24,21 @@
 
             <div class="fillfill fal-v8 content sec">
                 <div class="hugfill fal-v7 options sec_25">
-                    <a class="fixfill fal-h4" href="{{ url_for('PreprocessorsView:index') }}">
+                    <a class="fixfill fal-h4 {% if current_page == 'Preprocessors' %}active{% endif %}" href="{{ url_for('PreprocessorsView:index') }}">
                         <p class="font-mn-opt">Preprocessors</p>
                     </a>
                     {% if current_user.has_permission('configs') %}
-                    <a class="fixfill fal-h4" href="{{ url_for('ConfigsView:index') }}">
+                    <a class="fixfill fal-h4 {% if current_page == 'Configs' %}active{% endif %}" href="{{ url_for('ConfigsView:index') }}">
                         <p class="font-mn-opt">Configs</p>
                     </a>
                     {% endif %}
-                    <a class="fixfill fal-h4" href="{{ url_for('FilesView:index') }}">
+                    <a class="fixfill fal-h4 {% if current_page == 'Objects' %}active{% endif %}" href="{{ url_for('FilesView:index') }}">
                         <p class="font-mn-opt">Objects</p>
                     </a>
-                    <a class="fixfill fal-h4 active" href="{{ url_for('AnalysesView:index') }}">
+                    <a class="fixfill fal-h4 {% if current_page == 'Analyses' %}active{% endif %}" href="{{ url_for('AnalysesView:index') }}">
                         <p class="font-mn-opt">Analyses</p>
                     </a>
-                    <a class="fixfill fal-h4" href="{{ url_for('AnalysesView:new') }}">
+                    <a class="fixfill fal-h4 {% if current_page == 'Submit' %}active{% endif %}" href="{{ url_for('AnalysesView:new') }}">
                         <p class="font-mn-opt">Submit</p>
                     </a>
                 </div>

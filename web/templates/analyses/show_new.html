@@ -1,4 +1,6 @@
 {% extends "base_new.html" %}
+
+{% set current_page = 'Analyses' %}
 {% set analysis = analysis['analysis'] %}
 
 {# {% macro support_files(module) -%}
@@ -13,11 +15,9 @@
 {% block title %}Analysis{% endblock %}
 
 {% block content %}
-    {% with file=analysis.file %}
+    {% with file = analysis.file %}
         {% include "includes/sections/files/file_details.html" %}
         {% include "includes/sections/files/sharing.html" %}
-        {% include "includes/sections/files/analyses.html" %}
-        {% if file.parent_analyses %}{% include "includes/sections/files/parent_analyses.html" %}{% endif %}
         {% if comments_enabled %}{% include "includes/sections/files/comments.html" %}{% endif %}
     {% endwith %}
 {% endblock %}

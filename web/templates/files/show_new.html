@@ -1,9 +1,10 @@
-{% extends "base.html" %}
+{% extends "base_new.html" %}
 
+{% set current_page = 'Objects' %}
 {% set file = data['file'] %}
 {% set av_modules = data['av_modules'] %}
 
-{% block sidebar %}
+{# {% block sidebar %}
 <div class="sidebar-submission">
     <h4>New Analysis</h4>
     <form action="{{ url_for('AnalysesView:post') }}" method="POST">
@@ -39,68 +40,17 @@
 <script>
     $('.tags-input').tagsInput();
 </script>
-{% endblock %}
+{% endblock %} #}
 
-{% block body %}
-    {% include "files/details.html" %}
+{% block title %}Objects{% endblock %}
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="header">
-                    <h4 class="title">Analyses</h4>
-                    <p class="category">Most recent first</p>
-                </div>
-                <div class="content">
-                    {% if file.analysis %}
-                        <div class="table-responsive table-full-width">
-                            <table class="table table-hover table-striped">
-                                <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th>Date</th>
-                                        <th>Status</th>
-                                        <th>Target</th>
-                                        <th>Probable Names</th>
-                                        <th>Extractions</th>
-                                        <th>Tags</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {% for analysis in file.analysis %}
-                                        <tr>
-                                            <td class="list-avatar avatar">
-                                                {% if analysis.analyst %}
-                                                    <img class="img-circle" src="{{analysis.analyst._id|avatar}}" data-toggle="tooltip" data-placement="top" title="{{analysis.analyst.name}}" />
-                                                {% endif %}
-                                            </td>
-                                            <td><a href="{{ url_for('AnalysesView:get', id=analysis._id) }}">{{analysis.date|date}}</a></td>
-                                            <td>{{analysis.status}}</td>
-                                            <td>{{analysis.module if analysis.module != None}}</td>
-                                            <td>{{analysis.probable_names|join(', ')}}</td>
-                                            <td>{{analysis.extractions|join(', ', attribute='label')}}</td>
-                                            <td>
-                                                {% for tag in analysis.tags %}
-                                                    <span class="tag tag-azure">{{tag}}</span>
-                                                {% endfor %}
-                                            </td>
-                                        </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
-                    {% else %}
-                        No analyses for now. Start one with the "New Analysis" form on the left.
-                    {% endif %}
-                </div>
-        </div>
-    </div>
+{% block content %}
+    {% include "includes/sections/files/file_details.html" %}
+    {% include "includes/sections/files/sharing.html" %}
+    {% include "includes/sections/files/analyses.html" %}
+    {% if file.parent_analyses %}{% include "includes/sections/files/parent_analyses.html" %}{% endif %}
+    {% if comments_enabled %}{% include "includes/sections/files/comments.html" %}{% endif %}
 
-    <script>
-        $('[data-toggle="tooltip"]').tooltip();
-    </script>
-
-
-    <script src="{{ url_for('static', filename='js/modules-autocomplete.js') }}"></script>
+    {# <script src="{{ url_for('static', filename='js/modules-autocomplete.js') }}"></script> #}
 
 {% endblock %}
