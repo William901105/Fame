@@ -51,13 +51,14 @@
         </div>
 
         <div class="fillhug fal-v5 sec">
-            <div class="hughug fal-h5 notify color-textgray sec_5">
+            <label class="hughug fal-h5 help color-textgray sec_5">
                 <div class="hugfix fal-v7 message">
                     <p class="hugfill font-item-name">When enabled, the analyst will be notified by mail about your comment.</p>
                 </div>
+                {% with stroke = "var(--color-textgray)" %}{% include "includes/icons/Help.html" %}{% endwith %}
                 <p class="hughug font-item-name color-textgray">Notify</p>
                 <input type="checkbox" name="notify" unchecked>
-            </div>
+            </label>
             <button type="submit">
                 {% include "includes/icons/Send.html" %}
             </button>

@@ -1,0 +1,62 @@
+{% extends "base_new.html" %}
+
+{% set current_page = 'Submit' %}
+{% block title %}Submit{% endblock %}
+
+{% block content %}
+<form class="hugfill fal-v8 submit sec" enctype="multipart/form-data" action="{{ url_for('AnalysesView:post') }}" method="POST">
+    <div class="hugfill fal-v7 triple-input sec">
+        <input type="file" id="file-field" name="file" oninput="
+            this.nextElementSibling.remove();
+            this.nextElementSibling.remove();
+        "/>
+        <input class="form-control" type="text" name="url" placeholder="URL" oninput="
+            this.previousElementSibling.remove();
+            this.nextElementSibling.remove();
+        "/>
+        <input class="form-control" type="text" name="hash" placeholder="Hash" oninput="
+            this.previousElementSibling.remove();
+            this.previousElementSibling.remove();
+        "/>
+    </div>
+
+    <div class="form-group">
+        <input class="form-control" id="modules-autocomplete" name="modules" type="text"
+                placeholder="Modules / Just do your magic"
+                data-data="{{url_for('ModulesView:list')}}" />
+    </div>
+ 
+    <label class="hughug fal-h5 help color-textgray sec_5">
+        <div class="hugfix fal-v7 message">
+            <p class="hugfill font-item-name">When enabled, some modules not specified will be executed automatically.</p>
+        </div>
+        {% with stroke = "var(--color-textgray)" %}{% include "includes/icons/Help.html" %}{% endwith %}
+        <p class="hughug font-item-name color-textgray">Enable Magic</p>
+        <input type="checkbox" name="options[magic_enabled]" checked>
+    </label>
+    
+    <input type="hidden" name="groups" value="{{ current_user['default_sharing']|join(',') }}" />
+    
+
+    {% if comments_enabled %}
+    <div class="hugfill fal-v8 comment sec">
+
+        <h2 id="comment" class="font-sec-header color-textgray">comment</h2>
+        <div class="hugfill fal-h4 input-frame">
+            <textarea class="hugfill font-item-name" type="text" name="comment" placeholder="Comment"></textarea>
+        </div>
+    </div>
+    {% endif %}
+
+    {% include "analyses/_options.html" %}
+
+    <button type="submit" class="button-black">
+        <p class="font-mn-opt">Submit</p>
+    </button>
+</form>
+
+
+<script src="{{ url_for('static', filename='js/jquery-1.11.3.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/jquery.flexdatalist.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/modules-autocomplete.js') }}"></script>
+{% endblock %}

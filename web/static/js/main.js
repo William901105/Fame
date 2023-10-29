@@ -1,7 +1,7 @@
 function debug(message)
 {
   console.log(message);
-  document.querySelectorAll('.message p')[0].innerText = message;
+  document.querySelector('.message p').innerText = message;
 }
 
 function offsetBetween(from, to)
@@ -115,7 +115,7 @@ function deactivateIfClickOutside (trigger, targets, focusIdx)
 
 verticalNavigation(
   document.querySelector('.main'),
-  document.querySelectorAll('.main>.content *>h2'),
+  document.querySelectorAll('.main>.content h2'),
   document.querySelector('.navigation-bar')
 );
 

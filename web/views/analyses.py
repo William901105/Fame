@@ -136,7 +136,7 @@ class AnalysesView(FlaskView, UIView):
         })
 
     def new(self):
-        return render_template('analyses/new.html', options=dispatcher.options, comments_enabled=comments_enabled())
+        return render_template('analyses/new_new.html', options=dispatcher.options, comments_enabled=comments_enabled())
 
     def _validate_form(self, groups, modules, options):
         for group in groups:

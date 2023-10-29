@@ -65,35 +65,35 @@
 .color-cancelled,
 .color-cancelled *,
 .color-cancelled *:any-link,
-.color-cancelled::placeholder {color: var(--color-cancelled);}
+.color-cancelled::placeholder {color:var(--color-cancelled); accent-color:var(--color-cancelled);}
 .color-waiting,
 .color-waiting *,
 .color-waiting *:any-link,
-.color-waiting::placeholder {color: var(--color-waiting);}
+.color-waiting::placeholder {color:var(--color-waiting); accent-color:var(--color-waiting);}
 .color-pending,
 .color-pending *,
 .color-pending *:any-link,
-.color-pending::placeholder {color: var(--color-pending);}
+.color-pending::placeholder {color:var(--color-pending); accent-color:var(--color-pending);}
 .color-success,
 .color-success *,
 .color-success *:any-link,
-.color-success::placeholder {color: var(--color-success);}
+.color-success::placeholder {color:var(--color-success); accent-color:var(--color-success);}
 .color-white,
 .color-white *,
 .color-white *:any-link,
-.color-white::placeholder {color: var(--color-white);}
+.color-white::placeholder {color:var(--color-white); accent-color:var(--color-white);}
 .color-textgray,
 .color-textgray *,
 .color-textgray *:any-link,
-.color-textgray::placeholder {color: var(--color-textgray);}
+.color-textgray::placeholder {color:var(--color-textgray); accent-color:var(--color-textgray);}
 .color-backgroundgray,
 .color-backgroundgray *,
 .color-backgroundgray *:any-link,
-.color-backgroundgray::placeholder {color: var(--color-backgroundgray);}
+.color-backgroundgray::placeholder {color:var(--color-backgroundgray); accent-color:var(--color-backgroundgray);}
 .color-black,
 .color-black *,
 .color-black *:any-link,
-.color-black::placeholder {color: var(--color-black);}
+.color-black::placeholder {color:var(--color-black); accent-color:var(--color-black);}
 
 
 /* Font Styles */
@@ -310,8 +310,17 @@ img.avatar {
 
   display: block;
   position: absolute;
+  z-index: 1;
   padding: 0.5rem 1rem;
   border-radius: 1.125rem;
   background-color: var(--color-white);
   box-shadow: var(--menu);
+}
+.help .message {
+  bottom: -50%;
+  right: 115%;
+  visibility: hidden;
+}
+.help:hover .message {
+  visibility: visible;
 }

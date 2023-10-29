@@ -227,11 +227,6 @@
   transform: rotate(-90deg);
 }
 
-.main .comments .comment-form .message {
-  bottom: -50%;
-  right: 115%;
-  visibility: hidden;
-}
-.main .comments .comment-form .notify:hover .message {
-  visibility: visible;
+.main .submit .triple-input {
+  transition: 0.3s;
 }
