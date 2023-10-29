@@ -1,0 +1,112 @@
+<div class="hugfill fal-v8 file-details sec">
+
+    <h2 id="file-details" class="font-sec-header color-textgray">File Details</h2>
+    <div class="hugfill fal-h8 sec">
+
+        <div class="hugfill fal-v7 sec">
+
+            <div class="hugfill fal-v7 sec_5">
+                <p class="hughug font-item-name bold">Name(s)</p>
+                <p class="hugfill font-item-name">{{file.names|join(', ')}}</p>
+            </div>
+
+            <div class="hugfill fal-v7 sec_5">
+                <p class="hughug font-item-name bold">Type</p>
+
+                <div class="hugfill fal-h4 sec_5">
+                    <p class="hughug font-item-name">{{file.type}}</p>
+                    <form class="hugfill sec new-item" method="post" action="{{url_for('FilesView:change_type', id=file._id)}}">
+                        <button type="button">{% with stroke="var(--color-textgray)" %}{% include "includes/icons/Pencil.html" %}{% endwith %}</button>
+                        <input class="fillhug fal-h4 font-item-name" type="text" name="type" value="" maxlength="32">
+                        <p class="padding font-item-name">p</p>
+                    </form>
+                </div>
+            </div>
+
+            {% if not file.type == 'url' %}
+            <div class="hugfill fal-v7 sec_5">
+                <p class="hughug font-item-name bold">Detailed Type</p>
+                <p class="hugfill font-item-name">{{file.detailed_type}}</p>
+            </div>
+            <div class="hugfill fal-v7 sec_5">
+                <p class="hughug font-item-name bold">Mime</p>
+                <p class="hugfill font-item-name">{{file.mime}}</p>
+            </div>
+            {% if file.size %}
+            <div class="hugfill fal-v7 sec_5">
+                <p class="hughug font-item-name bold">Size</p>
+                <p class="hugfill font-item-name">{{file.size}} bytes</p>
+            </div>
+            {% endif %}
+            {% endif %}
+        </div>
+
+        <div class="hugfill fal-v7 sec">
+        {% if not file.type == 'url' %}
+            <div class="hugfill fal-v7 sec_5">
+                <p class="hughug font-item-name bold">MD5</p>
+                <p class="hugfill font-item-name">{{file.md5}}</p>
+            </div>
+            <div class="hugfill fal-v7 sec_5">
+                <p class="hughug font-item-name bold">SHA1</p>
+                <p class="hugfill font-item-name">{{file.sha1}}</p>
+            </div>
+            <div class="hugfill fal-v7 sec_5">
+                <p class="hughug font-item-name bold">SHA256</p>
+                <p class="hugfill font-item-name">{{file.sha256}}</p>
+            </div>
+        {% endif %}
+        </div>
+    </div>
+    {% if file.probable_names %}
+    <div class="hugfill fal-v8 sec">
+        <p class="hughug font-item-name bold">Probable Family(s)</p>
+
+        <div class="hugfill fal-v8 probable-families sec_5">
+            {% for probable_name in file.probable_names %}
+            <p class="hugfill font-item-name">{{probable_name}}</p>
+            {% endfor %}
+        </div>
+
+        <button class="hugfill fal-v8 open-prompt" type="button" onclick="
+            this.previousElementSibling.classList.toggle('active');
+        ">
+            {% with stroke="var(--color-textgray)" %}{% include "includes/icons/ExpandPrompt.html" %}{% endwith %}
+        </button>
+    </div>
+    {% endif %}
+    <div class="hugfill fal-h8">
+
+        {% if file.type != 'url' and file.type != 'hash' %}
+
+            <a class="hughug fal-h4 button-function" href="{{ url_for('FilesView:download', id=file._id) }}">
+                {% include "includes/icons/Download.html" %}
+                <p class="font-item-name">Download</p>
+            </a>
+
+            {# antivirus module:
+                Method Not Allowed
+                The method is not allowed for the requested URL. #}
+            {# {% for module in av_modules %}
+                <li id="av-sent-{{module}}" {% if not file.antivirus[module] %}class="hidden"{% endif %} 
+                    {% if file.antivirus[module] is string %}
+                    data-toggle="tooltip" data-placement="top" title="{{file.antivirus[module]}}"
+                    {% endif %}>
+                    <i class="fa fa-check text-success"></i> {{module}}
+                </li>
+
+                <li id="av-sendto-{{module}}" {% if file.antivirus[module] %}class="hidden"{% endif %}>
+                    <a class="av-submission-link" href="{{ url_for('FilesView:submit_to_av', id=file._id, module=module) }}"
+                    data-module="{{module}}">
+                        <i class="fa fa-send"></i> Send to {{module}}
+                    </a>
+                </li>
+            {% endfor %} 
+            <script src="{{ url_for('static', filename='js/fame-file.js') }}"></script>
+            <script>
+                $('[data-toggle="tooltip"]').tooltip();
+            </script> #}
+        {% endif %}
+
+    </div>
+</div>

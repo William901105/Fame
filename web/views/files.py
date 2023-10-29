@@ -35,7 +35,7 @@ def return_file(file):
     file["file"]["analysis"] = clean_analyses(analyses)
     return render(
         file,
-        "files/show.html",
+        "files/show_new.html",
         ctx={"data": file, "options": dispatcher.options, "comments_enabled": comments_enabled()},
     )
 

@@ -1,0 +1,13 @@
+{# 
+<div class="footer">
+    <br />
+    <hr>
+    <div class="stats">
+        <ul>
+            {% if request.endpoint == 'AnalysesView:get' %}
+                <li><a href="{{ url_for('FilesView:get', id=file._id)}}"><i class="pe-7s-note2"></i> All analyses</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</div> 
+#}
