@@ -7,13 +7,13 @@ function debug(message)
 function offsetBetween(from, to)
 {
   let
-    current = from,
+    walker = from,
     offset = {'top': 0, 'left': 0};
-  while (current !== to)
+  while (walker !== to)
   {
-    offset.top += current.offsetTop;
-    offset.left += current.offsetLeft;
-    current = current.parentElement;
+    offset.top += walker.offsetTop;
+    offset.left += walker.offsetLeft;
+    walker = walker.parentElement;
   }
   return offset;
 }
@@ -112,6 +112,34 @@ function deactivateIfClickOutside (trigger, targets, focusIdx)
   });
 }
 
+function exclusiveInputs (fieldset) {
+  fieldset.querySelectorAll('input').forEach((input) => {
+    input.addEventListener('input', () => {
+      if (input.value.length > 0) {
+        let walker = input;
+        while (walker != fieldset.parentElement) {
+          walker.classList.add('active');
+          walker = walker.parentElement;
+        }
+      }
+      else {
+        let walker = input;
+        while (walker != fieldset.parentElement) {
+          walker.classList.remove('active');
+          walker = walker.parentElement;
+        }
+      }
+    });
+
+    const button = input.parentElement.querySelector('button');
+    if (button == null) {return;}
+    button.addEventListener('click', () => {
+      input.value = '';
+      input.dispatchEvent(new Event('input'));
+    });
+  });
+}
+
 
 verticalNavigation(
   document.querySelector('.main'),
@@ -130,3 +158,5 @@ document.querySelectorAll('.new-item').forEach((new_item) => {
     1
   );
 });
+
+exclusiveInputs(document.querySelector('.exclusive-inputs'));

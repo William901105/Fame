@@ -215,6 +215,21 @@
   width: 100%;
 }
 
+/* drop-area */
+.drop-area {
+  border: 0.08rem solid;
+  border-color: var(--color-black);
+
+  transition: 0.2s ease-out;
+  border-radius: 0.375rem;
+}
+.drop-area>input {
+  /* display: none; */
+}
+.drop-area:hover {
+  box-shadow: var(--clicked-option);
+}
+
 
 /* button */
 .button-black {

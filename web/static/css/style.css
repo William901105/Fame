@@ -1,3 +1,4 @@
+/* login */
 .login {
   padding: 6.25rem 40%;
   overflow-y: scroll;
@@ -24,6 +25,7 @@
 
 
 
+/* menu */
 .menu {
   width: 14rem;
   
@@ -90,6 +92,7 @@
 
 
 
+/* main */
 .main {
   padding: 1rem 0.625rem;
   overflow: hidden;
@@ -163,7 +166,9 @@
 }
 
 
-.main .file-details .probable-families {
+
+/* file-details */
+.file-details .probable-families {
   padding: 0rem 8rem;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -171,42 +176,44 @@
   transition: 0.1s;
   max-height: 5rem;
 }
-.main .file-details .probable-families.active {
+.file-details .probable-families.active {
   max-height: 100%;
 }
-.main .file-details .probable-families+.open-prompt svg {
+.file-details .probable-families+.open-prompt svg {
   transition: 0.3s;
   transform: rotate(90deg);
 }
-.main .file-details .probable-families.active+.open-prompt svg {
+.file-details .probable-families.active+.open-prompt svg {
   transform: rotate(-90deg);
 }
 
 
-.main .comments .comment {
+
+/* comments */
+.comments .comment {
   padding: 0.625rem 1rem;
   border-radius: 1.25rem;
   box-shadow: var(--menu);
 }
-.main .comments .comment p {
+.comments .comment p {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.main .comments .comment.active p {
+.comments .comment.active p {
   white-space: pre-wrap;
 }
-.main .comments .comment>.head {
+.comments .comment>.head {
   width: 8.5rem;
 }
-.main .comments .comment>.head a {
+.comments .comment>.head a {
   text-decoration: underline;
 }
-.main .comments .comment>.head a:hover {
+.comments .comment>.head a:hover {
   text-decoration: none;
 }
 
-.main .comments .comment>.content {  
+.comments .comment>.content {  
   padding: 0rem 0.75rem;
   border-left: 0.08rem solid;
   border-right: 0.08rem solid;
@@ -215,18 +222,33 @@
   transition: 0.3s;
   max-height: 3.2rem;
 }
-.main .comments .comment.active>.content {
+.comments .comment.active>.content {
   max-height: 100%;
 }
 
-.main .comments .comment>.content .open-prompt svg {
+.comments .comment>.content .open-prompt svg {
   transition: 0.3s;
   transform: rotate(90deg);
 }
-.main .comments .comment.active>.content .open-prompt svg {
+.comments .comment.active>.content .open-prompt svg {
   transform: rotate(-90deg);
 }
 
-.main .submit .triple-input {
+
+
+/* submit */
+.submit .exclusive-inputs {
   transition: 0.3s;
+}
+.submit .exclusive-inputs .drop-area {
+  height: 15rem;
+}
+.submit .exclusive-inputs .input-frame>button {
+  padding: 0.5rem;
+}
+.submit .exclusive-inputs.active * {
+  display: none;
+}
+.submit .exclusive-inputs.active *.active {
+  display: flex;
 }
