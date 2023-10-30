@@ -112,19 +112,19 @@ function deactivateIfClickOutside (trigger, targets, focusIdx)
   });
 }
 
-function exclusiveInputs (fieldset) {
-  fieldset.querySelectorAll('input').forEach((input) => {
+function exclusiveInputs (contents) {
+  contents.querySelectorAll('input').forEach((input) => {
     input.addEventListener('input', () => {
       if (input.value.length > 0) {
         let walker = input;
-        while (walker != fieldset.parentElement) {
+        while (walker != contents.parentElement) {
           walker.classList.add('active');
           walker = walker.parentElement;
         }
       }
       else {
         let walker = input;
-        while (walker != fieldset.parentElement) {
+        while (walker != contents.parentElement) {
           walker.classList.remove('active');
           walker = walker.parentElement;
         }
@@ -132,7 +132,7 @@ function exclusiveInputs (fieldset) {
     });
 
     const button = input.parentElement.querySelector('button');
-    if (button == null) {return;}
+    if (!button) {return;}
     button.addEventListener('click', () => {
       input.value = '';
       input.dispatchEvent(new Event('input'));

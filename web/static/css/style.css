@@ -239,16 +239,31 @@
 /* submit */
 .submit .exclusive-inputs {
   transition: 0.3s;
+  padding: 1rem 0rem;
 }
-.submit .exclusive-inputs .drop-area {
-  height: 15rem;
+.submit .exclusive-inputs.active {
+  padding: 0rem;
 }
-.submit .exclusive-inputs .input-frame>button {
+
+.submit .exclusive-inputs button {
   padding: 0.5rem;
 }
-.submit .exclusive-inputs.active * {
-  display: none;
-}
-.submit .exclusive-inputs.active *.active {
-  display: flex;
+
+.submit .exclusive-inputs .drop-area {min-height: 8rem;}
+.submit .exclusive-inputs.active .drop-area {min-height: 0rem;}
+
+.submit .exclusive-inputs .drop-area svg {scale: 2.5;}
+.submit .exclusive-inputs.active .drop-area svg {scale: 1;}
+
+.submit .exclusive-inputs.active>* {display: none;}
+.submit .exclusive-inputs.active>*.active {display: flex;}
+
+.submit .exclusive-inputs.active .drop-area input,
+.submit .exclusive-inputs.active .drop-area button {display: flex;}
+
+
+/* .submit .modules ul {position: absolute;} */
+.submit .modules ul,
+.submit .modules li {
+  flex-direction: column;
 }

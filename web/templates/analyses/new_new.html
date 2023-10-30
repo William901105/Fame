@@ -5,11 +5,11 @@
 
 {% block content %}
 <form class="hugfill fal-v8 submit sec" enctype="multipart/form-data" action="{{ url_for('AnalysesView:post') }}" method="POST">
-    <fieldset class="hugfill fal-v7 exclusive-inputs sec">
-
-        <label class="fixfill fal-h5 drop-area">
+    <div class="hugfill fal-v8 exclusive-inputs sec">
+        <h2 id="inputs" class="font-sec-header color-textgray">Inputs</h2>
+        <label class="hugfill fal-h5 drop-area sec_5">
             {% with stroke = "var(--color-textgray)" %}{% include "includes/icons/Folder.html" %}{% endwith %}
-            <input type="file" name="file"/>
+            <input class="hugfill" type="file" name="file"/>
             <button class="fillhug fal-v5" type="button">
                 {% include "includes/icons/Cross.html" %}
             </button>
@@ -28,18 +28,21 @@
                 {% include "includes/icons/Cross.html" %}
             </button>
         </div>
-    </fieldset>
+    </div>
 
-    <label class="hughug fal-h5 help color-textgray sec_5">
-        <div class="hugfix fal-v7 message">
-            <p class="hugfill font-item-name">When enabled, some modules not specified will be executed implicitly.</p>
-        </div>
-        {% with stroke = "var(--color-textgray)" %}{% include "includes/icons/Help.html" %}{% endwith %}
-        <p class="hughug font-item-name color-textgray">Enable Magic</p>
-    <input type="checkbox" name="options[magic_enabled]" checked>
-    </label>
-    <div class="form-group">
-        <input class="form-control" id="modules-autocomplete" name="modules" type="text"
+    <div class="hugfill fal-v8 modules sec">
+
+        <h2 id="modules" class="font-sec-header color-textgray">Modules</h2>
+        <label class="hughug fal-h5 help color-textgray sec_5">
+            <div class="hugfix fal-v7 message">
+                <p class="hugfill font-item-name">When enabled, some modules not specified will be executed implicitly.</p>
+            </div>
+            {% with stroke = "var(--color-textgray)" %}{% include "includes/icons/Help.html" %}{% endwith %}
+            <p class="hughug font-item-name color-textgray">Enable Magic</p>
+        <input type="checkbox" name="options[magic_enabled]" checked>
+        </label>
+
+        <input class="hugfill fal-v8" id="modules-autocomplete" name="modules" type="text"
                 placeholder="Modules / Just do your magic"
                 data-data="{{url_for('ModulesView:list')}}" />
     </div>
@@ -54,7 +57,7 @@
     {% if comments_enabled %}
     <div class="hugfill fal-v8 comment sec">
 
-        <h2 id="comment" class="font-sec-header color-textgray">comment</h2>
+        <h2 id="comment" class="font-sec-header color-textgray">Comment</h2>
         <div class="hugfill fal-h4 input-frame">
             <textarea class="hugfill font-item-name" type="text" name="comment" placeholder="Comment"></textarea>
         </div>
