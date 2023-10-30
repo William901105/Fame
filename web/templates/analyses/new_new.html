@@ -5,28 +5,30 @@
 
 {% block content %}
 <form class="hugfill fal-v8 submit sec" enctype="multipart/form-data" action="{{ url_for('AnalysesView:post') }}" method="POST">
-    <div class="hugfill fal-v8 exclusive-inputs sec">
+    <div class="hugfill fal-v8 inputs sec">
         <h2 id="inputs" class="font-sec-header color-textgray">Inputs</h2>
-        <label class="hugfill fal-h5 drop-area sec_5">
-            {% with stroke = "var(--color-textgray)" %}{% include "includes/icons/Folder.html" %}{% endwith %}
-            <input class="hugfill" type="file" name="file"/>
-            <button class="fillhug fal-v5" type="button">
-                {% include "includes/icons/Cross.html" %}
-            </button>
-        </label>
+        <div class="hugfill fal-v8 exclusive-inputs sec">
+            <label class="hugfill fal-h5 drop-frame sec_5">
+                {% with stroke = "var(--color-textgray)" %}{% include "includes/icons/Folder.html" %}{% endwith %}
+                <input class="hugfill" type="file" name="file"/>
+                <button class="fillhug fal-v5" type="button">
+                    {% include "includes/icons/Cross.html" %}
+                </button>
+            </label>
 
-        <div class="hugfill fal-h4 input-frame">
-            <input class="hugfill font-item-name" type="text" name="url" placeholder="URL"/>
-            <button class="fillhug fal-v5" type="button">
-                {% include "includes/icons/Cross.html" %}
-            </button>
-        </div>
+            <div class="hugfill fal-h4 input-frame">
+                <input class="hugfill font-item-name" type="text" name="url" placeholder="URL"/>
+                <button class="fillhug fal-v5" type="button">
+                    {% include "includes/icons/Cross.html" %}
+                </button>
+            </div>
 
-        <div class="hugfill fal-h4 input-frame">
-            <input class="hugfill font-item-name" type="text" name="hash" placeholder="Hash"/>
-            <button class="fillhug fal-v5" type="button">
-                {% include "includes/icons/Cross.html" %}
-            </button>
+            <div class="hugfill fal-h4 input-frame">
+                <input class="hugfill font-item-name" type="text" name="hash" placeholder="Hash"/>
+                <button class="fillhug fal-v5" type="button">
+                    {% include "includes/icons/Cross.html" %}
+                </button>
+            </div>
         </div>
     </div>
 
@@ -39,12 +41,14 @@
             </div>
             {% with stroke = "var(--color-textgray)" %}{% include "includes/icons/Help.html" %}{% endwith %}
             <p class="hughug font-item-name color-textgray">Enable Magic</p>
-        <input type="checkbox" name="options[magic_enabled]" checked>
+            <input type="checkbox" name="options[magic_enabled]" checked>
         </label>
 
-        <input class="hugfill fal-v8" id="modules-autocomplete" name="modules" type="text"
-                placeholder="Modules / Just do your magic"
-                data-data="{{url_for('ModulesView:list')}}" />
+        <div class="hugfill fal-v8 autocomplete">
+            <input class="hugfill fal-v8" id="modules-autocomplete" name="modules" type="text"
+                    placeholder="Modules / Just do your magic"
+                    data-data="{{url_for('ModulesView:list')}}"/>
+        </div>
     </div>
     
     {# <div class="form-group">
@@ -53,7 +57,6 @@
     </div> #}
     <input type="hidden" name="groups" value="{{ current_user['default_sharing']|join(',') }}" />
     
-
     {% if comments_enabled %}
     <div class="hugfill fal-v8 comment sec">
 
@@ -72,7 +75,7 @@
 </form>
 
 
-<script src="{{ url_for('static', filename='js/jquery-1.11.3.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
 <script src="{{ url_for('static', filename='js/jquery.flexdatalist.min.js') }}"></script>
 <script src="{{ url_for('static', filename='js/modules-autocomplete.js') }}"></script>
 {# <script src="{{ url_for('static', filename='js/tagsinput.js') }}"></script>

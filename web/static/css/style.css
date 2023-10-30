@@ -1,6 +1,6 @@
 /* login */
 .login {
-  padding: 6.25rem 40%;
+  padding: 6.25rem 35%;
   overflow-y: scroll;
 }
 
@@ -29,7 +29,7 @@
 .menu {
   width: 14rem;
   
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
   overflow-y: scroll;
   background-color: var(--color-white);
   box-shadow: var(--menu);
@@ -237,33 +237,35 @@
 
 
 /* submit */
-.submit .exclusive-inputs {
+.submit .inputs .exclusive-inputs {
   transition: 0.3s;
   padding: 1rem 0rem;
 }
-.submit .exclusive-inputs.active {
+.submit .inputs .exclusive-inputs.active {
   padding: 0rem;
 }
 
-.submit .exclusive-inputs button {
+.submit .inputs .exclusive-inputs button {
   padding: 0.5rem;
 }
 
-.submit .exclusive-inputs .drop-area {min-height: 8rem;}
-.submit .exclusive-inputs.active .drop-area {min-height: 0rem;}
+.submit .inputs .exclusive-inputs .drop-frame {min-height: 8rem;}
+.submit .inputs .exclusive-inputs.active .drop-frame {min-height: 0rem;}
 
-.submit .exclusive-inputs .drop-area svg {scale: 2.5;}
-.submit .exclusive-inputs.active .drop-area svg {scale: 1;}
+.submit .inputs .exclusive-inputs .drop-frame svg {scale: 2.5;}
+.submit .inputs .exclusive-inputs.active .drop-frame svg {scale: 1;}
 
-.submit .exclusive-inputs.active>* {display: none;}
+.submit .inputs .exclusive-inputs.active>* {display: none;}
 .submit .exclusive-inputs.active>*.active {display: flex;}
 
-.submit .exclusive-inputs.active .drop-area input,
-.submit .exclusive-inputs.active .drop-area button {display: flex;}
+.submit .inputs .exclusive-inputs.active .drop-frame input,
+.submit .inputs .exclusive-inputs.active .drop-frame button {display: flex;}
 
 
 /* .submit .modules ul {position: absolute;} */
-.submit .modules ul,
-.submit .modules li {
+.submit .modules .autocomplete * {
   flex-direction: column;
+  /* align-self:stretch;
+  justify-content:flex-start;
+  align-items:center; */
 }

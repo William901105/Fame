@@ -40,7 +40,7 @@ span {display: inline;}
 button {background-color:transparent; cursor: pointer;}
 
 input {filter: none;}
-input[type=checkbox] {cursor: pointer;}
+input[type=checkbox] {cursor: pointer; accent-color: var(--color-textgray);}
 input[type="file"]::file-selector-button {display: none;}
 input:focus {outline: none;}
 input:autofill {background: transparent;}

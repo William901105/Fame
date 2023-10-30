@@ -118,7 +118,7 @@
 .font-mn-opt::placeholder {
   font-family: "Inter", Helvetica;
   font-weight: 400;
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-style: normal;
   letter-spacing: 0rem;
   line-height: normal;
@@ -140,7 +140,7 @@
 .font-item-name::placeholder {
   font-family: "Inter", Helvetica;
   font-weight: 400;
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   font-style: normal;
   letter-spacing: 0rem;
   line-height: normal;
@@ -151,7 +151,7 @@
 .font-sec-header::placeholder {
   font-family: "Inter", Helvetica;
   font-weight: 300;
-  font-size: 1rem;
+  font-size: 1.05em;
   font-style: normal;
   letter-spacing: 0rem;
   line-height: normal;
@@ -215,8 +215,8 @@
   width: 100%;
 }
 
-/* drop-area */
-.drop-area {
+/* drop-frame */
+.drop-frame {
   border: 0.08rem dashed;
   border-color: var(--color-black);
 
@@ -224,11 +224,11 @@
   transition: 0.2s ease-out;
   border-radius: 0.375rem;
 }
-.drop-area>button,
-.drop-area>input {
+.drop-frame>button,
+.drop-frame>input {
   display: none;
 }
-.drop-area:hover {
+.drop-frame:hover {
   box-shadow: var(--clicked-option);
 }
 
@@ -327,7 +327,7 @@ img.avatar {
 
   display: block;
   position: absolute;
-  z-index: 1;
+  z-index: 100;
   padding: 0.5rem 1rem;
   border-radius: 1.125rem;
   background-color: var(--color-white);
