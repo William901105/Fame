@@ -2,9 +2,9 @@
     <div class="hugfill fal-h4 list-header font-item-name bold sec">
         <p class="hugfix date">Date</p>
         <p class="hugfix font-hash-value">Analyst</p>
-        <p class="hugfill">Object Name</p>
+        <p class="hugfill">Object Names</p>
         <p class="hugfill">Probable Families</p>
-        <p class="hugfix font-hash-value">SHA256</a></p>
+        <p class="hugfix font-hash-value">SHA256</p>
         {% include "includes/icons/CheckMark.html" %}
     </div>
     {% for analysis in data['analyses'] %}
@@ -13,9 +13,7 @@
         <p class="hugfix font-hash-value" >{{analysis.analyst._id}}</p>
         <p class="hugfill">{{analysis.file.names|join(', ')}}</p>
         <p class="hugfill">{{ analysis.file.probable_names|join(', ') if analysis.file.probable_names else "N/A" }}</p>
-        <p class="hugfix font-hash-value">
-            {{analysis.file.sha256}}
-        </p>
+        <p class="hugfix font-hash-value">{{analysis.file.sha256}}</p>
         {% if analysis.status == 'finished' %}
             {% with stroke="var(--color-success)" %}{% include "includes/icons/CheckMark.html" %}{% endwith %}
         {% elif analysis.status == 'pending' %}

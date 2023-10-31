@@ -60,7 +60,7 @@ class FilesView(FlaskView, UIView):
         pagination = Pagination(page=page, per_page=PER_PAGE, total=current_user.files.count_documents(), css_framework="bootstrap3")
         files = {"files": clean_files(list(files))}
 
-        return render(files, "files/index.html", ctx={"data": files, "pagination": pagination})
+        return render(files, "files/index_new.html", ctx={"data": files, "pagination": pagination})
 
     def get(self, id):
         """Get the object with `id`.
