@@ -281,6 +281,13 @@
   box-shadow: var(--clicked-option);
 }
 .item input {display: none;}
+
+.tag {
+  padding: 0.5rem 0.625rem;
+  border-radius: 0.375rem;
+  border: 0.1rem solid;
+}
+
 .new-item>button {
   scale: 1;
   position: absolute;

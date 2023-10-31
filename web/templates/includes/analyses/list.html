@@ -19,7 +19,7 @@
         {% elif analysis.status == 'pending' %}
             {% with stroke="var(--color-pending)" %}{% include "includes/icons/Clock.html" %}{% endwith %}
         {% elif analysis.status in ('running', 'preloading') %}
-            {% with stroke="var(--color-waiting)" %}{% include "includes/icons/Refresh.html" %}{% endwith %}
+            {% with stroke="var(--color-textgray)" %}{% include "includes/icons/Terminal.html" %}{% endwith %}
         {% elif analysis.status == 'error' %}
             {% with stroke="var(--color-cancelled)" %}{% include "includes/icons/Error.html" %}{% endwith %}
         {% endif %}

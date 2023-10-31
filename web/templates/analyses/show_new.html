@@ -16,86 +16,108 @@
 
 {% block content %}
     {% with file = analysis.file %}
-        {% include "includes/files/file_details.html" %}
+        {% include "includes/files/details.html" %}
         {% include "includes/files/sharing.html" %}
         {% if comments_enabled %}{% include "includes/files/comments.html" %}{% endif %}
     {% endwith %}
-{% endblock %}
+    
+    {% if analysis.tags %}{% include "includes/analyses/tags.html" %}{% endif %}
 
-{#
-{% block body %}
+    <div class="hugfill fal-v8 Process sec">
+        <h2 id="process" class="font-sec-header color-textgray">Process</h2>
 
-    <div class="row" id="execution-path">
+        <div class="legend">
+            <i class="fa fa-circle text-success"></i> Executed
+            <i class="fa fa-circle text-muted"></i> Ongoing
+            <i class="fa fa-circle text-info"></i> Pending
+            <i class="fa fa-circle text-warning"></i> Waiting
+            <i class="fa fa-circle text-danger"></i> Cancelled
+        </div>
+
+        <div class="hugfill fal-hw4 sec_5">
+            {% if analysis.status in ('running', 'pending', 'preloading') %}
+            <div class="sharing-groups">
+                <label class="checkbox checkbox-inline">
+                    <input type="checkbox" checked data-toggle="checkbox" id="auto-refresh" />
+                    Auto-update
+                </label>
+            </div>
+            {% endif %}
+
+            {% for module in analysis.executed_modules %}
+            {% if module not in analysis.pending_modules %}
+            <div class="hughug fal-h4 color-success tag"><p class="font-item-name">{{module}}</p></div>
+            {% endif %}
+            {% endfor %}
+
+            {% for module in analysis.pending_modules %}
+            {% if module in analysis.executed_modules %} <!-- running -->
+            <div class="hughug fal-h4 color-textgray tag"><p class="font-item-name">{{module}}</p></div>
+            {% else %}
+            <div class="hughug fal-h4 color-pending tag"><p class="font-item-name">{{module}}</p></div>
+            {% endif %}
+            {% endfor %}
+
+            {% for module in analysis.waiting_modules %}
+            <div class="hughug fal-h4 color-waiting tag"><p class="font-item-name">{{module}}</p></div>
+            {% endfor %}
+
+            {% for module in analysis.canceled_modules %} <!-- note single or double 'l' -->
+            <div class="hughug fal-h4 color-cancelled tag"><p class="font-item-name">{{module}}</p></div>
+            {% endfor %}
+        </div>
+
+        <div class="hugfill fal-h4 sec_5">
+            {% if analysis.status == 'finished' %}
+                {% with stroke="var(--color-success)" %}{% include "includes/icons/CheckMark.html" %}{% endwith %}
+            {% elif analysis.status == 'pending' %}
+                {% with stroke="var(--color-pending)" %}{% include "includes/icons/Clock.html" %}{% endwith %}
+            {% elif analysis.status in ('running', 'preloading') %}
+                {% with stroke="var(--color-textgray)" %}{% include "includes/icons/Terminal.html" %}{% endwith %}
+            {% elif analysis.status == 'error' %}
+                {% with stroke="var(--color-cancelled)" %}{% include "includes/icons/Error.html" %}{% endwith %}
+            {% endif %}
+            <p class="font-item-name color-black">{{ analysis.status }}</p>
+        </div>
+    </div>
+
+    <div id="details">
+        {% for name, results in analysis.results.items() %}
+        <div class="row" id="results-{{name|replace(' ', '-')}}">
+            {% if name in modules %}
+                {% include [modules[name].details_template(), 'analyses/details_new.html'] %}
+            {% else %}
+                {% include 'analyses/details_new.html' %}
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+
+    {% if analysis.logs|length and current_user.has_permission('see_logs') %}
+    <div class="row" id="logs">
         <div class="col-md-12">
             <div class="card">
                 <div class="header">
-                    {% if analysis.status in ('running', 'pending', 'preloading') %}
-                        <div class="sharing-groups">
-                            <label class="checkbox checkbox-inline"><input type="checkbox" checked data-toggle="checkbox" id="auto-refresh" /> Auto-update</label>
-                        </div>
-                    {% endif %}
-                    <h4 class="title">Execution Path</h4>
-                    <p class="category">Tags &amp; modules</p>
+                    <h4 class="title">Logs</h4>
                 </div>
                 <div class="content">
-                    <div>
-                        {% for tag in analysis.tags %}
-                            <span class="tag tag-azure">{{tag}}</span>
-                        {% else %}
-                            <p>No tags.</p>
-                        {% endfor %}
-                    </div>
-                    <hr />
-                    <div>
-                        {% for module in analysis.executed_modules %}
-                            {% if module not in analysis.pending_modules %}
-                                <span class="tag tag-executed">{{module}}</span>
-                            {% endif %}
-                        {% endfor %}
-                        {% for module in analysis.pending_modules %}
-                            {% if module in analysis.executed_modules %}
-                                <span class="tag tag-ongoing">{{module}}</span>
-                            {% else %}
-                                <span class="tag tag-pending">{{module}}</span>
-                            {% endif %}
-                        {% endfor %}
-                        {% for module in analysis.waiting_modules %}
-                            <span class="tag tag-waiting">{{module}}</span>
-                        {% endfor %}
-                        {% for module in analysis.canceled_modules %}
-                            <span class="tag tag-cancelled">{{module}}</span>
-                        {% endfor %}
-                    </div>
-                    <div class="footer">
-                        <div class="stats">
-                            <ul>
-                                <li>Status:
-                                    {% if analysis.status in ('running', 'preloading') %}
-                                        <i class="fa fa-refresh text-info spinner"></i>
-                                    {% elif analysis.status == 'finished' %}
-                                        <i class="fa fa-check text-success"></i>
-                                    {% elif analysis.status == 'pending' %}
-                                        <i class="fa fa-clock-o text-info spinner"></i>
-                                    {% elif analysis.status == 'error' %}
-                                        <i class="fa fa-warning text-danger"></i>
-                                    {% endif %}
-                                    {{ analysis.status }}
-                                </li>
-                                <li>
-                                    <div class="legend">
-                                        <i class="fa fa-circle text-success"></i> Executed
-                                        <i class="fa fa-circle text-muted"></i> Ongoing
-                                        <i class="fa fa-circle text-info"></i> Pending
-                                        <i class="fa fa-circle text-warning"></i> Waiting
-                                        <i class="fa fa-circle text-danger"></i> Cancelled
-                                    </div>
-                                </li>
-                        </div>
-                    </div>
+                    <pre>{{analysis.logs|join('\n')}}</pre>
                 </div>
             </div>
         </div>
     </div>
+    {% endif %}
+
+    {% if analysis.status in ('pending', 'running', 'preloading') %}
+    <script>
+        auto_update("{{ url_for('AnalysesView:get', id=analysis._id) }}", 3000, '.auto-update');
+        enable_checkboxes();
+    </script>
+    {% endif %}
+{% endblock %}
+
+{#
+{% block body %}
 
     {% if analysis.extracted_files|length %}
     <div class="row" id="extracted_files">
@@ -281,34 +303,6 @@
         {% endfor %}
     </div>
 
-    <div id="details">
-        {% for name, results in analysis.results.items() %}
-        <div class="row" id="results-{{name|replace(' ', '-')}}">
-            {% if name in modules %}
-                {% include [modules[name].details_template(), 'analyses/details_new.html'] %}
-            {% else %}
-                {% include 'analyses/details_new.html' %}
-            {% endif %}
-        </div>
-        {% endfor %}
-    </div>
-
-    {% if analysis.logs|length and current_user.has_permission('see_logs') %}
-    <div class="row" id="logs">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="header">
-                    <h4 class="title">Logs</h4>
-                </div>
-                <div class="content">
-                    <pre>{{analysis.logs|join('\n')}}</pre>
-                </div>
-            </div>
-        </div>
-    </div>
-    {% endif %}
-
-
     <script type="text/javascript">
         $('.main-panel').scrollspy({ target: '#sidebar-nav' });
 
@@ -317,12 +311,5 @@
 
         $('.tags-input').tagsInput();
     </script>
-
-    {% if analysis.status in ('pending', 'running', 'preloading') %}
-    <script>
-        auto_update("{{ url_for('AnalysesView:get', id=analysis._id) }}", 3000, '.auto-update');
-        enable_checkboxes();
-    </script>
-    {% endif %}
 
 {% endblock %} #}
