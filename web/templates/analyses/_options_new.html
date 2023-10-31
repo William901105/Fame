@@ -1,0 +1,58 @@
+<div class="hugfill fal-v8 options sec">
+
+    <h2 id="options" class="font-sec-header color-textgray">Options</h2>
+    <div class="hugfill fal-v7 sec">
+        {% for option, dict in options.text.items() %}
+        <div class="hughug fal-h5 color-textgray help sec_5">
+            <div class="hugfill fal-v7 message">
+                <p class="hugfill font-item-name">{{dict.description}}<br /><br />Applies on: {{dict.modules|join(', ')}}</p>
+            </div>
+            {% with stroke = "var(--color-textgray)" %}{% include "includes/icons/Help.html" %}{% endwith %}
+            <p class="hughug font-item-name color-black">{{dict.display}}</p>
+            <div class="hughug fal-h4 input-frame">
+                <textarea name="options[{{option}}]"
+                    {% if dict.default %}value="{{dict.default}}"{% endif %}
+                >
+            </div>
+        </div>
+        {% endfor %}
+        {% for option, dict in options.str.items() %}
+        <div class="hughug fal-h5 color-textgray help sec_5">
+            <div class="hugfill fal-v7 message">
+                <p class="hugfill font-item-name">{{dict.description}}<br /><br />Applies on: {{dict.modules|join(', ')}}</p>
+            </div>
+            {% with stroke = "var(--color-textgray)" %}{% include "includes/icons/Help.html" %}{% endwith %}
+            <p class="hughug font-item-name color-black">{{dict.display}}</p>
+            <div class="hughug fal-h4 input-frame">
+                <input type="text" name="options[{{option}}]" 
+                    {% if dict.default %}value="{{dict.default}}"{% endif %}
+                >
+            </div>
+        </div>
+        {% endfor %}
+        {% for option, dict in options.integer.items() %}
+        <div class="hughug fal-h5 color-textgray help sec_5">
+            <div class="hugfill fal-v7 message">
+                <p class="hugfill font-item-name">{{dict.description}}<br /><br />Applies on: {{dict.modules|join(', ')}}</p>
+            </div>
+            {% with stroke = "var(--color-textgray)" %}{% include "includes/icons/Help.html" %}{% endwith %}
+            <p class="hughug font-item-name color-black">{{dict.display}}</p>
+            <div class="hughug fal-h4 input-frame">
+                <input type="text" name="options[{{option}}]" 
+                    {% if dict.default %}value="{{dict.default}}"{% endif %}
+                >
+            </div>
+        </div>
+        {% endfor %}
+        {% for option, dict in options.bool.items() %}
+        <label class="hughug fal-h5 color-textgray help sec_5">
+            <div class="hugfill fal-v7 message">
+                <p class="hugfill font-item-name">{{dict.description}}<br /><br />Applies on: {{dict.modules|join(', ')}}</p>
+            </div>
+            {% with stroke = "var(--color-textgray)" %}{% include "includes/icons/Help.html" %}{% endwith %}
+            <p class="hughug font-item-name color-black">{{dict.display}}</p>
+            <input type="checkbox" name="options[{{option}}]" {% if dict.default %}checked{% endif %}>
+        </label>
+        {% endfor %}
+    </div>
+</div>

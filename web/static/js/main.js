@@ -1,11 +1,11 @@
-function debug(message)
-{
+function debug(message) {
   console.log(message);
   document.querySelector('.message p').innerText = message;
 }
 
-function offsetBetween(from, to)
-{
+function offsetBetween(from, to) {
+  if (!from || !to) {return;}
+
   let
     walker = from,
     offset = {'top': 0, 'left': 0};
@@ -19,8 +19,10 @@ function offsetBetween(from, to)
 }
 
 // Create anchor elements in navigation and highlight them corresponding to scrolling targets
-function verticalNavigation (content, targets, navigation)
+function verticalNavigation (container, targets, navigation)
 {
+  if (!container || !targets || !navigation) {return;}
+
   // Create anchor elements in navigation corresponding to targets
   targets.forEach((target, index) => {
     const a = document.createElement('a');
@@ -38,55 +40,55 @@ function verticalNavigation (content, targets, navigation)
   
   const
     anchors = Array.from(navigation.children), // put navigation.children into array
-    offsetCtntBoundingTop = content.getBoundingClientRect().top; // offset relative to viewport
+    offsetCtnrBoundingTop = container.getBoundingClientRect().top; // offset relative to viewport
   let
     isScrollBySet = false,
     mousePosY = 0, // offset relative to viewport
-    offsetsTrgtToCtnt = []; // offsets relative to content
+    offsetsTrgtToCtnr = []; // offsets relative to container
   
   // Highlight corresponding navigation anchor
-  function highlightNavigation (mouseToCtnt)
+  function highlightNavigation (mouseToCtnr)
   {
-    offsetsTrgtToCtnt.forEach((offset, index) => {
-      if (mouseToCtnt >= offset && mouseToCtnt < offsetsTrgtToCtnt[index + 1]) {
+    offsetsTrgtToCtnr.forEach((offset, index) => {
+      if (mouseToCtnr >= offset && mouseToCtnr < offsetsTrgtToCtnr[index + 1]) {
         anchors.forEach((anchor) => {anchor.classList.remove('active');});
         anchors[index].classList.add('active');
       }
     })
   }
 
-  function renew_offsetsTrgtToCtnt () {
-    offsetsTrgtToCtnt = [];
+  function renew_offsetsTrgtToCtnr () {
+    offsetsTrgtToCtnr = [];
     // Record each offsets
     targets.forEach((target) => {
-      offsetsTrgtToCtnt.push(offsetBetween(target, content).top);
+      offsetsTrgtToCtnr.push(offsetBetween(target, container).top);
     });
     // to guarantee less than
-    offsetsTrgtToCtnt.push(Number.MAX_SAFE_INTEGER);
+    offsetsTrgtToCtnr.push(Number.MAX_SAFE_INTEGER);
   }
 
-  window.addEventListener('resize', renew_offsetsTrgtToCtnt);
-  new ResizeObserver(renew_offsetsTrgtToCtnt).observe(document.querySelector('.main>.content'));
-  renew_offsetsTrgtToCtnt();
+  window.addEventListener('resize', renew_offsetsTrgtToCtnr);
+  new ResizeObserver(renew_offsetsTrgtToCtnr).observe(document.querySelector('.main>.content'));
+  renew_offsetsTrgtToCtnr();
 
   // Listen for click on each anchor to clear mousePosY
   anchors.forEach((anchor, index) => {
     anchor.addEventListener('click', () => {
       isScrollBySet = true;
-      content.scrollTop = offsetsTrgtToCtnt[index];
-      highlightNavigation(offsetsTrgtToCtnt[index]);
+      container.scrollTop = offsetsTrgtToCtnr[index];
+      highlightNavigation(offsetsTrgtToCtnr[index]);
     });
   });
 
   // Listen for mouse move to highlightNavigation
-  content.addEventListener('mousemove', (event) => {
-    mousePosY = event.clientY - offsetCtntBoundingTop; // relative to content
-    highlightNavigation(content.scrollTop + mousePosY);
+  container.addEventListener('mousemove', (event) => {
+    mousePosY = event.clientY - offsetCtnrBoundingTop; // relative to container
+    highlightNavigation(container.scrollTop + mousePosY);
   });
 
-  // Listen for content scroll to highlightNavigation
-  content.addEventListener('scroll', () => {
-    if (!isScrollBySet) {highlightNavigation(content.scrollTop + mousePosY);}
+  // Listen for container scroll to highlightNavigation
+  container.addEventListener('scroll', () => {
+    if (!isScrollBySet) {highlightNavigation(container.scrollTop + mousePosY);}
     else {isScrollBySet = true;}
   });
 }
@@ -94,6 +96,8 @@ function verticalNavigation (content, targets, navigation)
 // Close `target` if the user clicks outside of it
 function deactivateIfClickOutside (trigger, targets, focusIdx)
 {
+  if (!trigger || !targets) {return;}
+
   try {targets.forEach(() => {});}
   catch (e) {targets = [targets];}
 
@@ -112,20 +116,22 @@ function deactivateIfClickOutside (trigger, targets, focusIdx)
   });
 }
 
-// once an input has value, atcivate from it to `contents`
-function exclusiveInputs (contents) {
-  contents.querySelectorAll('input').forEach((input) => {
+// once an input has value, atcivate from it to `container`
+function exclusiveInputs (container) {
+  if (!container) {return;}
+
+  container.querySelectorAll('input').forEach((input) => {
     input.addEventListener('input', () => {
       if (input.value.length > 0) {
         let walker = input;
-        while (walker != contents.parentElement) {
+        while (walker != container.parentElement) {
           walker.classList.add('active');
           walker = walker.parentElement;
         }
       }
       else {
         let walker = input;
-        while (walker != contents.parentElement) {
+        while (walker != container.parentElement) {
           walker.classList.remove('active');
           walker = walker.parentElement;
         }
@@ -138,6 +144,15 @@ function exclusiveInputs (contents) {
       input.value = '';
       input.dispatchEvent(new Event('input'));
     });
+  });
+}
+
+// prevent default 'enter' key action in a scope
+function preventDefaultEnter (scope) {
+  if (!scope) {return;}
+
+  scope.addEventListener('keydown', (event) => {
+    if(event.key === 'Enter') {event.preventDefault();}
   });
 }
 
@@ -161,3 +176,5 @@ document.querySelectorAll('.new-item').forEach((new_item) => {
 });
 
 exclusiveInputs(document.querySelector('.exclusive-inputs'));
+
+preventDefaultEnter(document.querySelector('form.submit'));

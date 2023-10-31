@@ -43,19 +43,18 @@
             <input type="checkbox" name="options[magic_enabled]" checked>
         </label>
 
-        <div class="hugfill fal-v8 autocomplete">
-            <input class="hugfill fal-v8" id="modules-autocomplete" name="modules" type="text"
+        <div class="hugfill fal-v8 font-item-name jq-autocomplete input-frame">
+            <input id="modules-autocomplete" class="hugfill fal-v8" name="modules" type="text"
                 placeholder="Modules / Just do your magic"
                 data-data="{{url_for('ModulesView:list')}}"
             />
         </div>
     </div>
     
-    {# <div class="form-group">
-        <label for="groups">Share with: </label>
-        <input name="groups" class="tags-input tag-azure" type="text" value="{{ current_user['default_sharing']|join(',') }}" />
-    </div> #}
-    <input type="hidden" name="groups" value="{{ current_user['default_sharing']|join(',') }}" />
+    <div class="hugfill fal-v8 sharing sec">
+        <h2 id="sharing" class="font-sec-header color-textgray">Sharing</h2>
+        <input class="hugfill fal-v8 tags-input" type="text" name="groups" value="{{ current_user['default_sharing']|join(',') }}" />
+    </div>
     
     {% if comments_enabled %}
     <div class="hugfill fal-v8 comment sec">
@@ -65,8 +64,10 @@
         </div>
     </div>
     {% endif %}
-
-    {% include "analyses/_options.html" %}
+    
+    {% if options.text or options.str or options.integer or options.bool %}
+        {% include "analyses/_options_new.html" %}
+    {% endif %}
 
     <button type="submit" class="button-black">
         <p class="font-mn-opt">Submit</p>
@@ -77,8 +78,8 @@
 <script src="{{ url_for('static', filename='js/jquery-1.11.3.min.js') }}"></script>
 <script src="{{ url_for('static', filename='js/jquery.flexdatalist.min.js') }}"></script>
 <script src="{{ url_for('static', filename='js/modules-autocomplete.js') }}"></script>
-{# <script src="{{ url_for('static', filename='js/tagsinput.js') }}"></script>
+<script src="{{ url_for('static', filename='js/tagsinput.js') }}"></script>
 <script>
     $('.tags-input').tagsInput();
-</script> #}
+</script>
 {% endblock %}
