@@ -316,6 +316,15 @@
 .new-item>.padding {visibility: hidden;}
 
 
+/* circle */
+.circle {
+  height: 1.15rem;
+  width: 1.15rem;
+  border-radius: 50%;
+  background-color: currentColor;
+}
+
+
 /* avatar */
 .avatar {
   box-shadow: var(--menu);

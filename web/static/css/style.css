@@ -165,6 +165,7 @@
   padding: 0.625rem 2rem;
 }
 
+
 /* list */
 .list .list-header {
   padding: 0rem 0.625rem;
@@ -191,6 +192,33 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+
+
+/* results */
+.results .result {
+  padding: 0.625rem 1rem;
+  border-radius: 1.25rem;
+  box-shadow: var(--menu);
+}
+.results .result .head {
+  border-color: var(--color-textgray);
+  border-bottom: 0.08rem solid;
+}
+.results .result .content {
+  overflow-x: scroll;
+}
+
+
+
+/* logs */
+.logs pre {
+  padding: 0.625rem 1rem;
+  border-radius: 1.25rem;
+  box-shadow: var(--menu);
+  overflow-x: scroll;
+}
+
 
 
 /* file-details */
