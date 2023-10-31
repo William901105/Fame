@@ -82,7 +82,7 @@ class AnalysesView(FlaskView, UIView):
                 analyst = store.users.find_one({'_id': analysis['analyst']})
                 analysis['analyst'] = clean_users(analyst)
 
-        return render(analyses, 'analyses/index.html', ctx={'data': analyses, 'pagination': pagination})
+        return render(analyses, 'analyses/index_new.html', ctx={'data': analyses, 'pagination': pagination})
 
     def get(self, id):
         """Get the analysis with `id`.

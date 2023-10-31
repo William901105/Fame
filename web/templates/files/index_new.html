@@ -1,0 +1,11 @@
+{% extends "base_new.html" %}
+
+{% set current_page = 'Objects' %}
+
+{% block title %}Objects{% endblock %}
+
+{% block content %}
+    {{ pagination.links }}
+    {% include "files/list_new.html" %}
+    {{ pagination.links }}
+{% endblock %}

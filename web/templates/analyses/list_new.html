@@ -1,0 +1,28 @@
+<div class="hugfill fal-v8 list sec">
+    <div class="hugfill fal-h4 list-header font-item-name bold sec">
+        <p class="hugfix date">Date</p>
+        <p class="hugfix font-hash-value">Analyst</p>
+        <p class="hugfill">Object Names</p>
+        <p class="hugfill">Probable Families</p>
+        <p class="hugfix font-hash-value">SHA256</p>
+        {% include "includes/icons/CheckMark.html" %}
+    </div>
+    {% for analysis in data['analyses'] %}
+    <a class="fixfill fal-h4 list-entry font-item-name sec"  href="{{ url_for('AnalysesView:get', id=analysis._id) }}">
+        <p class="hugfix date color-textgray">{{analysis.date|date}}</p>
+        <p class="hugfix font-hash-value" >{{analysis.analyst._id}}</p>
+        <p class="hugfill">{{analysis.file.names|join(', ')}}</p>
+        <p class="hugfill">{{ analysis.file.probable_names|join(', ') if analysis.file.probable_names else "N/A" }}</p>
+        <p class="hugfix font-hash-value">{{analysis.file.sha256}}</p>
+        {% if analysis.status == 'finished' %}
+            {% with stroke="var(--color-success)" %}{% include "includes/icons/CheckMark.html" %}{% endwith %}
+        {% elif analysis.status == 'pending' %}
+            {% with stroke="var(--color-pending)" %}{% include "includes/icons/Clock.html" %}{% endwith %}
+        {% elif analysis.status in ('running', 'preloading') %}
+            {% with stroke="var(--color-waiting)" %}{% include "includes/icons/Refresh.html" %}{% endwith %}
+        {% elif analysis.status == 'error' %}
+            {% with stroke="var(--color-cancelled)" %}{% include "includes/icons/Error.html" %}{% endwith %}
+        {% endif %}
+    </a>
+    {% endfor %}
+</div>
