@@ -10,9 +10,6 @@
     
         <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
         
-        <!-- flexdatalist -->
-        <link href="{{ url_for('static', filename='css/jquery.flexdatalist.min.css') }}" rel="stylesheet" />
-
         <!-- Figma -->
         <link rel="stylesheet" href="{{ url_for('static', filename='css/globals.css')}}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/styleguide.css')}}">
@@ -72,7 +69,13 @@
                                     {% with stroke="var(--color-cancelled)" %}{% include "includes/icons/Error.html" %}{% endwith %}
                                 {% endif %}
 
-                                {% if not analysis.file.type == 'url' %}<p class="font-hash-value">{{analysis.file.md5}}</p>{% endif %}
+                                {% if analysis.file.type == 'url' %}
+                                <p class="font-hash-value color-textgray">< url ></p>
+                                {% elif analysis.file.sha256 %}
+                                <p class="font-hash-value">{{analysis.file.sha256}}</p>
+                                {% else %}
+                                <p class="font-hash-value color-textgray">N/A</p>
+                                {% endif %}
 
                                 {% with stroke="var(--color-textgray)" %}{% include "includes/icons/ExternalPrompt.html" %}{% endwith %}
                             </a>
