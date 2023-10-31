@@ -1,5 +1,4 @@
 <div class="hugfill fal-v8 comments sec">
-
     <h2 id="comments" class="font-sec-header color-textgray">Comments</h2>
 
     {% for comment in file.comments %}
@@ -51,8 +50,8 @@
         </div>
 
         <div class="fillhug fal-v5 sec">
-            <label class="hughug fal-h5 help color-textgray sec_5">
-                <div class="hugfix fal-v7 message">
+            <label class="hughug fal-h5 color-textgray help sec_5">
+                <div class="hugfill fal-v7 message">
                     <p class="hugfill font-item-name">When enabled, the analyst will be notified by mail about your comment.</p>
                 </div>
                 {% with stroke = "var(--color-textgray)" %}{% include "includes/icons/Help.html" %}{% endwith %}

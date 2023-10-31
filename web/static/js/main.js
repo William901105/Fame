@@ -91,7 +91,7 @@ function verticalNavigation (content, targets, navigation)
   });
 }
 
-// Close the target if the user clicks outside of it
+// Close `target` if the user clicks outside of it
 function deactivateIfClickOutside (trigger, targets, focusIdx)
 {
   try {targets.forEach(() => {});}
@@ -112,6 +112,7 @@ function deactivateIfClickOutside (trigger, targets, focusIdx)
   });
 }
 
+// once an input has value, atcivate from it to `contents`
 function exclusiveInputs (contents) {
   contents.querySelectorAll('input').forEach((input) => {
     input.addEventListener('input', () => {

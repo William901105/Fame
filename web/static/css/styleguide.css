@@ -225,9 +225,9 @@
   border-radius: 0.375rem;
 }
 .drop-frame>button,
-.drop-frame>input {
-  display: none;
-}
+.drop-frame>input {display: none;}
+.drop-frame.active input,
+.drop-frame.active button {display: flex;}
 .drop-frame:hover {
   box-shadow: var(--clicked-option);
 }
@@ -323,19 +323,18 @@ img.avatar {
 
 /* message */
 .message {
-  width: 10rem;
-
   display: block;
   position: absolute;
-  z-index: 100;
+  z-index: 1;
   padding: 0.5rem 1rem;
   border-radius: 1.125rem;
   background-color: var(--color-white);
   box-shadow: var(--menu);
 }
 .help .message {
-  bottom: -50%;
-  right: 115%;
+  min-width: 9rem;
+
+  bottom: 100%;
   visibility: hidden;
 }
 .help:hover .message {

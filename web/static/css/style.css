@@ -258,14 +258,9 @@
 .submit .inputs .exclusive-inputs.active>* {display: none;}
 .submit .exclusive-inputs.active>*.active {display: flex;}
 
-.submit .inputs .exclusive-inputs.active .drop-frame input,
-.submit .inputs .exclusive-inputs.active .drop-frame button {display: flex;}
-
 
 /* .submit .modules ul {position: absolute;} */
 .submit .modules .autocomplete * {
+  display: flex;
   flex-direction: column;
-  /* align-self:stretch;
-  justify-content:flex-start;
-  align-items:center; */
 }

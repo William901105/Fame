@@ -39,6 +39,7 @@ p {display: block; color: var(--color-black);}
 span {display: inline;}
 button {background-color:transparent; cursor: pointer;}
 
+label {cursor: text;}
 input {filter: none;}
 input[type=checkbox] {cursor: pointer; accent-color: var(--color-textgray);}
 input[type="file"]::file-selector-button {display: none;}
