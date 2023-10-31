@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
     <head>
@@ -7,7 +6,7 @@
         <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
         <meta name="viewport" content="width=device-width" />
     
-        <title>FAME-Define password</title>
+        <title>FAME register</title>
         <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
         
         <link rel="stylesheet" href="{{ url_for('static', filename='css/globals.css')}}">
@@ -18,29 +17,29 @@
         <img class="tech-style-top" src="{{ url_for('static', filename='img/TechStyle.svg')}}" />
         <img class="tech-style-bottom" src="{{ url_for('static', filename='img/TechStyle.svg')}}" />
 
-        <form class="fillfill fal-va8 login" method="post">
+        <form class="fillfill fal-va8 login" method="post" action="/create_new_user">
         
-            <p class="fal-v8 font-fame">Define your password</p>
+            <p class="fal-v8 font-fame">Register for FAME</p>
             <p style="font-size: 20px;" style="text-align: center;" style="color: gray">
-                After defining, please login with email and your own password !</p>
+            Become the user for more brilliant analysis !</p>
+
 
             <div class="hugfill fal-v8 sec">
                 <div class="hugfill fal-v8 sec">
-                    <p class="font-sec-header color-textgray">Your Password</p>
+                    <p class="font-sec-header color-textgray">Name</p>
                     <div class="hugfix fal-h4 input-frame">
-                        <input type="password" name="password" placeholder="Password" class="form-control" required>
+                        <input type="text" name="name" class="fillfill font-sec-header" value="{% if user %}{{user.name}}{% endif %}" placeholder="Name">
+                    </div>
+                </div>
+                <div class="hugfill fal-v8 sec">
+                    <p class="font-sec-header color-textgray">Email</p>
+                    <div class="hugfix fal-h4 input-frame">
+                        <input type="text" name="email" class="fillfill font-sec-header" value="{% if user %}{{user.email}}{% endif %}" placeholder="Email">
                     </div>
                 </div>
 
-                <div class="hugfill fal-v8 sec">
-                    <p class="font-sec-header color-textgray">Confirm Password</p>
-                    <div class="hugfix fal-h4 input-frame">
-                        <input type="password" name="password_confirmation" placeholder="Password Confirmation" class="form-control" required>
-                    </div>
-                </div>
-                
                 <button type="submit" class="button-black">
-                    <p class="font-mn-opt">Submit</p>
+                    <p class="font-mn-opt">Create</p>
                 </button>
                 
             </div>

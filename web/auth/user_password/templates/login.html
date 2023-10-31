@@ -1,30 +1,74 @@
-{% extends "base_unauthenticated.html" %}
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+        <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
+        <meta name="viewport" content="width=device-width" />
+    
+        <title>FAME - Login</title>
+    
+        <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+    
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/globals.css')}}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styleguide.css')}}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+    </head>
+    <body class="flex-all fillfill fal-v5">
+        <img class="tech-style-top" src="{{ url_for('static', filename='img/TechStyle.svg')}}" />
+        <img class="tech-style-bottom" src="{{ url_for('static', filename='img/TechStyle.svg')}}" />
 
-{% block title %}Login{% endblock %}
+        <form method="post" action="{{url_for('auth.login')}}" class="fillfill fal-va8 login">
+        
+            <p class="fal-v8 font-fame">FAME</p>
 
-{% block body %}
-    <form method="post" action="{{url_for('auth.login')}}">
-
-        <div class="card">
-            <div class="content">
-                <div class="form-group">
-                    <label>Email address</label>
-                    <input type="email" name="email" placeholder="Enter email" class="form-control">
+            <div class="hugfill fal-v8 sec" style="margin: 0;" style="padding: 0;">
+                <div class="hugfill fal-v8 sec">
+                    <p class="font-sec-header color-textgray">Email</p>
+                    <div class="hugfix fal-h4 input-frame">
+                        <input type="email" name="email" class="fillfill font-sec-header" placeholder="Email">
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" name="password" placeholder="Password" class="form-control">
+                <div class="hugfill fal-v8 sec">
+                    <p class="font-sec-header color-textgray">Password</p>
+                    <div class="hugfix fal-h4 input-frame">
+                        <input type="password" name="password" class="fillfill font-sec-header" placeholder="Password">
+                    </div>
                 </div>
+
+                <button type="submit" name="login" value="account" class="button-black">
+                    <p class="font-mn-opt">Login</p>
+                </button>
+                
             </div>
-            <div class="footer text-center">
-                <button type="submit" class="btn btn-fill btn-warning btn-wd" name="login" value="account">Login</button>
-		<br />
-                <a href="{{url_for('auth.password_reset_form')}}">Reset password</a>
-           	<br />
-    		<br />
-    		<button type="submit" class="btn btn-fill btn-warning btn-wd" name="login" value="guest">Account Free Analyse</button>
-	    </div>
-        </div>
+            
+            <div class="hugfill fal-v8 sec">
+                <a href="{{url_for('auth.password_reset_form')}}" style="color: black">[If you forget the password, click here !]</a>
 
-    </form>
-{% endblock %}
+                <p class="font-sec-header color-textgray">Do Not Have an Account?</p>               
+                <button type="submit" name="login" value="guest" class="button-black">
+                    <p class="font-mn-opt">Guest Login</p>
+                </button>
+                
+                <p class="font-sec-header color-textgray">Or you can ......</p>
+                <button type="submit" name="login" value="creat_user" class="button-black">
+                    <p class="font-mn-opt">Be the user</p>
+                </button>
+
+
+            </div>                
+        </form>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="hughug fal-v8 messages">
+                    {% for category, message in messages %}
+                        <div class="hughug fal-v7 message">
+                            <p class="font-mn-opt">{{category}}: "{{message}}"</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+    </body>
+</html>
