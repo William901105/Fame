@@ -259,6 +259,55 @@
 .submit .exclusive-inputs.active>*.active {display: flex;}
 
 
+.submit .sharing * {
+  display: flex;
+  flex-direction:row;
+  justify-content:center;
+  align-items:center;
+}
+.submit .sharing .tagsinput-add-container,
+.submit .sharing .tagsinput-add-container * {
+  align-self:stretch;
+}
+.submit .sharing input {
+  border-radius: 1.5rem;
+  padding: 0rem 1rem 0rem;
+  background-color: var(--color-backgroundgray);
+  box-shadow: var(--menu);
+}
+.submit .sharing .tag {
+  height:fit-content;
+  width:fit-content;
+
+  border-radius: 1.25rem;
+  border: 0.1rem solid;
+  border-color: var(--color-black);
+  
+  transition: padding 0.2s;
+  padding: 0.5rem 0rem 0.5rem 0.625rem;
+}
+.submit .sharing .tag:hover {
+  padding: 0.5rem 0.625rem;
+  box-shadow: var(--clicked-option);
+}
+.submit .sharing .tag:hover::after {
+  content: "x";
+  position: absolute;
+  z-index: -1;
+  right: 1rem;
+}
+.submit .sharing .tag a {padding: 0rem;}
+.submit .sharing .tag:hover a {padding: 0.5rem;}
+
+
+.submit .modules .jq-autocomplete * {
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
+  height:fit-content;
+  align-self:stretch;
+}
+
 .submit .modules .jq-autocomplete.input-frame input {
   padding: 0.5rem 1rem;
   border-radius: 0.375rem;
@@ -307,12 +356,4 @@
 .submit .modules .jq-autocomplete li.value * {
   position: relative;
   color: var(--color-black);
-}
-
-.submit .modules .jq-autocomplete * {
-  display: flex;
-  flex-direction: column;
-  overflow: visible;
-  height:fit-content;
-  align-self:stretch;
 }

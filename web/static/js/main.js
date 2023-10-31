@@ -177,4 +177,6 @@ document.querySelectorAll('.new-item').forEach((new_item) => {
 
 exclusiveInputs(document.querySelector('.exclusive-inputs'));
 
-preventDefaultEnter(document.querySelector('form.submit'));
+preventDefaultEnter(document.querySelector('form.submit .inputs'));
+preventDefaultEnter(document.querySelector('form.submit .modules'));
+preventDefaultEnter(document.querySelector('form.submit .options'));
