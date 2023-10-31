@@ -45,11 +45,11 @@
 {% block title %}Objects{% endblock %}
 
 {% block content %}
-    {% include "includes/sections/files/file_details.html" %}
-    {% include "includes/sections/files/sharing.html" %}
-    {% include "includes/sections/files/analyses.html" %}
-    {% if file.parent_analyses %}{% include "includes/sections/files/parent_analyses.html" %}{% endif %}
-    {% if comments_enabled %}{% include "includes/sections/files/comments.html" %}{% endif %}
+    {% include "includes/files/file_details.html" %}
+    {% include "includes/files/sharing.html" %}
+    {% include "includes/files/analyses.html" %}
+    {% if file.parent_analyses %}{% include "includes/files/parent_analyses.html" %}{% endif %}
+    {% if comments_enabled %}{% include "includes/files/comments.html" %}{% endif %}
 
     {# <script src="{{ url_for('static', filename='js/modules-autocomplete.js') }}"></script> #}
 

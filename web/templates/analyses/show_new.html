@@ -16,9 +16,9 @@
 
 {% block content %}
     {% with file = analysis.file %}
-        {% include "includes/sections/files/file_details.html" %}
-        {% include "includes/sections/files/sharing.html" %}
-        {% if comments_enabled %}{% include "includes/sections/files/comments.html" %}{% endif %}
+        {% include "includes/files/file_details.html" %}
+        {% include "includes/files/sharing.html" %}
+        {% if comments_enabled %}{% include "includes/files/comments.html" %}{% endif %}
     {% endwith %}
 {% endblock %}
 

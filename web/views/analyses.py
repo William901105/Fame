@@ -286,7 +286,7 @@ class AnalysesView(FlaskView, UIView):
 
                     return redirect(analysis, url_for('AnalysesView:get', id=analysis['analysis']['_id']))
             else:
-                return render_template('analyses/new.html', options=dispatcher.options)
+                return render_template('analyses/new_new.html', options=dispatcher.options)
 
     @requires_permission("submit_iocs")
     @route('/<id>/submit_iocs/<module>', methods=["POST"])
