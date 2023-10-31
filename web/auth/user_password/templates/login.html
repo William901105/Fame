@@ -26,13 +26,13 @@
                 <div class="hugfill fal-v8 sec">
                     <p class="font-sec-header color-textgray">Email</p>
                     <div class="hugfill fal-h4 input-frame">
-                        <input class="hugfill" type="email" name="email" class="fillfill font-sec-header" placeholder="Email">
+                        <input class="hugfill font-sec-header" type="email" name="email" placeholder="Email">
                     </div>
                 </div>
                 <div class="hugfill fal-v8 sec">
                     <p class="font-sec-header color-textgray">Password</p>
                     <div class="hugfill fal-h4 input-frame">
-                        <input class="hugfill" type="password" name="password" class="fillfill font-sec-header" placeholder="Password">
+                        <input class="hugfill font-sec-header" type="password" name="password" placeholder="Password">
                     </div>
                 </div>
 
@@ -42,14 +42,19 @@
                 
             </div>
             
-            <!-- <a href="{{url_for('auth.password_reset_form')}}">Reset password</a> -->
-            
             <div class="hugfill fal-v8 sec">
-                <p class="font-sec-header color-textgray">Do Not Have an Account?</p>
-                
+                <a href="{{url_for('auth.password_reset_form')}}" style="color: black">[If you forget the password, click here !]</a>
+
+                <p class="font-sec-header color-textgray">Do Not Have an Account?</p>               
                 <button type="submit" name="login" value="guest" class="button-black">
                     <p class="font-mn-opt">Guest Login</p>
                 </button>
+                
+                <p class="font-sec-header color-textgray">Or you can ......</p>
+                <button type="submit" name="login" value="creat_user" class="button-black">
+                    <p class="font-mn-opt">Be the user</p>
+                </button>
+
 
             </div>                
         </form>
