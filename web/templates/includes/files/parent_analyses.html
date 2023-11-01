@@ -1,0 +1,10 @@
+{#
+<div class="row">
+    <div class="col-sm-2 text-right"><strong>Parent Analyses</strong></div>
+    <div class="col-sm-10">
+        {% for analysis in file.parent_analyses %}
+            <div><a href="{{ url_for('AnalysesView:get', id=analysis) }}">{{analysis}}</a></div>
+        {% endfor %}
+    </div>
+</div>
+#}

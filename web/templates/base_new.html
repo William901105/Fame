@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+        <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
+        <meta name="viewport" content="width=device-width" />
+    
+        <title>FAME - {{ self.title() }}</title>
+    
+        <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+        
+        <!-- Figma -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/globals.css')}}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styleguide.css')}}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+    </head>
+    <body class="fillfill fal-h7">
+
+        {# debug #}
+        <div class="hughug fal-v7 message">
+            <p class="font-mn-opt"></p>
+        </div>
+        
+        <div class="fillfix fal-v8 menu sec">
+            <div class="hugfix fal-h5 head">
+                <p class="fal-h5 font-fame">FAME</p>
+            </div>
+
+            <div class="fillfill fal-v8 content sec">
+                <div class="hugfill fal-v7 options sec_25">
+                    <a class="fixfill fal-h4 {% if current_page == 'Preprocessors' %}active{% endif %}" href="{{ url_for('PreprocessorsView:index') }}">
+                        <p class="font-mn-opt">Preprocessors</p>
+                    </a>
+                    {% if current_user.has_permission('configs') %}
+                    <a class="fixfill fal-h4 {% if current_page == 'Configs' %}active{% endif %}" href="{{ url_for('ConfigsView:index') }}">
+                        <p class="font-mn-opt">Configs</p>
+                    </a>
+                    {% endif %}
+                    <a class="fixfill fal-h4 {% if current_page == 'Objects' %}active{% endif %}" href="{{ url_for('FilesView:index') }}">
+                        <p class="font-mn-opt">Objects</p>
+                    </a>
+                    <a class="fixfill fal-h4 {% if current_page == 'Analyses' %}active{% endif %}" href="{{ url_for('AnalysesView:index') }}">
+                        <p class="font-mn-opt">Analyses</p>
+                    </a>
+                    <a class="fixfill fal-h4 {% if current_page == 'Submit' %}active{% endif %}" href="{{ url_for('AnalysesView:new') }}">
+                        <p class="font-mn-opt">Submit</p>
+                    </a>
+                </div>
+                
+                <div class="hugfill fal-v4 navigation-bar sec_25">
+                    <!-- fill here by js -->
+                </div>
+                
+                <div class="hugfill fal-v8 recent-analyses sec_5">
+
+                    <div class="hugfill fal-h5"><p class="font-sec-header">Recent Analyses</p></div>
+                    <div class="hugfill fal-v8 analyses">
+                        {% for analysis in g.last_analyses %}
+                            <a class="fixfill fal-ha5" href="{{ url_for('AnalysesView:get', id=analysis._id) }}">
+
+                                {% if analysis.status == 'finished' %}
+                                    {% with stroke="var(--color-success)" %}{% include "includes/icons/CheckMark.html" %}{% endwith %}
+                                {% elif analysis.status == 'pending' %}
+                                    {% with stroke="var(--color-pending)" %}{% include "includes/icons/Clock.html" %}{% endwith %}
+                                {% elif analysis.status in ('running', 'preloading') %}
+                                    {% with stroke="var(--color-textgray)" %}{% include "includes/icons/Terminal.html" %}{% endwith %}
+                                {% elif analysis.status == 'error' %}
+                                    {% with stroke="var(--color-cancelled)" %}{% include "includes/icons/Error.html" %}{% endwith %}
+                                {% endif %}
+
+                                {% if analysis.file.type == 'url' %}
+                                <p class="font-hash-value color-textgray">< url ></p>
+                                {% elif analysis.file.sha256 %}
+                                <p class="font-hash-value">{{analysis.file.sha256}}</p>
+                                {% else %}
+                                <p class="font-hash-value color-textgray">N/A</p>
+                                {% endif %}
+
+                                {% with stroke="var(--color-textgray)" %}{% include "includes/icons/ExternalPrompt.html" %}{% endwith %}
+                            </a>
+                        {% endfor %}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="fillfill fal-v8 main sec2">
+
+            <div class="hugfill fal-h5 head">
+                <form class="hugfill fal-h5 search sec2" role="search" action="{{ url_for('SearchView:post') }}" method="post">
+                    <input class="fillfill fal-h4 font-sec-header color-textgray" type="text" name="query" value="" placeholder="Search..">
+                    
+                    <button type="button" class="hughug">
+                        <img class="avatar" src="{{current_user._id|avatar}}" />
+                    </button>
+
+                    <div class="fal-v8 hugfix avatar-menu sec_5">
+                        <div class="fal-v8 hugfill options sec_5">
+                            {% if not current_user.is_guest(current_user._id) %}
+                            <a class="fixfill fal-h4" href="{{url_for('UsersView:get', id=current_user._id)}}">
+                                <p class="font-mn-opt">Profile</p>
+                            </a>
+                            {% endif %}
+                            {% if current_user.has_permission('manage_modules') %}
+                            <a class="fixfill fal-h4" href="{{ url_for('ModulesView:index') }}">
+                                <p class="font-mn-opt">Configuration</p>
+                            </a>
+                            {% endif %}
+                            {% if current_user.has_permission('manage_users') %}
+                            <a class="fixfill fal-h4" href="{{ url_for('UsersView:index') }}">
+                                <p class="font-mn-opt">Users</p>
+                            </a>
+                            {% endif %}
+                            <a class="fixfill fal-h4" href="/logout">
+                                <p class="font-mn-opt">Logout</p>
+                            </a>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            
+            <div class="hugfill fal-v8 content sec2">
+                <h1 class="font-main-title">{{ self.title() }}</h1>
+                {{ self.content() }}              
+            </div>
+
+        </div>
+
+        {# TODO #}
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <script>
+                    {% for category, message in messages %}
+
+                        {% if category != "persistent" %}
+                            {% if category == "message" %}
+                                var category = "info";
+                            {% else %}
+                                var category = "{{category}}";
+                            {% endif %}
+
+                                $.notify(
+                                    {message: "{{message}}"},
+                                    {offset: {y: 50, x: 30}, type: category});
+                        {% endif %}
+                    {% endfor %}
+                </script>
+            {% endif %}
+        {% endwith %}
+
+        <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
+    </body>
+</html>

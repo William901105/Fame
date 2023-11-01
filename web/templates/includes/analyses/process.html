@@ -1,0 +1,72 @@
+<div class="hugfill fal-v8 process sec">
+        <h2 id="process" class="font-sec-header color-textgray">Process</h2>
+
+        <div class="hugfill fal-h5 sec_5">
+            <div class="hughug fal-h1 sec_25">
+                <span class="circle color-success"></span>
+                <p class="font-item-name">Executed</p>
+            </div>
+            <div class="hughug fal-h1 sec_25">
+                <span class="circle color-textgray"></span>
+                <p class="font-item-name">Running</p>
+            </div>
+            <div class="hughug fal-h1 sec_25">
+                <span class="circle color-pending"></span>
+                <p class="font-item-name">Pending</p>
+            </div>
+            <div class="hughug fal-h1 sec_25">
+                <span class="circle color-waiting"></span>
+                <p class="font-item-name">Waiting</p>
+            </div>
+            <div class="hughug fal-h1 sec_25">
+                <span class="circle color-cancelled"></span>
+                <p class="font-item-name">Cancelled</p>
+            </div>
+        </div>
+
+        <div class="hugfill fal-hw4 sec_5">
+            {# {% if analysis.status in ('running', 'pending', 'preloading') %}
+            <div class="sharing-groups">
+                <label class="checkbox checkbox-inline">
+                    <input type="checkbox" checked data-toggle="checkbox" id="auto-refresh" />
+                    Auto-update
+                </label>
+            </div>
+            {% endif %} #}
+
+            {% for module in analysis.executed_modules %}
+            {% if module not in analysis.pending_modules %}
+            <div class="hughug fal-h4 color-success tag"><p class="font-item-name">{{module}}</p></div>
+            {% endif %}
+            {% endfor %}
+
+            {% for module in analysis.pending_modules %}
+            {% if module in analysis.executed_modules %} <!-- running -->
+            <div class="hughug fal-h4 color-textgray tag"><p class="font-item-name">{{module}}</p></div>
+            {% else %}
+            <div class="hughug fal-h4 color-pending tag"><p class="font-item-name">{{module}}</p></div>
+            {% endif %}
+            {% endfor %}
+
+            {% for module in analysis.waiting_modules %}
+            <div class="hughug fal-h4 color-waiting tag"><p class="font-item-name">{{module}}</p></div>
+            {% endfor %}
+
+            {% for module in analysis.canceled_modules %} <!-- note single or double 'l' -->
+            <div class="hughug fal-h4 color-cancelled tag"><p class="font-item-name">{{module}}</p></div>
+            {% endfor %}
+        </div>
+
+        <div class="hugfill fal-h4 sec_5">
+            {% if analysis.status == 'finished' %}
+                {% with stroke="var(--color-success)" %}{% include "includes/icons/CheckMark.html" %}{% endwith %}
+            {% elif analysis.status == 'pending' %}
+                {% with stroke="var(--color-pending)" %}{% include "includes/icons/Clock.html" %}{% endwith %}
+            {% elif analysis.status in ('running', 'preloading') %}
+                {% with stroke="var(--color-textgray)" %}{% include "includes/icons/Terminal.html" %}{% endwith %}
+            {% elif analysis.status == 'error' %}
+                {% with stroke="var(--color-cancelled)" %}{% include "includes/icons/Error.html" %}{% endwith %}
+            {% endif %}
+            <p class="font-item-name color-black">{{ analysis.status }}</p>
+        </div>
+    </div>

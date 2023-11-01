@@ -60,8 +60,6 @@ def authenticate(email, password):
                 user.update_value('last_activity', datetime.now().timestamp())
                 login_user(user)
                 return user
-    else :
-        print("--------------unable")
 
     return None
 
@@ -69,3 +67,5 @@ def authenticate(email, password):
 def change_password(user, password):
     user.update_value('pwd_hash', generate_password_hash(password))
     user.update_value('auth_token', auth_token(user))
+
+    return password

@@ -1,0 +1,85 @@
+{% extends "base_new.html" %}
+
+{% set current_page = 'Submit' %}
+{% block title %}Submit{% endblock %}
+
+{% block content %}
+<form class="hugfill fal-v8 submit sec" enctype="multipart/form-data" action="{{ url_for('AnalysesView:post') }}" method="POST">
+    <div class="hugfill fal-v8 inputs sec">
+        <h2 id="inputs" class="font-sec-header color-textgray">Inputs</h2>
+        <div class="hugfill fal-v8 exclusive-inputs sec">
+            <label class="hugfill fal-h5 drop-frame sec_5">
+                {% with stroke = "var(--color-textgray)" %}{% include "includes/icons/Folder.html" %}{% endwith %}
+                <input class="hugfill" type="file" name="file"/>
+                <button class="fillhug fal-v5" type="button">
+                    {% include "includes/icons/Cross.html" %}
+                </button>
+            </label>
+
+            <div class="hugfill fal-h4 input-frame">
+                <input class="hugfill font-item-name" type="text" name="url" placeholder="URL"/>
+                <button class="fillhug fal-v5" type="button">
+                    {% include "includes/icons/Cross.html" %}
+                </button>
+            </div>
+
+            <div class="hugfill fal-h4 input-frame">
+                <input class="hugfill font-item-name" type="text" name="hash" placeholder="Hash"/>
+                <button class="fillhug fal-v5" type="button">
+                    {% include "includes/icons/Cross.html" %}
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="hugfill fal-v8 modules sec">
+        <h2 id="modules" class="font-sec-header color-textgray">Modules</h2>
+        <label class="hughug fal-h5 color-textgray help sec_5">
+            <div class="hugfill fal-v7 message">
+                <p class="hugfill font-item-name">When enabled, some modules not specified will be executed implicitly.</p>
+            </div>
+            {% with stroke = "var(--color-textgray)" %}{% include "includes/icons/Help.html" %}{% endwith %}
+            <p class="hughug font-item-name color-black">Enable Magic</p>
+            <input type="checkbox" name="options[magic_enabled]" checked>
+        </label>
+
+        <div class="hugfill fal-v8 font-item-name jq-autocomplete input-frame">
+            <input id="modules-autocomplete" class="hugfill fal-v8" name="modules" type="text"
+                placeholder="Modules / Just do your magic"
+                data-data="{{url_for('ModulesView:list')}}"
+            />
+        </div>
+    </div>
+    
+    <div class="hugfill fal-v8 sharing sec">
+        <h2 id="sharing" class="font-sec-header color-textgray">Sharing</h2>
+        <input class="fillfill fal-hw4 tags-input sec_5" type="text" name="groups" value="{{ current_user['default_sharing']|join(',') }}"/>
+    </div>
+    
+    {% if comments_enabled %}
+    <div class="hugfill fal-v8 comment sec">
+        <h2 id="comment" class="font-sec-header color-textgray">Comment</h2>
+        <div class="hugfill fal-h4 input-frame">
+            <textarea class="hugfill font-item-name" type="text" name="comment" placeholder="Comment"></textarea>
+        </div>
+    </div>
+    {% endif %}
+    
+    {% if options.text or options.str or options.integer or options.bool %}
+        {% include "analyses/_options_new.html" %}
+    {% endif %}
+
+    <button type="submit" class="button-black">
+        <p class="font-mn-opt">Submit</p>
+    </button>
+</form>
+
+
+<script src="{{ url_for('static', filename='js/jquery-1.11.3.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/jquery.flexdatalist.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/modules-autocomplete.js') }}"></script>
+<script src="{{ url_for('static', filename='js/tagsinput.js') }}"></script>
+<script>
+    $('.tags-input').tagsInput();
+</script>
+{% endblock %}

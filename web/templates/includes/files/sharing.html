@@ -1,0 +1,22 @@
+<div class="hugfill fal-v8 sharing sec">
+    <h2 id="sharing" class="font-sec-header color-textgray">Sharing</h2>
+    <div class="hugfill fal-hw4 sec_5">
+        {% for group in file.groups %}
+            <form class="hughug fal-h4 item" method="post" action="{{url_for('FilesView:remove_group', id=file._id)}}">
+                <button class="hughug fal-h4" type="submit">
+                    <p class="font-item-name">{{group}}</p>
+                    <div class="hughug">
+                        {% with stroke="var(--color-textgray)" %}{% include "includes/icons/Cross.html" %}{% endwith %}
+                    </div>
+                </button>
+                <input type="text" name="group" value="{{group}}" />
+            </form>
+        {% endfor %}
+
+        <form class="hughug fal-h4 sec new-item" method="post" action="{{url_for('FilesView:add_group', id=file._id)}}">
+            <button type="button">{% include "includes/icons/Plus.html" %}</button>
+            <input class="fillhug font-item-name" type="text" name="group" value="" maxlength="32"/>
+            <div class="padding item"><button><p class="font-item-name">p</p></button></div> <!-- this redundant hierarchy is for css -->
+        </form>
+    </div>
+</div>

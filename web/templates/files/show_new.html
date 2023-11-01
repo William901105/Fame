@@ -1,0 +1,56 @@
+{% extends "base_new.html" %}
+
+{% set current_page = 'Objects' %}
+{% set file = data['file'] %}
+{% set av_modules = data['av_modules'] %}
+
+{# {% block sidebar %}
+<div class="sidebar-submission">
+    <h4>New Analysis</h4>
+    <form action="{{ url_for('AnalysesView:post') }}" method="POST">
+        <input type="hidden" name="file_id" value="{{file._id}}" />
+        <div class="form-group">
+            <input class="form-control" id="modules-autocomplete" name="modules" type="text"
+                placeholder="Modules / Just do your magic"
+                data-data="{{url_for('ModulesView:list')}}" />
+        </div>
+
+        <div class="form-group">
+            <label class="checkbox checkbox-inline">
+                <input type="checkbox" name="options[magic_enabled]" checked data-toggle="checkbox">Enable Magic
+            </label>
+            <a class="help" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Enable Magic"
+                data-html="true" data-content="When disabled, modules that were not specified will not be executed."
+                data-placement="top">
+                <i class="glyphicon glyphicon-question-sign"></i>
+            </a>
+        </div>
+
+        <div class="form-group">
+            <label for="groups">Share with: </label>
+            <input name="groups" class="tags-input" type="text" value="{{ current_user['default_sharing']|join(',') }}" />
+        </div>
+
+        {% include "analyses/_options.html" %}
+
+        <button type="submit" class="btn btn-info btn-fill">Submit</button>
+    </form>
+</div>
+
+<script>
+    $('.tags-input').tagsInput();
+</script>
+{% endblock %} #}
+
+{% block title %}Objects{% endblock %}
+
+{% block content %}
+    {% include "includes/files/details.html" %}
+    {% include "includes/files/sharing.html" %}
+    {% include "includes/files/analyses.html" %}
+    {% if file.parent_analyses %}{% include "includes/files/parent_analyses.html" %}{% endif %}
+    {% if comments_enabled %}{% include "includes/files/comments.html" %}{% endif %}
+
+    {# <script src="{{ url_for('static', filename='js/modules-autocomplete.js') }}"></script> #}
+
+{% endblock %}

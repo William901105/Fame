@@ -14,25 +14,25 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='css/styleguide.css')}}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
     </head>
-    <body class="flex-all fillfill fal-v5">
+    <body class="fillfill fal-v5">
         <img class="tech-style-top" src="{{ url_for('static', filename='img/TechStyle.svg')}}" />
         <img class="tech-style-bottom" src="{{ url_for('static', filename='img/TechStyle.svg')}}" />
 
-        <form method="post" action="{{url_for('auth.login')}}" class="fillfill fal-va8 login">
+        <form method="post" action="{{url_for('auth.login')}}" class="fillfill fal-va8 login sec2">
         
             <p class="fal-v8 font-fame">FAME</p>
 
-            <div class="hugfill fal-v8 sec" style="margin: 0;" style="padding: 0;">
+            <div class="hugfill fal-v8 sec">
                 <div class="hugfill fal-v8 sec">
                     <p class="font-sec-header color-textgray">Email</p>
-                    <div class="hugfix fal-h4 input-frame">
-                        <input type="email" name="email" class="fillfill font-sec-header" placeholder="Email">
+                    <div class="hugfill fal-h4 input-frame">
+                        <input class="hugfill font-sec-header" type="email" name="email" placeholder="Email">
                     </div>
                 </div>
                 <div class="hugfill fal-v8 sec">
                     <p class="font-sec-header color-textgray">Password</p>
-                    <div class="hugfix fal-h4 input-frame">
-                        <input type="password" name="password" class="fillfill font-sec-header" placeholder="Password">
+                    <div class="hugfill fal-h4 input-frame">
+                        <input class="hugfill font-sec-header" type="password" name="password" placeholder="Password">
                     </div>
                 </div>
 

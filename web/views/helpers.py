@@ -134,8 +134,10 @@ def get_or_404(objectmanager, *args, **kwargs):
 
     result = objectmanager.find_one(kwargs)
     if result:
+        print("success to find object")
         return result
     else:
+        print("failed to find object")
         abort(404)
 
 

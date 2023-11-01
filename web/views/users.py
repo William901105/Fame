@@ -3,6 +3,13 @@ from flask import request, flash, url_for, abort
 from flask_login import current_user
 from flask_classful import FlaskView, route
 
+#
+import os
+from werkzeug.security import  generate_password_hash
+from flask import redirect,Blueprint
+from urllib.parse import urljoin
+
+
 from fame.common.config import fame_config
 from fame.core.user import User
 from fame.core.module_dispatcher import dispatcher
@@ -10,8 +17,9 @@ from web.views.mixins import UIView
 from web.views.negotiation import render, redirect, validation_error
 from web.views.helpers import requires_permission, get_or_404, clean_users
 
-
 auth_module = import_module('web.auth.{}.views'.format(fame_config.auth))
+TEMPLATES_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "templates")
+auth = Blueprint('auth', __name__, template_folder='templates')
 
 
 class UsersView(FlaskView, UIView):
@@ -91,17 +99,20 @@ class UsersView(FlaskView, UIView):
         name = request.form.get('name')
         email = request.form.get('email').lower()
         groups = [g for g in request.form.get('groups', '').split(',') if g]
+        ###
+        pwd ='pass'
 
         if not self._valid_form(name, email, groups):
             return validation_error()
-
+        ###
         user = User({
             'name': name,
             'email': email.lower(),
             'groups': groups,
             'default_sharing': groups,
             'permissions': self.get_permissions(),
-            'enabled': True
+            'enabled': True,
+            'pwd_hash' : generate_password_hash(pwd)
         })
 
         if not auth_module.create_user(user):
@@ -182,7 +193,11 @@ class UsersView(FlaskView, UIView):
 
         return redirect({'user': clean_users(user)}, url_for('UsersView:index'))
 
+###
     def ensure_permission(self, id):
+        if current_user['default_sharing'] == ['guest']:
+            abort(403)
+        
         if not ((str(current_user['_id']) == id) or current_user.has_permission('manage_users')):
             abort(403)
 

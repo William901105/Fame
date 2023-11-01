@@ -1,0 +1,28 @@
+<div class="hugfill head">
+    <p class="hugfill bold">{{name}}</p>
+</div>
+
+<div class="hugfill fal-v7">
+{% if results is mapping %}
+{% for key in results %}
+    <p>{{key}}</p>
+    {% if results[key] is string %}
+    <pre><code>{{results[key]}}</code></pre>
+    {% else %}
+    <pre><code>{{results[key]|to_json}}</code></pre>
+    {% endif %}
+{% endfor %}
+{% elif results is string %}
+    <pre><code>{{ results }}</code></pre>
+{% else %}
+    <pre><code>{{ results|to_json }}</code></pre>
+{% endif %}
+
+{% if 'support_files' in analysis %}
+{% if name in analysis.support_files %}
+    <div class="hugfill fal-h7">
+        {{support_files(name)}}
+    </div>
+{% endif %}
+{% endif %}
+</div>

@@ -22,7 +22,7 @@ class UIView(AuthenticatedView):
             return redir
 
         g.last_analyses = []
-        analyses = current_user.analyses.find().sort('_id', DESCENDING).limit(4)
+        analyses = current_user.analyses.find().sort('_id', DESCENDING).limit(5)
 
         for analysis in analyses:
             file = store.files.find_one({'_id': analysis['file']})

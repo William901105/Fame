@@ -1,0 +1,11 @@
+{% extends "base_new.html" %}
+
+{% set current_page = 'Analyses' %}
+
+{% block title %}Analyses{% endblock %}
+
+{% block content %}
+    {{ pagination.links }}
+    {% include "includes/analyses/list.html" %}
+    {{ pagination.links }}
+{% endblock %}

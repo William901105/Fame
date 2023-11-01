@@ -82,7 +82,7 @@ class AnalysesView(FlaskView, UIView):
                 analyst = store.users.find_one({'_id': analysis['analyst']})
                 analysis['analyst'] = clean_users(analyst)
 
-        return render(analyses, 'analyses/index.html', ctx={'data': analyses, 'pagination': pagination})
+        return render(analyses, 'analyses/index_new.html', ctx={'data': analyses, 'pagination': pagination})
 
     def get(self, id):
         """Get the analysis with `id`.
@@ -127,7 +127,7 @@ class AnalysesView(FlaskView, UIView):
         for module in ModuleInfo.get_collection().find():
             modules[module['name']] = ModuleInfo(module)
 
-        return render(analysis, 'analyses/show.html', ctx={
+        return render(analysis, 'analyses/show_new.html', ctx={
             'analysis': analysis,
             'modules': modules,
             'av_modules': av_modules,
@@ -136,7 +136,7 @@ class AnalysesView(FlaskView, UIView):
         })
 
     def new(self):
-        return render_template('analyses/new.html', options=dispatcher.options, comments_enabled=comments_enabled())
+        return render_template('analyses/new_new.html', options=dispatcher.options, comments_enabled=comments_enabled())
 
     def _validate_form(self, groups, modules, options):
         for group in groups:
@@ -286,7 +286,7 @@ class AnalysesView(FlaskView, UIView):
 
                     return redirect(analysis, url_for('AnalysesView:get', id=analysis['analysis']['_id']))
             else:
-                return render_template('analyses/new.html', options=dispatcher.options)
+                return render_template('analyses/new_new.html', options=dispatcher.options)
 
     @requires_permission("submit_iocs")
     @route('/<id>/submit_iocs/<module>', methods=["POST"])

@@ -1,4 +1,20 @@
-/*      light colors         */
+/******************************
+* 
+* Light Colors
+* Font Smoothing
+* General Overwrite
+* Animations
+* Checkbox and Radio
+* Navbar with Icons
+* Changes for Big Display
+* Changes for Small Display
+* Others
+* 
+******************************/
+
+
+
+/*     Light Colors     */
 @keyframes spin {
   from {
     transform: rotate(0deg);
@@ -31,7 +47,9 @@
     -ms-transform: rotate(360deg);
   }
 }
-/*           Font Smoothing      */
+
+
+/*     Font Smoothing     */
 body,
 h1, .h1,
 h2, .h2,
@@ -136,11 +154,13 @@ h1 .subtitle {
   color: #FF4A55 !important;
 }
 
-/*     General overwrite     */
+
+/*     General Overwrite     */
 body,
 .wrapper {
   min-height: 100vh;
   position: relative;
+  overflow-wrap: break-word;
 }
 
 a {
@@ -168,7 +188,8 @@ input:focus {
   outline: 0 !important;
 }
 
-/*           Animations              */
+
+/*     Animations     */
 .form-control,
 .input-group-addon,
 .tagsinput,
@@ -365,18 +386,20 @@ input:focus {
 }
 
 .sidebar {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 260px;
-  display: block;
-  z-index: 1;
-  color: #fff;
-  font-weight: 200;
-  background-size: cover;
-  background-position: center center;
+position: relative;
+display: flex;
+position: absolute;
+top: 0;
+bottom: 0;
+left: 0; width: 260px;
+display: block;
+z-index: 1;
+color: #fff;
+font-weight: 200;
+background-size: cover;
+background-position: center center;
 }
+
 .sidebar .sidebar-wrapper {
   position: relative;
   max-height: 100%;
@@ -443,7 +466,7 @@ input:focus {
 }*/
 .sidebar .nav li > a {
   color: #FFFFFF;
-  margin: 5px 15px;
+  margin: 5px 10px;
   opacity: .86;
   border-radius: 4px;
 }
@@ -1253,7 +1276,8 @@ body > .navbar-collapse[data-color="purple"]:after {
   filter: alpha(opacity=100);
 }
 
-/*      Checkbox and radio         */
+
+/*     Checkbox and Radio     */
 .checkbox,
 .radio {
   margin-bottom: 12px;
@@ -1582,7 +1606,8 @@ body > .navbar-collapse[data-color="purple"]:after {
   color: #9A9A9A;
 }
 
-/*      Navbar with icons            */
+
+/*     Navbar with Icons     */
 .navbar-icons.navbar .navbar-brand {
   margin-top: 12px;
   margin-bottom: 12px;
@@ -2742,7 +2767,19 @@ body > .navbar-collapse[data-color="purple"]:after {
   left: 0;
 }
 
-@media (min-width: 992px) {
+
+/*     Changes for Big Display     */
+@media (min-width: 993px) {
+  .table-full-width {
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+
+  .table-responsive {
+    overflow: visible;
+  }
+}
+@media (min-width: 993px) {
   .navbar-form {
     margin-top: 21px;
     margin-bottom: 21px;
@@ -2826,8 +2863,20 @@ body > .navbar-collapse[data-color="purple"]:after {
     padding-right: 15px;
   }
 }
-/*          Changes for small display      */
-@media (max-width: 991px) {
+
+
+/*     Changes for Small Display     */
+@media (max-width: 992px) {
+  .table-responsive {
+    width: 100%;
+    margin-bottom: 15px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+@media (max-width: 992px) {
   .sidebar {
     display: none;
   }
@@ -2877,6 +2926,10 @@ body > .navbar-collapse[data-color="purple"]:after {
     display: none !important;
   }
 
+  .navbar-toggle {
+    float: left;
+  }
+
   .navbar-nav > li {
     float: none;
     position: relative;
@@ -2889,7 +2942,7 @@ body > .navbar-collapse[data-color="purple"]:after {
     top: 0;
     height: 100%;
     width: 250px;
-    right: 0;
+    left: 0;
     z-index: 1032;
     visibility: visible;
     background-color: #999;
@@ -2897,11 +2950,11 @@ body > .navbar-collapse[data-color="purple"]:after {
     border-top: none;
     text-align: left;
     padding: 0;
-    -webkit-transform: translate3d(250px, 0, 0);
-    -moz-transform: translate3d(250px, 0, 0);
-    -o-transform: translate3d(250px, 0, 0);
-    -ms-transform: translate3d(250px, 0, 0);
-    transform: translate3d(250px, 0, 0);
+    -webkit-transform: translate3d(-250px, 0, 0);
+    -moz-transform: translate3d(-250px, 0, 0);
+    -o-transform: translate3d(-250px, 0, 0);
+    -ms-transform: translate3d(-250px, 0, 0);
+    transform: translate3d(-250px, 0, 0);
     -webkit-transition: all 0.33s cubic-bezier(0.685, 0.0473, 0.346, 1);
     -moz-transition: all 0.33s cubic-bezier(0.685, 0.0473, 0.346, 1);
     -o-transition: all 0.33s cubic-bezier(0.685, 0.0473, 0.346, 1);
@@ -2948,11 +3001,11 @@ body > .navbar-collapse[data-color="purple"]:after {
 
   .nav-open .wrapper {
     left: 0;
-    -webkit-transform: translate3d(-250px, 0, 0);
-    -moz-transform: translate3d(-250px, 0, 0);
-    -o-transform: translate3d(-250px, 0, 0);
-    -ms-transform: translate3d(-250px, 0, 0);
-    transform: translate3d(-250px, 0, 0);
+    -webkit-transform: translate3d(250px, 0, 0);
+    -moz-transform: translate3d(250px, 0, 0);
+    -o-transform: translate3d(250px, 0, 0);
+    -ms-transform: translate3d(250px, 0, 0);
+    transform: translate3d(250px, 0, 0);
   }
 
   .navbar-toggle .icon-bar {
@@ -3305,8 +3358,8 @@ body > .navbar-collapse[data-color="purple"]:after {
     position: fixed;
     opacity: 0;
     top: 0;
-    left: auto;
-    right: 250px;
+    right: auto;
+    left: 250px;
     content: "";
     z-index: 9999;
     overflow-x: hidden;
@@ -3396,27 +3449,9 @@ body > .navbar-collapse[data-color="purple"]:after {
     margin-right: 10px;
   }
 }
-@media (min-width: 992px) {
-  .table-full-width {
-    margin-left: -15px;
-    margin-right: -15px;
-  }
 
-  .table-responsive {
-    overflow: visible;
-  }
-}
-@media (max-width: 991px) {
-  .table-responsive {
-    width: 100%;
-    margin-bottom: 15px;
-    overflow-x: scroll;
-    overflow-y: hidden;
-    -ms-overflow-style: -ms-autohiding-scrollbar;
-    -webkit-overflow-scrolling: touch;
-  }
-}
 
+/*     Others     */
 .navbar-form .input-group-addon {
   border-radius: 0;
   border: 0;
