@@ -48,7 +48,7 @@ def test_mongodb_connection(db):
 def define_mongo_connection(context):
     from pymongo import MongoClient
 
-    context['mongo_host'] = os.environ.get('MONGODB_HOST', "localhost")
+    context['mongo_host'] = os.environ.get('MONGODB_HOST', "fame.bun-ball.live")
     context['mongo_port'] = int(os.environ.get("MONGODB_PORT", 27017))
     context['mongo_db'] = os.environ.get("MONGO_INITDB_DATABASE", "fame")
     context['mongo_user'] = os.environ.get("MONGODB_USERNAME", '')
@@ -131,15 +131,15 @@ def create_admin_user(context):
 def add_community_repository():
     from fame.core.repository import Repository
 
-    repo = Repository.get(name="community")
+    repo = Repository.get(name="Connlab_module")
 
     if repo:
-        print("[+] Community repository already installed.")
+        print("[+] Connlab_module repository already installed.")
     else:
-        print("[+] Installing community repository ...")
+        print("[+] Installing Connlab_module repository ...")
         repo = Repository({
-            'name': 'community',
-            'address': 'https://github.com/certsocietegenerale/fame_modules.git',
+            'name': 'Connlab_module',
+            'address': 'https://github.com/William901105/fame_module.git',
             'private': False,
             'status': 'cloning'
         })

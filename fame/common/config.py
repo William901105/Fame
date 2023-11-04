@@ -12,6 +12,7 @@ class ConfigObject:
         config = configparser.SafeConfigParser({'root': FAME_ROOT}, allow_no_value=True)
 
         if filename:
+            print(os.path.join(FAME_ROOT, "conf", "%s.conf" % filename),'-------------------------------------')
             config.read(os.path.join(FAME_ROOT, "conf", "%s.conf" % filename))
         else:
             from_string = StringIO(from_string)
@@ -40,12 +41,17 @@ class ConfigObject:
 
 def get_fame_config():
     fame_config = ConfigObject(filename="fame").get('fame')
+    print("config---------------------------------")
     if fame_config is None:
         fame_config = Dictionary()
-        fame_config['mongo_host'] = 'localhost'
+        fame_config['mongo_host'] = 'fame.bun-ball.live'
         fame_config['mongo_port'] = 27017
         fame_config['mongo_db'] = 'fame'
         fame_config['auth'] = 'user_password'
+        fame_config['remote'] = False
+        fame_config['storage_path'] = '%(root)s/storage'
+        fame_config['temp_path'] = '%(root)s/temp'
+        fame_config['fame_url'] = 'fame.bun-ball.live'
 
     return fame_config
 

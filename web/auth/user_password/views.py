@@ -10,6 +10,11 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from web.views.negotiation import validation_error, render
 from datetime import datetime
 
+##
+from werkzeug.security import check_password_hash, generate_password_hash
+from web.views.negotiation import validation_error, render
+from datetime import datetime
+
 from fame.common.config import fame_config
 from fame.common.email_utils import EmailServer
 from fame.core.user import User
@@ -31,8 +36,8 @@ def create_user(user):
     user = User(get_or_404(User.get_collection(), _id=user_id.decode('ascii')))
     user.update_value('auth_token', auth_token(user))
 
-    reset_url = url_for('auth.password_reset', token=token, _external=True) 
-    #reset_url = urljoin(fame_config.fame_url, url_for('auth.password_reset', token=token))
+    #reset_url = url_for('auth.password_reset', token=token, _external=True) 
+    reset_url = urljoin(fame_config.fame_url, url_for('auth.password_reset', token=token))
     email_server = EmailServer(TEMPLATES_DIR)
 
     if email_server.is_connected:
@@ -45,9 +50,22 @@ def create_user(user):
             error = "Could not connect to SMTP Server."
         else:
             error = "SMTP Server not properly configured."
-        
+                
         error += " The new user should visit '{}' in the next 24 hours in order to define his password".format(reset_url)
         flash(error, 'persistent')
+    
+
+    return True
+
+def create_guest(user):
+    user.save()
+
+    user.generate_avatar()
+
+    token = password_reset_token(user)
+    user_id = validate_password_reset_token(token)
+    user = User(get_or_404(User.get_collection(), _id=user_id.decode('ascii')))
+    user.update_value('auth_token', auth_token(user))
     
 
     return True
@@ -94,7 +112,8 @@ def password_reset_form():
 
                 if user:
                     token = password_reset_token(user)
-                    reset_url = url_for('auth.password_reset', token=token, _external=True)
+                    #reset_url = url_for('auth.password_reset', token=token, _external=True)
+                    reset_url = urljoin(fame_config.fame_url, url_for('auth.password_reset', token=token))
 
                     msg = email_server.new_message_from_template("Reset your FAME account's password.", 'mail_reset_password.html', {'user': user, 'url': reset_url})
                     msg.send([user['email']])
@@ -135,6 +154,7 @@ def password_reset(token):
 @auth.route('/login', methods=['GET', 'POST'])
 @prevent_csrf
 def login():
+
 
     if request.method == 'GET':
         return render_template('login.html')
@@ -218,8 +238,82 @@ def create_new_user():
 
         return render_template('login.html')
 ###                
+
+                nowTime = datetime.now()
+
+                # create guest user
+                guest_mail = str(nowTime) + "@guest"
+                user = User({
+                    'create_at':nowTime,
+                    'name': 'test'+ str(nowTime),
+                    'email': guest_mail,
+                    'groups': [ "guest" ],
+                    'default_sharing': [ "guest" ],
+                    'permissions': list([ "see_logs" ]),
+                    'enabled': True,
+                    'pwd_hash' : generate_password_hash('pass')
+                    })
+                if not create_guest(user):
+                    return validation_error()
+
+                user.save()
+                if authenticate(guest_mail,'pass'):
+                    return redirect(url_for("AnalysesView:index")) 
+            elif request.form['login'] == 'creat_user':
+                return redirect(url_for('auth.become_user'))
+
+@auth.route('/become_user', methods=['GET', 'POST'])
+@prevent_csrf
+def become_user():
+        context = {'user': {}}
+
+        return render(context, 'new.html')
+
+def _valid_form(name, email, previous_email=None):
+        for var in ['name', 'email']:
+            if not locals()[var]:
+                flash('"{}" is required'.format(var), 'danger')
+                return False
+
+        if (previous_email is None) or (previous_email != email):
+            existing_user = User.get_collection().find_one({'email': email})
+            if existing_user:
+                flash('User with email "{}" already exists.'.format(email), 'danger')
+                return False
+
+        return True
+
+@auth.route('/create_new_user', methods=['POST'])
+def create_new_user():
+        name = request.form.get('name')
+        email = request.form.get('email').lower()
+        ###
+
+        if not _valid_form(name, email, [ "guest", "user" ]):
+            return validation_error()
+        ###
+        user = User({
+            'name': name,
+            'email': email.lower(),
+            'groups': [ "guest", "user" ],
+            'default_sharing': [ "user" ],
+            'permissions': list([ "see_logs" ]),
+            'enabled': True,
+        })
+
+        if not create_user(user):
+            return validation_error()
+
+        user.save()
+
+        return render_template('login.html')
+###                
 @auth.route('/logout')
 def logout():
+    if current_user['default_sharing'] == ['guest']:
+        flash("You don't have the permission to access this page.\nPlease login !", "danger")
+        return redirect(url_for("AnalysesView:index")) 
+    
     if current_user['default_sharing'] == ['guest']:
         flash("You don't have the permission to access this page.\nPlease login !", "danger")
         return redirect(url_for("AnalysesView:index")) 
