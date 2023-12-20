@@ -6,7 +6,7 @@
         <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
         <meta name="viewport" content="width=device-width" />
     
-        <title>FAME - {{ self.title() }}</title>
+        <title>UBMAF - {{ self.title() }}</title>
     
         <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
         
@@ -16,15 +16,10 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
     </head>
     <body class="fillfill fal-h7">
-
-        {# debug #}
-        <div class="hughug fal-v7 message">
-            <p class="font-mn-opt"></p>
-        </div>
         
         <div class="fillfix fal-v8 menu sec">
             <div class="hugfix fal-h5 head">
-                <p class="fal-h5 font-fame">FAME</p>
+                <p class="fal-h5 font-fame">UBMAF</p>
             </div>
 
             <div class="fillfill fal-v8 content sec">
@@ -89,7 +84,10 @@
 
         <div class="fillfill fal-v8 main sec2">
 
-            <div class="hugfill fal-h5 head">
+            <div class="hugfill fal-h5 head sec2">
+                <button class="fillhug fal-h5 hamburger" type="button">
+                    {% include "includes/icons/Hamburger.html" %}
+                </button>
                 <form class="hugfill fal-h5 search sec2" role="search" action="{{ url_for('SearchView:post') }}" method="post">
                     <input class="fillfill fal-h4 font-sec-header color-textgray" type="text" name="query" value="" placeholder="Search..">
                     

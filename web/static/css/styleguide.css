@@ -310,8 +310,7 @@
 }
 .new-item>input.active {
   max-width: 100%;
-  background-color: var(--color-backgroundgray);
-  box-shadow: var(--menu);
+  box-shadow: var(--carved-area);
 }
 .new-item>.padding {visibility: hidden;}
 

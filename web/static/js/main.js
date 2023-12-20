@@ -167,6 +167,10 @@ deactivateIfClickOutside(
   document.querySelector('.avatar'),
   document.querySelector('.avatar-menu')
 );
+deactivateIfClickOutside(
+  document.querySelector('.main>.head .hamburger'),
+  document.querySelector('.menu')
+);
 document.querySelectorAll('.new-item').forEach((new_item) => {
   deactivateIfClickOutside(
     new_item.querySelector('button'),

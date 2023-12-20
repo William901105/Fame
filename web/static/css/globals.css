@@ -2,7 +2,7 @@
 
 
 /* RWD */
-@media screen and (max-width: 700px) {html {font-size: 8px;}} /* TODO: Phone */
+@media screen and (max-width: 700px) {html {font-size: 14px;}}
 @media screen and (min-width: 701px) {html {font-size: 14px;}}
 @media screen and (min-width: 801px) {html {font-size: 16px;}}
 @media screen and (min-width: 1001px) {html {font-size: 18px;}}
@@ -14,7 +14,8 @@ html,
 body {
   height: 100%;
   width: 100%;
-  overflow: hidden;
+
+  overflow-x: hidden;
 }
 body,
 body * {
@@ -34,7 +35,8 @@ body * {overflow: visible;}
 head,
 script {display: none;}
 
-a {text-decoration: none;}
+a {text-decoration: none;color:var(--color-textgray);}
+.active a {color:var(--color-black);} /* for pagination.links */
 p {display: block; color: var(--color-black);}
 span {display: inline;}
 button {background-color:transparent; cursor: pointer;}
